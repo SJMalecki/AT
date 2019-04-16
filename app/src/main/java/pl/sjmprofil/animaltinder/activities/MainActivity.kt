@@ -1,7 +1,8 @@
-package pl.sjmprofil.animaltinder
+package pl.sjmprofil.animaltinder.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import pl.sjmprofil.animaltinder.R
 
 class MainActivity : AppCompatActivity() {
 
