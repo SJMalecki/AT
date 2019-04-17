@@ -9,7 +9,7 @@ import pl.sjmprofil.animaltinder.R
 
 class FollowersFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.layout_fallowers_fragment, container, false)
+        return inflater.inflate(R.layout.layout_followers_fragment, container, false)
     }
 
 

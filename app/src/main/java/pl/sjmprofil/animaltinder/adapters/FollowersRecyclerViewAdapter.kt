@@ -14,22 +14,22 @@ class FollowersRecyclerViewAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder
         const val TAG = "FollowersRecyclerView"
     }
 
-    lateinit var fallowersList: MutableList<User>
+    private lateinit var followersList: MutableList<User>
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.cardview_followers, viewGroup, false)
+        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_view_followers, viewGroup, false)
         return ViewHolder(view)
     }
 
     fun updateList(list: MutableList<User>){
-        fallowersList.clear()
-        fallowersList.addAll(list)
+        followersList.clear()
+        followersList.addAll(list)
         notifyDataSetChanged()
         Log.d(TAG, "list updated")
     }
 
-    override fun getItemCount() = fallowersList.size
+    override fun getItemCount() = followersList.size
 
-    override fun onBindViewHolder(p0: RecyclerView.ViewHolder, p1: Int) {
+    override fun onBindViewHolder(recyclerView: RecyclerView.ViewHolder, position: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
