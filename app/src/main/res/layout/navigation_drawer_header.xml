@@ -10,16 +10,12 @@
         />
     </data>
 
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
         <ImageView
                 android:id="@+id/image_navigation_drawer_header"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:contentDescription="@string/nav_drawer_header_picture_description"
                 android:src="@drawable/drawer_tinda_pic"
         />
-    </RelativeLayout>
 </layout>
