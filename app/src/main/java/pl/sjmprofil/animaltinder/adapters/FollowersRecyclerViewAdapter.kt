@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.databinding.CardViewFollowersBinding
 import pl.sjmprofil.animaltinder.models.Advert
-import pl.sjmprofil.animaltinder.models.User
 
 class FollowersRecyclerViewAdapter : RecyclerView.Adapter<FollowersRecyclerViewAdapter.ViewHolder>() {
 
@@ -17,7 +16,7 @@ class FollowersRecyclerViewAdapter : RecyclerView.Adapter<FollowersRecyclerViewA
         const val TAG = "FollowersRecyclerView"
     }
 
-    private lateinit var followersList: MutableList<Advert>
+    private var followersList = mutableListOf<Advert>()
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): FollowersRecyclerViewAdapter.ViewHolder {
 
         val inflater = LayoutInflater.from(viewGroup.context)

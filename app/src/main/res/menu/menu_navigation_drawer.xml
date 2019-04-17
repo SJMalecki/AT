@@ -6,13 +6,19 @@
     <item
             android:id="@+id/user_profile_fragment_layout"
             android:icon="@drawable/ic_assignment_ind_black_24dp"
-            android:title="@string/menu_nav_drawer_profile"></item>
+            android:title="@string/menu_nav_drawer_profile">
+
+    </item>
     <item
             android:id="@+id/navigation_drawer_add_item"
             android:icon="@drawable/ic_add_a_photo_black_24dp"
-            android:title="@string/menu_nav_drawer_add"></item>
+            android:title="@string/menu_nav_drawer_add">
+
+    </item>
     <item
             android:id="@+id/navigation_drawer_followers_item"
             android:icon="@drawable/ic_favorite_border_black_24dp"
-            android:title="@string/menu_nav_drawer_followers"></item>
+            android:title="@string/menu_nav_drawer_followers">
+
+    </item>
 </menu>
