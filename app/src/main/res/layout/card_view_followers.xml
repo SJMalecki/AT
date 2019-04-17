@@ -27,10 +27,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                app:imageUrl="@{advert.imageUrl}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/ic_launcher_round" />
-            <!--change img!-->
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/first_name_text_view"
@@ -46,12 +45,11 @@
                 android:id="@+id/last_name_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{advert.lastName}"
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
+                android:text="@{advert.lastName}"
                 app:layout_constraintStart_toEndOf="@+id/image_view"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
 
         </android.support.constraint.ConstraintLayout>
