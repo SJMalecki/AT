@@ -17,7 +17,7 @@ class FollowersRecyclerViewAdapter : RecyclerView.Adapter<FollowersRecyclerViewA
         const val TAG = "FollowersRecyclerView"
     }
 
-    private lateinit var followersList: MutableList<User>
+    private lateinit var followersList: MutableList<Advert>
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): FollowersRecyclerViewAdapter.ViewHolder {
 
         val inflater = LayoutInflater.from(viewGroup.context)
@@ -25,7 +25,7 @@ class FollowersRecyclerViewAdapter : RecyclerView.Adapter<FollowersRecyclerViewA
         return ViewHolder(view)
     }
 
-    fun updateList(list: MutableList<User>) {
+    fun updateList(list: MutableList<Advert>) {
         followersList.clear()
         followersList.addAll(list)
         notifyDataSetChanged()
@@ -35,14 +35,14 @@ class FollowersRecyclerViewAdapter : RecyclerView.Adapter<FollowersRecyclerViewA
     override fun getItemCount() = followersList.size
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int){
-        viewHolder.bindItems()
+        viewHolder.bindItems(followersList[position])
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         lateinit var binding: CardViewFollowersBinding
-        fun bindItems() {
+        fun bindItems(advert: Advert) {
             binding = DataBindingUtil.bind(itemView.rootView)!!
-            binding.advert = Advert()
+            binding.advert = advert
         }
     }
 }
