@@ -2,8 +2,15 @@
     <string name="app_name">AnimalTinder</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
+
     <string name="register">Register</string>
     <string name="log_in">Log in</string>
     <string name="remember_login_password">Remember login and password</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="email">Email</string>
+    <string name="enter_password1">Enter the password</string>
+    <string name="enter_password2">Enter the password again</string>
+
 
 </resources>
