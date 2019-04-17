@@ -1,26 +1,31 @@
 package pl.sjmprofil.animaltinder.adapters
 
+import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import pl.sjmprofil.animaltinder.R
+import pl.sjmprofil.animaltinder.databinding.CardViewFollowersBinding
+import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.User
 
-class FollowersRecyclerViewAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FollowersRecyclerViewAdapter : RecyclerView.Adapter<FollowersRecyclerViewAdapter.ViewHolder>() {
 
     companion object {
         const val TAG = "FollowersRecyclerView"
     }
 
     private lateinit var followersList: MutableList<User>
-    override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_view_followers, viewGroup, false)
+    override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): FollowersRecyclerViewAdapter.ViewHolder {
+
+        val inflater = LayoutInflater.from(viewGroup.context)
+        val view = inflater.inflate(R.layout.card_view_followers, viewGroup, false)
         return ViewHolder(view)
     }
 
-    fun updateList(list: MutableList<User>){
+    fun updateList(list: MutableList<User>) {
         followersList.clear()
         followersList.addAll(list)
         notifyDataSetChanged()
@@ -29,11 +34,15 @@ class FollowersRecyclerViewAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder
 
     override fun getItemCount() = followersList.size
 
-    override fun onBindViewHolder(recyclerView: RecyclerView.ViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int){
+        viewHolder.bindItems()
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        lateinit var binding: CardViewFollowersBinding
+        fun bindItems() {
+            binding = DataBindingUtil.bind(itemView.rootView)!!
+            binding.advert = Advert()
+        }
     }
 }

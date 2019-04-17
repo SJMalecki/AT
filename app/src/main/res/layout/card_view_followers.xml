@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <data>
+
+        <variable
+            name="advert"
+            type="pl.sjmprofil.animaltinder.models.Advert" />
+
+    </data>
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <data>
-
-            <variable
-                name="advert"
-                type="com.hemmersbach.android.animaltinder.models.Advert" />
-            <!--this path can be wrong!!-->
-
-        </data>
 
 
         <android.support.constraint.ConstraintLayout
@@ -38,9 +37,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@{advert.firtsName}"
+                android:text="@{advert.firstName}"
                 app:layout_constraintStart_toStartOf="@+id/last_name_text_view"
                 app:layout_constraintTop_toBottomOf="@+id/last_name_text_view" />
+
 
             <TextView
                 android:id="@+id/last_name_text_view"
@@ -48,10 +48,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
-                android:text="@{adapter.lastName}"
                 app:layout_constraintStart_toEndOf="@+id/image_view"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <!--android:text="@{advert.lastName}"-->
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
