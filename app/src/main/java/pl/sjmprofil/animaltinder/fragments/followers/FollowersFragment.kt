@@ -28,18 +28,18 @@ class FollowersFragment : Fragment() {
         followers_fragment_recycler_view.adapter = recyclerViewAdapter
         followers_fragment_recycler_view.layoutManager = LinearLayoutManager(context)
         val tmp = listOf(
-            Advert("Jan", "Kowalski"),
-            Advert("Jan", "Kowals ki"),
-            Advert("Jan1", "Kowalski1"),
-            Advert("Jan2", "Kowalski5"),
-            Advert("Jan", "Kowalski"),
-            Advert("Jan", "Kowals ki"),
-            Advert("Jan1", "Kowalski1"),
-            Advert("Jan2", "Kowalski5"),
-            Advert("Jan", "Kowalski"),
-            Advert("Jan", "Kowals ki"),
-            Advert("Jan1", "Kowalski1"),
-            Advert("Jan2", "Kowalski5")
+            Advert("Jan", "Kowalski", ""),
+            Advert("Jan", "Kowals ki", ""),
+            Advert("Jan1", "Kowalski1", ""),
+            Advert("Jan2", "Kowalski5", ""),
+            Advert("Jan", "Kowalski", ""),
+            Advert("Jan", "Kowals ki", ""),
+            Advert("Jan1", "Kowalski1", ""),
+            Advert("Jan2", "Kowalski5", ""),
+            Advert("Jan", "Kowalski", ""),
+            Advert("Jan", "Kowals ki", ""),
+            Advert("Jan1", "Kowalski1", ""),
+            Advert("Jan2", "Kowalski5", "")
         )
         recyclerViewAdapter.updateList(tmp as MutableList<Advert>)
     }
