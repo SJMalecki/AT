@@ -1,4 +1,4 @@
 package pl.sjmprofil.animaltinder.models
 
-class Advert {
+data class Advert(val firstName: String = "Jan", val lastName: String = "Kowalski") {
 }
