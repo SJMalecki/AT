@@ -23,7 +23,7 @@
             android:layout_margin="8dp">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -34,22 +34,22 @@
             <!--change img!-->
 
             <TextView
-                android:id="@+id/firstNameTextView"
+                android:id="@+id/first_name_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@{advert.firtsName}"
-                app:layout_constraintStart_toStartOf="@+id/lastNameTextView"
-                app:layout_constraintTop_toBottomOf="@+id/lastNameTextView" />
+                app:layout_constraintStart_toStartOf="@+id/last_name_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/last_name_text_view" />
 
             <TextView
-                android:id="@+id/lastNameTextView"
+                android:id="@+id/last_name_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
                 android:text="@{adapter.lastName}"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/image_view"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
