@@ -22,11 +22,11 @@ interface ApiService {
     @POST("userlogin")
     fun loginUser(@Body user: User): Deferred<Response<UserResponseDTO>>
 
-//    // Advert Queries
-//    @Headers("Content-Type: application/json")
-//    @POST("advertcreate")
-//    fun advertCreate(@Body advert: Advert, @Header("Authorization") token: String): Deferred<Response<UserResponseDTO>>
-//
+    // Advert Queries
+    @Headers("Content-Type: application/json")
+    @POST("advertcreate")
+    fun advertCreate(@Body advert: Advert, @Header("Authorization") token: String): Deferred<Response<UserResponseDTO>>
+
 //    @Headers("Content-Type: application/json")
 //    @POST("advertfind")
 //    fun advertFind(@Body user: User, @Header("Authorization") token: String): Deferred<Response<AdvertResponseDTO>>
