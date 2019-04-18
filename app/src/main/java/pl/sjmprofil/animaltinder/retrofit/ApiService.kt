@@ -17,11 +17,11 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @POST("usercreate")
     fun createNewUser(@Body user: User): Deferred<Response<UserResponseDTO>>
-//
-//    @Headers("Content-Type: application/json")
-//    @POST("userlogin")
-//    fun loginUser(@Body user: User): Deferred<Response<UserResponseDTO>>
-//
+
+    @Headers("Content-Type: application/json")
+    @POST("userlogin")
+    fun loginUser(@Body user: User): Deferred<Response<UserResponseDTO>>
+
 //    // Advert Queries
 //    @Headers("Content-Type: application/json")
 //    @POST("advertcreate")
