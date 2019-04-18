@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.databinding.UserProfileFragmentLayoutBinding
-import pl.sjmprofil.animaltinder.models.Advert
+import pl.sjmprofil.animaltinder.models.User
 
 class UserProfileFragment : Fragment() {
 
@@ -17,8 +17,8 @@ class UserProfileFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         bindUserProfileFragment =
                 DataBindingUtil.inflate(inflater, R.layout.user_profile_fragment_layout, container, false)
-        val advert = Advert("nameTest", "surnameTest", "http://sjmprofil.pl/imgjson/18.jpg")
-        bindUserProfileFragment.advert = advert
+        val user = User(0, "email@wp.pl", "Imie", "nazwisko", "password", "https://pbs.twimg.com/profile_images/651092879725740032/5Fau7HaM_400x400.jpg")
+        bindUserProfileFragment.user = user
         return bindUserProfileFragment.root
     }
 }
