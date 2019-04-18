@@ -14,9 +14,9 @@ interface ApiService {
     @GET("users")
     fun getAllUsers(@Header("Authorization") token: String): Deferred<Response<UsersListDTO>>
 
-//    @Headers("Content-Type: application/json")
-//    @POST("usercreate")
-//    fun createNewUser(@Body user: User): Deferred<Response<UserResponseDTO>>
+    @Headers("Content-Type: application/json")
+    @POST("usercreate")
+    fun createNewUser(@Body user: User): Deferred<Response<UserResponseDTO>>
 //
 //    @Headers("Content-Type: application/json")
 //    @POST("userlogin")
