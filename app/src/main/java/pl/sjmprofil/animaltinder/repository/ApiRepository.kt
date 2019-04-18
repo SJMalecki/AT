@@ -68,7 +68,7 @@ class ApiRepository(val context: Context, val apiService: ApiService) {
         return false
     }
 
-
+    // Get my user info by token identity
     suspend fun getMyUserInfo(): User? {
         val response = apiService.getMyInfo(token).await()
 
@@ -78,7 +78,6 @@ class ApiRepository(val context: Context, val apiService: ApiService) {
 //            return responseBody.user
         }
         return null
-
     }
 
 
