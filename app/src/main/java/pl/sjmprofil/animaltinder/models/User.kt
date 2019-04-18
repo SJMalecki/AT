@@ -1,10 +1,22 @@
 package pl.sjmprofil.animaltinder.models
+import com.google.gson.annotations.SerializedName
 
 data class User(
-    val firstName: String,
-    val lastName: String,
-    val email: String,
-    val info: String,
-    val imageUrl: String = "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
-) {
-}
+    @SerializedName("user_id")
+    var id: Int = 0,
+
+    @SerializedName("email")
+    var email: String = "",
+
+    @SerializedName("name")
+    var name: String  = "",
+
+    @SerializedName("surname")
+    var surname: String = "",
+
+    @SerializedName("password")
+    var password: String = "",
+
+    @SerializedName("picture")
+    var picture: String = ""
+)

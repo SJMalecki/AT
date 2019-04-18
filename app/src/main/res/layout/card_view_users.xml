@@ -29,7 +29,7 @@
                 android:layout_height="100dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                app:imageUrl="@{item.imageUrl}"
+                app:imageUrl="@{item.picture}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/drawer_tinda_pic" />
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@{item.firstName}"
+                android:text="@{item.name}"
                 app:layout_constraintStart_toStartOf="@+id/users_card_view_last_name_text_view"
                 app:layout_constraintTop_toBottomOf="@+id/users_card_view_last_name_text_view"
                 tools:text="@string/first_name"/>
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
-                android:text="@{item.lastName}"
+                android:text="@{item.surname}"
                 app:layout_constraintStart_toEndOf="@+id/users_card_view_image_view"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/last_name"/>
