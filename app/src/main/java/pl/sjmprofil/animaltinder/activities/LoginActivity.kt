@@ -2,19 +2,25 @@ package pl.sjmprofil.animaltinder.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.dialog.LoadingDialog
+import pl.sjmprofil.animaltinder.repository.ApiRepository
 import pl.sjmprofil.animaltinder.utilities.Validator
 
-class LoginActivity : AppCompatActivity(), KodeinAware{
+class LoginActivity : AppCompatActivity(), KodeinAware {
 
     override val kodein by kodein()
 
     private val validator: Validator by instance()
+
+    private val apiRepository: ApiRepository by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +33,23 @@ class LoginActivity : AppCompatActivity(), KodeinAware{
 //            showEmptyError(activity_login_login_input_text)
 //            showEmptyError(activity_login_password_input_text)
 //        }
+
+        checkForExistingUser()
+
     }
+
+    private fun checkForExistingUser() {
+
+        GlobalScope.launch {
+            val mySavedUser = apiRepository.getMyUserInfo()
+
+            mySavedUser?.let {
+                activity_login_login_input_text.setText(it.email)
+                activity_login_password_input_text.setText(it.password)
+            }
+        }
+    }
+
 
     private fun startRegisterActivity() {
         val intent = RegisterActivity.getIntent(this)
@@ -38,7 +60,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware{
         return LoadingDialog()
     }
 
-    private fun manageOnClick(){
+    private fun manageOnClick() {
         val dialog = prepareCustomDialog()
         dialog.show(supportFragmentManager, "TAG")
     }
