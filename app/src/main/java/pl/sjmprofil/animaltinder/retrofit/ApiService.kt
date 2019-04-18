@@ -27,10 +27,10 @@ interface ApiService {
     @POST("advertcreate")
     fun advertCreate(@Body advert: Advert, @Header("Authorization") token: String): Deferred<Response<UserResponseDTO>>
 
-//    @Headers("Content-Type: application/json")
-//    @POST("advertfind")
-//    fun advertFind(@Body user: User, @Header("Authorization") token: String): Deferred<Response<AdvertResponseDTO>>
-//
+    @Headers("Content-Type: application/json")
+    @POST("advertfind")
+    fun advertFind(@Body user: User, @Header("Authorization") token: String): Deferred<Response<AdvertResponseDTO>>
+
 //    @Headers("Content-Type: application/json")
 //    @GET("adverts")
 //    fun getAllAdverts(@Header("Authorization") token: String): Deferred<Response<AdvertResponseDTO>>
