@@ -20,7 +20,6 @@ class Validator {
     private fun validateSecondPassword(password1: TextInputEditText, password2: TextInputEditText): Boolean =
         password2.text.toString() == password1.text.toString()
 
-
     fun showEmptyError(text: TextInputEditText) {
         text.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
