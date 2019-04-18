@@ -26,7 +26,7 @@
     <string name="api_resources_address">https://animtind.herokuapp.com/static</string>
     
     <!-- API ENDPOINT ADRESS -->
-    <string name="shared_pref_token_key">shprtoken<string>
+    <string name="shared_pref_token_key">shprtoken</string>
     <string name="shared_pref_email_key">shpremail</string>
     <string name="shared_pref_password_key">shprpassword</string>
     
