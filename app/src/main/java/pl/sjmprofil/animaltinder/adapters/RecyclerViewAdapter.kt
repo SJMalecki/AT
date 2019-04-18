@@ -16,13 +16,23 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         const val TAG = "FollowersRecyclerView"
+        const val FOLLOWERS_VIEW = 0
     }
 
     private var itemsList = mutableListOf<Any>()
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(viewGroup.context)
-        val view = inflater.inflate(R.layout.card_view_followers, viewGroup, false)
+        val view = when(viewType){
+            FOLLOWERS_VIEW -> {
+                inflater.inflate(R.layout.card_view_followers, viewGroup, false)
+            }
+            else -> {
+                //for test purpose
+                inflater.inflate(R.layout.layout_followers_fragment, viewGroup, false)
+            }
+        }
+
         return AdvertViewHolder(view)
     }
 
@@ -33,12 +43,19 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         Log.d(TAG, "list updated")
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return when(itemsList[position]){
+            is Advert -> FOLLOWERS_VIEW
+            else -> -1
+        }
+    }
+
     override fun getItemCount() = itemsList.size
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int){
-        val item = itemsList[position]
-        when(item){
-            is Advert -> (viewHolder as AdvertViewHolder).bindItems(itemsList[position] as Advert)
+        val itemType = getItemViewType(position)
+        when(itemType){
+            FOLLOWERS_VIEW -> (viewHolder as AdvertViewHolder).bindItems(itemsList[position] as Advert)
         }
 
     }
