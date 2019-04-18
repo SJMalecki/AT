@@ -1,4 +1,20 @@
 package pl.sjmprofil.animaltinder.models
 
-data class Advert(val firstName: String, val lastName: String, val imageUrl: String = "https://pbs.twimg.com/profile_images/644797420019171329/gKodSoEM_400x400.jpg") {
-}
+import com.google.gson.annotations.SerializedName
+
+data class Advert(
+    @SerializedName("id")
+    var id: Int = 0,
+
+    @SerializedName("bio")
+    var bio: String = "",
+
+    @SerializedName("email")
+    var email: String = "",
+
+    @SerializedName("header")
+    var header: String = "",
+
+    @SerializedName("picture")
+    var picture: String = ""
+)
