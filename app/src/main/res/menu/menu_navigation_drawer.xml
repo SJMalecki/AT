@@ -10,7 +10,7 @@
 
     </item>
     <item
-            android:id="@+id/navigation_drawer_add_item"
+            android:id="@+id/add_fragment_layout"
             android:icon="@drawable/ic_add_a_photo_black_24dp"
             android:title="@string/menu_nav_drawer_add">
 

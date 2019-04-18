@@ -14,4 +14,8 @@
         android:id="@+id/navigation_drawer_followers_item"
         android:name="pl.sjmprofil.animaltinder.fragments.followers.FollowersFragment"
         android:label="FollowersFragment" />
+    <fragment
+        android:id="@+id/add_fragment_layout"
+        android:name="pl.sjmprofil.animaltinder.fragments.add.AddFragment"
+        android:label="Add"/>
 </navigation>
