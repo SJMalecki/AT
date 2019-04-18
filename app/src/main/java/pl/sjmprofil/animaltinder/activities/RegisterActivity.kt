@@ -23,16 +23,16 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         with(validator) {
-            showTextError(name_input_text)
-            showTextError(surname_input_text)
-            showEmailError(email_input_text)
-            showSecondPasswordError(password1_input_text, password2_input_text)
+            showTextError(activity_register_name_input_text)
+            showTextError(activity_register_surname_input_text)
+            showEmailError(activity_register_email_input_text)
+            showSecondPasswordError(activity_register_password1_input_text, activity_register_password2_input_text)
 
-            showEmptyError(password1_input_text)
-            showEmptyError(password2_input_text)
-            showEmptyError(name_input_text)
-            showEmptyError(surname_input_text)
-            showEmptyError(email_input_text)
+            showEmptyError(activity_register_password1_input_text)
+            showEmptyError(activity_register_password2_input_text)
+            showEmptyError(activity_register_name_input_text)
+            showEmptyError(activity_register_surname_input_text)
+            showEmptyError(activity_register_email_input_text)
         }
     }
 }
