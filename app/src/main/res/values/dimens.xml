@@ -2,4 +2,5 @@
 <resources>
     <dimen name="user_profile_fragment_image_size">200dp</dimen>
     <dimen name="user_profile_fragment_email_text_size">24sp</dimen>
+    <dimen name="add_fragment_image_button_padding">18dp</dimen>
 </resources>

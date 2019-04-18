@@ -1,5 +1,4 @@
 package pl.sjmprofil.animaltinder.models
-
 import com.google.gson.annotations.SerializedName
 
 data class User(
