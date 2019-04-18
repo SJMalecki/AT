@@ -6,7 +6,7 @@ import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.retrofit.ApiService
 
-class ApiRepository(val context: Context, val apiService: ApiService) {
+class ApiRepository(private val context: Context, private val apiService: ApiService) {
 
     // Use shared pref to save data and get data from
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -26,7 +26,7 @@ class ApiRepository(val context: Context, val apiService: ApiService) {
 
     private fun updateSharedPrefPassword(newEmail: String, newPassword: String, newToken: String) {
         val editor = sharedPreferences.edit()
-        editor.putString(context.getString(R.string.shared_pref_token_key),  newToken)
+        editor.putString(context.getString(R.string.shared_pref_token_key), newToken)
         editor.putString(context.getString(R.string.shared_pref_email_key), newEmail)
         editor.putString(context.getString(R.string.shared_pref_password_key), newPassword)
         editor.apply()
@@ -36,7 +36,7 @@ class ApiRepository(val context: Context, val apiService: ApiService) {
     // Required fields [ email , password, name , surname ]
     suspend fun createUser(user: User): Boolean {
 
-        if (user.email == "" || user.name == "" || user.surname == "" || user.password == ""){
+        if (user.email == "" || user.name == "" || user.surname == "" || user.password == "") {
             return false
         }
 
@@ -49,7 +49,6 @@ class ApiRepository(val context: Context, val apiService: ApiService) {
             updateSharedPrefPassword(newEmail = user.email, newPassword = user.password, newToken = newToken!!)
             return true
         }
-
         return false
     }
 
@@ -73,38 +72,30 @@ class ApiRepository(val context: Context, val apiService: ApiService) {
         val response = apiService.getMyInfo(token).await()
 
         if (response.isSuccessful) {
-            val responseBody = response.body()
-
-//            return responseBody.user
+            // Response body is User
+            return response.body()
         }
-        return null
+        return User()
     }
-
-
 
     // get all users
     // Required fields [ ]
     // @token required
 
-
     // create advert
     // Required fields [ email, bio]
     // @token required
-
 
     // get advert by email
     // Required fields [ email ]
     // @token required
 
-
     // get all adverts
     // @token required
-
 
     // upload user picture
     // Required fields [ photo, email ]
     // @token required
-
 
     // upload advert picture
     // Required fields [ photo, advert_id ]
