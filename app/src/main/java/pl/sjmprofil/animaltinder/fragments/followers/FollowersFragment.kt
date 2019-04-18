@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.layout_followers_fragment.*
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
 import pl.sjmprofil.animaltinder.models.Advert
+import pl.sjmprofil.animaltinder.models.User
 
 class FollowersFragment : Fragment() {
 
@@ -30,6 +31,7 @@ class FollowersFragment : Fragment() {
         val tmp = listOf(
             Advert("Jan", "Kowalski"),
             Advert("Jan", "Kowals ki"),
+            User("Jan", "Kowals ki", "adasd@asd.com", "bla bla bla bla"),
             Advert("Jan1", "Kowalski1"),
             Advert("Jan2", "Kowalski5"),
             Advert("Jan", "Kowalski"),
@@ -41,7 +43,7 @@ class FollowersFragment : Fragment() {
             Advert("Jan1", "Kowalski1"),
             Advert("Jan2", "Kowalski5")
         )
-        recyclerViewAdapter.updateList(tmp as MutableList<Advert>)
+        recyclerViewAdapter.updateList(tmp as MutableList<Any>)
     }
 
 }
