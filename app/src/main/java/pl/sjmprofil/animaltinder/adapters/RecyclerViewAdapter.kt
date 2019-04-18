@@ -10,38 +10,44 @@ import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.databinding.CardViewFollowersBinding
 import pl.sjmprofil.animaltinder.models.Advert
 
-class FollowersRecyclerViewAdapter : RecyclerView.Adapter<FollowersRecyclerViewAdapter.ViewHolder>() {
+
+
+class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         const val TAG = "FollowersRecyclerView"
     }
 
-    private var followersList = mutableListOf<Advert>()
-    override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): FollowersRecyclerViewAdapter.ViewHolder {
+    private var itemsList = mutableListOf<Any>()
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         val inflater = LayoutInflater.from(viewGroup.context)
         val view = inflater.inflate(R.layout.card_view_followers, viewGroup, false)
-        return ViewHolder(view)
+        return AdvertViewHolder(view)
     }
 
     fun updateList(list: MutableList<Advert>) {
-        followersList.clear()
-        followersList.addAll(list)
+        itemsList.clear()
+        itemsList.addAll(list)
         notifyDataSetChanged()
         Log.d(TAG, "list updated")
     }
 
-    override fun getItemCount() = followersList.size
+    override fun getItemCount() = itemsList.size
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int){
-        viewHolder.bindItems(followersList[position])
+    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int){
+        val item = itemsList[position]
+        when(item){
+            is Advert -> (viewHolder as AdvertViewHolder).bindItems(itemsList[position] as Advert)
+        }
+
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        lateinit var binding: CardViewFollowersBinding
+    class AdvertViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private lateinit var binding: CardViewFollowersBinding
         fun bindItems(advert: Advert) {
             binding = DataBindingUtil.bind(itemView.rootView)!!
-            binding.advert = advert
+            binding.item = advert
         }
     }
 }
