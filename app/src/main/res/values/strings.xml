@@ -18,14 +18,11 @@
     <string name="nav_drawer_header_picture_description">User picture</string>
     <string name="user_profile_fragment_layout_label">My Profile</string>
     <string name="button_search_user_profile_fragment">Search</string>
-<<<<<<< HEAD
+
     <string name="first_name">Firstname</string>
     <string name="last_name">Lastname</string>
-=======
 
-    <!-- API ENDPOINT ADRESS -->
     <string name="api_endpoint_address">https://animtind.herokuapp.com/api/</string>
     <string name="api_resources_address">https://animtind.herokuapp.com/static</string>
     <string name="bio">bio</string>
-    >>>>>>> 519f5472c644f92c68d7e532494ef56b4fdc6e3e
 </resources>
