@@ -8,8 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.layout_followers_fragment.*
 import pl.sjmprofil.animaltinder.R
-import pl.sjmprofil.animaltinder.adapters.FollowersRecyclerViewAdapter
+import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
 import pl.sjmprofil.animaltinder.models.Advert
+import pl.sjmprofil.animaltinder.models.User
 
 class FollowersFragment : Fragment() {
 
@@ -17,31 +18,53 @@ class FollowersFragment : Fragment() {
         return inflater.inflate(R.layout.layout_followers_fragment, container, false)
     }
 
-    lateinit var recyclerViewAdapter: FollowersRecyclerViewAdapter
+    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecycler()
     }
 
     private fun setupRecycler() {
-        recyclerViewAdapter = FollowersRecyclerViewAdapter()
+        recyclerViewAdapter = RecyclerViewAdapter()
         followers_fragment_recycler_view.adapter = recyclerViewAdapter
         followers_fragment_recycler_view.layoutManager = LinearLayoutManager(context)
         val tmp = listOf(
-            Advert("Jan", "Kowalski"),
-            Advert("Jan", "Kowals ki"),
-            Advert("Jan1", "Kowalski1"),
-            Advert("Jan2", "Kowalski5"),
-            Advert("Jan", "Kowalski"),
-            Advert("Jan", "Kowals ki"),
-            Advert("Jan1", "Kowalski1"),
-            Advert("Jan2", "Kowalski5"),
-            Advert("Jan", "Kowalski"),
-            Advert("Jan", "Kowals ki"),
-            Advert("Jan1", "Kowalski1"),
-            Advert("Jan2", "Kowalski5")
+            Advert(
+                0,
+                "bla bla bla ",
+                "bla bla @op.pl",
+                "header",
+                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
+            ),
+            User(
+                0,
+                "email@op.pl",
+                "Taylor",
+                "Swift",
+                "1234",
+                "https://static.wizaz.pl/resize/var/ezdemo_site/storage/images/fryzury/lob-najmodniejsza-fryzura-sezonu/lob-taylor-swift/120930-1-pol-PL/Lob-Taylor-Swift.jpg?width=256&height=256"
+            ),
+            Advert(
+                0,
+                "bla bla bla ",
+                "bla bla @op.pl",
+                "header",
+                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
+            ),
+            User(
+                0,
+                "email@op.pl",
+                "Taylor",
+                "Swift",
+                "1234",
+                "https://static.wizaz.pl/resize/var/ezdemo_site/storage/images/fryzury/lob-najmodniejsza-fryzura-sezonu/lob-taylor-swift/120930-1-pol-PL/Lob-Taylor-Swift.jpg?width=256&height=256"
+            )
+
         )
-        recyclerViewAdapter.updateList(tmp as MutableList<Advert>)
+
+
+
+        recyclerViewAdapter.updateList(tmp as MutableList<Any>)
     }
 
 }

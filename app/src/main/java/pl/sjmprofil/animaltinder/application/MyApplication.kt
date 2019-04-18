@@ -40,9 +40,11 @@ class MyApplication : Application(), KodeinAware {
 
         bind() from singleton { instance<Retrofit>().create(ApiService::class.java) }
 
-        bind<ApiRepository>() with singleton {
-            ApiRepository(applicationContext, instance())
-        }
+        //NOT WORKING YET
+//        bind<ApiRepository>() with singleton {
+//            ApiRepository(applicationContext, instance())
+//        }
+
 //
 //        bind<Database>() with singleton {
 //            Room.databaseBuilder(

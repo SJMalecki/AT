@@ -19,9 +19,10 @@
     <string name="user_profile_fragment_layout_label">My Profile</string>
     <string name="button_search_user_profile_fragment">Search</string>
 
+
     <string name="loading_dialog_string">Please wait… Logging into AnimalTinder</string>
 
-    <!-- API ENDPOINT ADRESS -->
+
     <string name="api_endpoint_address">https://animtind.herokuapp.com/api/</string>
     <string name="api_resources_address">https://animtind.herokuapp.com/static</string>
     
@@ -32,4 +33,12 @@
     
     
 
+=======
+    <string name="first_name">Firstname</string>
+    <string name="last_name">Lastname</string>
+
+    <string name="api_endpoint_address">https://animtind.herokuapp.com/api/</string>
+    <string name="api_resources_address">https://animtind.herokuapp.com/static</string>
+    <string name="bio">bio</string>
+>>>>>>> app/src/main/res/values/strings.xml
 </resources>
