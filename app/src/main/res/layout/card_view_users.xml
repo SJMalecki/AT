@@ -24,7 +24,7 @@
             android:background="@color/colorPrimary">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/followers_card_view_image_view"
+                android:id="@+id/users_card_view_image_view"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="8dp"
@@ -35,25 +35,25 @@
                 tools:src="@drawable/drawer_tinda_pic" />
 
             <TextView
-                android:id="@+id/followers_card_view_first_name_text_view"
+                android:id="@+id/users_card_view_first_name_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@{item.firstName}"
-                app:layout_constraintStart_toStartOf="@+id/followers_card_view_last_name_text_view"
-                app:layout_constraintTop_toBottomOf="@+id/followers_card_view_last_name_text_view"
+                app:layout_constraintStart_toStartOf="@+id/users_card_view_last_name_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/users_card_view_last_name_text_view"
                 tools:text="@string/first_name"/>
 
 
             <TextView
 
-                android:id="@+id/followers_card_view_last_name_text_view"
+                android:id="@+id/users_card_view_last_name_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
                 android:text="@{item.lastName}"
-                app:layout_constraintStart_toEndOf="@+id/followers_card_view_image_view"
+                app:layout_constraintStart_toEndOf="@+id/users_card_view_image_view"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/last_name"/>
 
