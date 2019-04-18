@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import pl.sjmprofil.animaltinder.R
+import pl.sjmprofil.animaltinder.dialog.LoadingDialog
 import pl.sjmprofil.animaltinder.utilities.Validator
 
 class RegisterActivity : AppCompatActivity() {
@@ -22,6 +23,8 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        activity_register_register_button2.setOnClickListener { manageOnClick() }
+
         with(validator) {
             showTextError(activity_register_name_input_text)
             showTextError(activity_register_surname_input_text)
@@ -34,5 +37,14 @@ class RegisterActivity : AppCompatActivity() {
             showEmptyError(activity_register_surname_input_text)
             showEmptyError(activity_register_email_input_text)
         }
+    }
+
+    private fun prepareCustomDialog(): LoadingDialog {
+        return LoadingDialog()
+    }
+
+    private fun manageOnClick() {
+        val dialog = prepareCustomDialog()
+        dialog.show(supportFragmentManager, "TAG")
     }
 }
