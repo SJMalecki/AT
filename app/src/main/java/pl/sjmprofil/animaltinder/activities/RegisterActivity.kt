@@ -5,8 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
 import pl.sjmprofil.animaltinder.R
@@ -69,10 +71,10 @@ class RegisterActivity : AppCompatActivity(), KodeinAware {
             val response = apiRepository.createUser(user)
 
             if (response) {
-                dialog.dismiss()
+                withContext(Dispatchers.Main) { dialog.dismiss() }
                 finish()
             } else {
-                dialog.dismiss()
+                withContext(Dispatchers.Main) { dialog.dismiss() }
             }
         }
     }

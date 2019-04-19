@@ -3,8 +3,10 @@ package pl.sjmprofil.animaltinder.activities
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -41,9 +43,11 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
         GlobalScope.launch {
             val mySavedUser = apiRepository.getUserFromSharedPrefs()
 
-            mySavedUser.let {
-                activity_login_login_input_text.setText(it.email)
-                activity_login_password_input_text.setText(it.password)
+            withContext(Dispatchers.Main) {
+                mySavedUser.let {
+                    activity_login_login_input_text.setText(it.email)
+                    activity_login_password_input_text.setText(it.password)
+                }
             }
         }
     }

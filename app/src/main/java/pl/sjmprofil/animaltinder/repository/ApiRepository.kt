@@ -35,6 +35,8 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         editor.apply()
     }
 
+    fun wrapToken(token:String) = "Bearer $token"
+
     // create user
     // Required fields [ email , password, name , surname ]
     suspend fun createUser(user: User): Boolean {
@@ -63,7 +65,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     suspend fun loginUser(user: User): Boolean {
 
         if (token != ""){
-            val response = apiService.loginUser(user, token).await()
+            val response = apiService.loginUser(user, wrapToken(token)).await()
             val responseBody = response.body()
 
             if (response.isSuccessful && responseBody?.message == "success") {
@@ -81,7 +83,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
 
     // Get my user info by token identity
     suspend fun getMyUserInfoFromServer(): User {
-        val response = apiService.getMyInfo(token).await()
+        val response = apiService.getMyInfo(wrapToken(token)).await()
 
         if (response.isSuccessful) {
             // Response body is User
