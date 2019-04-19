@@ -25,4 +25,5 @@
     <string name="api_endpoint_address">https://animtind.herokuapp.com/api/</string>
     <string name="api_resources_address">https://animtind.herokuapp.com/static</string>
     <string name="bio">bio</string>
+    <string name="text_view_bio_add_fragment_hint">My pet is aswsome !</string>
 </resources>
