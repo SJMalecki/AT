@@ -119,4 +119,3 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
 // upload advert picture
 // Required fields [ photo, advert_id ]
 // @token required
-}
