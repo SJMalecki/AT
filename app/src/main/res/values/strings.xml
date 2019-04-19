@@ -11,12 +11,15 @@
     <string name="email">Email</string>
     <string name="enter_password1">Enter the password</string>
     <string name="enter_password2">Enter the password again</string>
+
     <string name="menu_nav_drawer_profile">Profile</string>
     <string name="menu_nav_drawer_followers">Followers</string>
     <string name="menu_nav_drawer_add">Add</string>
     <string name="nav_drawer_header_picture_description">User picture</string>
     <string name="user_profile_fragment_layout_label">My Profile</string>
     <string name="button_search_user_profile_fragment">Search</string>
+
+    <string name="loading_dialog_string">Please wait… Logging into AnimalTinder</string>
 
     <!-- API ENDPOINT ADRESS -->
     <string name="api_endpoint_address">https://animtind.herokuapp.com/api/</string>
