@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialogLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:layout_margin="@dimen/,argom"
+    tools:context=".utilities.DialogFragmentAddBio">
+
+    <ImageView
+        android:id="@+id/dialogImage"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_mode_edit_black_24dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_task"
+        android:textSize="@dimen/Add_text_size"
+        android:layout_toEndOf="@+id/dialogImage"
+        android:layout_alignBottom="@+id/dialogImage"
+        />
+
+    <EditText
+        android:id="@+id/dialogEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        android:layout_below="@+id/dialogImage"
+        />
+
+    <Button
+        android:id="@+id/dialogCancelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialogEditText"
+        android:text="@string/cancel_button"
+        android:layout_toStartOf="@+id/dialogAddBtn"
+        />
+
+    <Button
+        android:id="@+id/dialogAddBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialogEditText"
+        android:text="@string/add_button"
+        android:layout_alignParentEnd="true"
+        />
+
+
+</RelativeLayout>
