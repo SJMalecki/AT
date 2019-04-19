@@ -54,6 +54,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
             updateClassSharedPrefValues()
             return true
         }
+        Log.d("APIREPO", "Creating user failed")
         return false
     }
 
@@ -71,6 +72,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
             updateClassSharedPrefValues()
             return true
         }
+        Log.d("APIREPO", "Login user failed")
         return false
     }
 
@@ -84,6 +86,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
             Log.d("APIREPO", "Getting user info details: ${myUserInstance?.email}, ${myUserInstance?.password}")
             return myUserInstance
         }
+        Log.d("APIREPO", "Getting user info, empty user")
         return User()
     }
 
