@@ -9,6 +9,7 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 import pl.sjmprofil.animaltinder.R
+import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
 import pl.sjmprofil.animaltinder.repository.ApiRepository
 import pl.sjmprofil.animaltinder.retrofit.ApiService
 import pl.sjmprofil.animaltinder.utilities.Validator
@@ -19,6 +20,9 @@ class MyApplication : Application(), KodeinAware {
 
     override val kodein by Kodein.lazy {
 
+        bind<RecyclerViewAdapter>() with singleton {
+            RecyclerViewAdapter()
+        }
 
         bind<Validator>() with singleton {
             Validator()

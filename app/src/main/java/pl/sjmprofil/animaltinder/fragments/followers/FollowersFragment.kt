@@ -9,27 +9,33 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.layout_followers_fragment.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.generic.instance
+import org.kodein.di.android.support.kodein
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.User
 
-class FollowersFragment : Fragment() {
+class FollowersFragment : Fragment(), KodeinAware {
+
+    override val kodein by kodein()
+    private val recyclerViewAdapter: RecyclerViewAdapter by instance()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.layout_followers_fragment, container, false)
     }
 
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         setupRecycler()
     }
 
-    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
+//    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private fun setupRecycler() {
-        recyclerViewAdapter = RecyclerViewAdapter()
+//        recyclerViewAdapter = RecyclerViewAdapter()
         followers_fragment_recycler_view.adapter = recyclerViewAdapter
         followers_fragment_recycler_view.layoutManager = LinearLayoutManager(context)
         val tmp = getList()
