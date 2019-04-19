@@ -37,7 +37,6 @@ class FollowersFragment : Fragment() {
         recyclerViewAdapter.itemClickListener = {
             val action = FollowersFragmentDirections.actionfollowersTofollowerDetails(it)
             navController.navigate(action)
-
         }
     }
 
@@ -71,7 +70,7 @@ class FollowersFragment : Fragment() {
                 "Taylor",
                 "Swift",
                 "1234",
-                "https://static.wizaz.pl/resize/var/ezdemo_site/storage/images/fryzury/lob-najmodniejsza-fryzura-sezonu/lob-taylor-swift/120930-1-pol-PL/Lob-Taylor-Swift.jpg?width=256&height=256"
+                "http://www.songnotes.cc/images/artists/TaylorSwift.jpg"
             )
 
         )
