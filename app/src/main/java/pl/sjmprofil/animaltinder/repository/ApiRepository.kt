@@ -2,6 +2,7 @@ package pl.sjmprofil.animaltinder.repository
 
 import android.content.Context
 import android.preference.PreferenceManager
+import android.util.Log
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.retrofit.ApiService
@@ -15,13 +16,14 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     lateinit var password: String
 
     init {
-        getSharedPrefValues()
+        updateClassSharedPrefValues()
     }
 
-    private fun getSharedPrefValues() {
+    private fun updateClassSharedPrefValues() {
         token = sharedPreferences.getString(context.getString(R.string.shared_pref_token_key), "")!!
         email = sharedPreferences.getString(context.getString(R.string.shared_pref_email_key), "")!!
         password = sharedPreferences.getString(context.getString(R.string.shared_pref_password_key), "")!!
+        Log.d("APIREPO", "UPDATING CLASS SHARED PREF VALUES: $token, $email, $password")
     }
 
     private fun updateSharedPrefPassword(newEmail: String, newPassword: String, newToken: String) {
@@ -29,6 +31,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         editor.putString(context.getString(R.string.shared_pref_token_key), newToken)
         editor.putString(context.getString(R.string.shared_pref_email_key), newEmail)
         editor.putString(context.getString(R.string.shared_pref_password_key), newPassword)
+        Log.d("APIREPO", "UPDATING SHARED PREF USER: $newEmail, $newPassword, $newToken")
         editor.apply()
     }
 
@@ -41,12 +44,14 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         }
 
         val response = apiService.createNewUser(user).await()
+        val responseBody = response.body()
 
-        if (response.isSuccessful) {
-            val responseBody = response.body()
-            val newToken = responseBody?.token
+        if (response.isSuccessful && responseBody?.message == "success") {
+            val newToken = responseBody.token
 
+            Log.d("APIREPO", "CREATING NEW USER: ${user.email}, ${user.password}, $newToken")
             updateSharedPrefPassword(newEmail = user.email, newPassword = user.password, newToken = newToken!!)
+            updateClassSharedPrefValues()
             return true
         }
         return false
@@ -56,12 +61,14 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     // Required fields [ email, password ]
     suspend fun loginUser(user: User): Boolean {
         val response = apiService.loginUser(user, token).await()
+        val responseBody = response.body()
 
-        if (response.isSuccessful) {
-            val responseBody = response.body()
-            val newToken = responseBody?.token
+        if (response.isSuccessful && responseBody?.message == "success") {
+            val newToken = responseBody.token
 
-            updateSharedPrefPassword(newEmail = user.email, newPassword = user.password, newToken = newToken!!)
+            Log.d("APIREPO", "LOGIN USER: ${user.email}, ${user.password}, $newToken")
+            updateSharedPrefPassword(newEmail = user.email, newPassword = user.password, newToken = newToken)
+            updateClassSharedPrefValues()
             return true
         }
         return false
@@ -73,9 +80,16 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
 
         if (response.isSuccessful) {
             // Response body is User
-            return response.body()
+            val myUserInstance = response.body()
+            Log.d("APIREPO", "Getting user info details: ${myUserInstance?.email}, ${myUserInstance?.password}")
+            return myUserInstance
         }
         return User()
+    }
+
+    fun getUserFromSharedPrefs(): User {
+        Log.d("APIREPO", "Getting user from shared prefs: $email, $password")
+        return User(email = email, password = password)
     }
 
     // get all users
