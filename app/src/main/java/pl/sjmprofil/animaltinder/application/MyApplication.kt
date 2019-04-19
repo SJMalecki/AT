@@ -10,6 +10,11 @@ import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
+import pl.sjmprofil.animaltinder.fragments.add.AddFragmentViewModelFactory
+import pl.sjmprofil.animaltinder.fragments.followerdetails.FollowerDetailsFragmentViewModelFactory
+import pl.sjmprofil.animaltinder.fragments.followers.FollowersFragmentViewModelFactory
+import pl.sjmprofil.animaltinder.fragments.search.SearchFragmentViewModelFactory
+import pl.sjmprofil.animaltinder.fragments.userprofile.UserProfileFragmentViewModelFactory
 import pl.sjmprofil.animaltinder.repository.ApiRepository
 import pl.sjmprofil.animaltinder.retrofit.ApiService
 import pl.sjmprofil.animaltinder.utilities.Validator
@@ -47,9 +52,28 @@ class MyApplication : Application(), KodeinAware {
         bind<ApiRepository>() with singleton {
             ApiRepository(applicationContext, instance())
         }
+
+        bind<AddFragmentViewModelFactory>() with singleton {
+            AddFragmentViewModelFactory(instance())
+        }
+
+        bind<FollowerDetailsFragmentViewModelFactory>() with singleton {
+            FollowerDetailsFragmentViewModelFactory(instance())
+        }
+
+        bind<FollowersFragmentViewModelFactory>() with singleton {
+            FollowersFragmentViewModelFactory(instance())
+        }
+
+        bind<UserProfileFragmentViewModelFactory>() with singleton {
+            UserProfileFragmentViewModelFactory(instance())
+        }
+
+        bind<SearchFragmentViewModelFactory>() with singleton {
+            SearchFragmentViewModelFactory(instance())
+        }
     }
 }
-
 
 //
 //        bind<Database>() with singleton {
