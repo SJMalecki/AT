@@ -4,6 +4,7 @@ import android.content.Context
 import android.preference.PreferenceManager
 import android.util.Log
 import pl.sjmprofil.animaltinder.R
+import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.retrofit.ApiService
 
@@ -35,7 +36,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         editor.apply()
     }
 
-    fun wrapToken(token:String) = "Bearer $token"
+    fun wrapToken(token: String) = "Bearer $token"
 
     // create user
     // Required fields [ email , password, name , surname ]
@@ -80,6 +81,19 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         return false
     }
 
+    suspend fun getAllUsers(): List<User> {
+        val response = apiService.getAllUsers(token).await()
+
+        val responseBody = response.body()
+
+        if (response.isSuccessful && responseBody?.messasge == "success") {
+            Log.d("APIREPO", "Getting all users ${responseBody.users}")
+            return responseBody.users
+        }
+        Log.d("APIREPO", "Getting all users, no users")
+        return listOf()
+    }
+
     // Get my user info by token identity
     suspend fun getMyUserInfoFromServer(): User {
         val response = apiService.getMyInfo(wrapToken(token)).await()
@@ -104,27 +118,48 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         Log.d("APIREPO", "Saving user in shared prefs: ${user.email}, ${user.password}")
         updateSharedPrefs(newEmail = user.email, newPassword = user.password, newToken = "")
     }
+
+    suspend fun getMyAdverts(): List<Advert> {
+        val response = apiService.getMyAdverts(token).await()
+        val responseBody = response.body()
+
+        if (response.isSuccessful && responseBody?.message == "success") {
+            Log.d("APIREPO", "Getting my adverts ${responseBody.adverts}")
+            return responseBody!!.adverts
+        }
+        Log.d("APIREPO", "Getting my adverts, empty list")
+        return listOf()
+    }
+
+    suspend fun createNewAdvert(advert: Advert): Boolean {
+        val response = apiService.advertCreate(advert, token).await()
+        val responseBody = response.body()
+
+        if (response.isSuccessful && responseBody?.message == "success") {
+            Log.d("APIREPO", "Creating new advert success")
+            return true
+        }
+        Log.d("APIREPO", "Creating new Advert failed")
+        return false
+    }
+
+    suspend fun getAllAdverts(): List<Advert> {
+        val response = apiService.getAllAdverts(token).await()
+
+        val responseBody = response.body()
+
+        if (response.isSuccessful && responseBody?.message == "success") {
+            Log.d("APIREPO", "Getting all adverts ${responseBody.adverts}")
+            return responseBody.adverts
+        }
+        Log.d("APIREPO", "Getting all adverts empty list")
+        return listOf()
+    }
 }
-
-// get all users
-// Required fields [ ]
-// @token required
-
-// create advert
-// Required fields [ email, bio]
-// @token required
-
-// get advert by email
-// Required fields [ email ]
-// @token required
-
-// get all adverts
-// @token required
-
-// upload user picture
+// change user details (photo and/or bio)
 // Required fields [ photo, email ]
 // @token required
 
-// upload advert picture
+// change advert details (photo and/or bio)
 // Required fields [ photo, advert_id ]
 // @token required
