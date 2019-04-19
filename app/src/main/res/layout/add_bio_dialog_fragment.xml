@@ -6,11 +6,11 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    android:layout_margin="@dimen/,argom"
+    android:layout_margin="@dimen/add_bio_dialog_fragment_margin_normal"
     tools:context=".utilities.DialogFragmentAddBio">
 
     <ImageView
-        android:id="@+id/dialogImage"
+        android:id="@+id/add_bio_dialog_fragment_image_view"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@drawable/ic_mode_edit_black_24dp"
@@ -19,38 +19,36 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_task"
-        android:textSize="@dimen/Add_text_size"
-        android:layout_toEndOf="@+id/dialogImage"
-        android:layout_alignBottom="@+id/dialogImage"
+        android:text="@string/add_bio_dialog_fragment_text_view_add"
+        android:textSize="@dimen/user_profile_fragment_email_text_size"
+        android:layout_toEndOf="@+id/add_bio_dialog_fragment_image_view"
+        android:layout_alignBottom="@+id/add_bio_dialog_fragment_image_view"
         />
 
     <EditText
-        android:id="@+id/dialogEditText"
+        android:id="@+id/text_view_add_bio_dialog_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:imeOptions="actionDone"
         android:singleLine="true"
-        android:layout_below="@+id/dialogImage"
+        android:layout_below="@+id/add_bio_dialog_fragment_image_view"
         />
 
     <Button
-        android:id="@+id/dialogCancelBtn"
+        android:id="@+id/button_add_bio_dialog_fragment_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/dialogEditText"
-        android:text="@string/cancel_button"
-        android:layout_toStartOf="@+id/dialogAddBtn"
+        android:layout_below="@+id/text_view_add_bio_dialog_fragment"
+        android:text="@string/add_bio_dialog_fragment_cancel_button_text"
+        android:layout_toStartOf="@+id/button_add_bio_dialog_fragment_add"
         />
 
     <Button
-        android:id="@+id/dialogAddBtn"
+        android:id="@+id/button_add_bio_dialog_fragment_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/dialogEditText"
-        android:text="@string/add_button"
+        android:layout_below="@+id/text_view_add_bio_dialog_fragment"
+        android:text="@string/add_bio_dialog_fragment_add_button_text"
         android:layout_alignParentEnd="true"
         />
-
-
 </RelativeLayout>
