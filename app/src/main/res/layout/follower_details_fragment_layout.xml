@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="user"
+            type="pl.sjmprofil.animaltinder.models.User" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.userprofile.UserProfileFragment">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_view_user_profile_fragment"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:textSize="@dimen/user_profile_fragment_email_text_size"
+            android:text="@{user.name}"
+            tools:text="@string/app_name"
+            />
+
+        <!--TO DO LATER!-->
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_marginStart="0dp"-->
+            <!--android:layout_marginTop="491dp"-->
+            <!--android:layout_marginEnd="0dp"-->
+            <!--android:gravity="center"-->
+            <!--android:text="@{user.bio}"-->
+            <!--android:textSize="@dimen/user_profile_fragment_email_text_size"-->
+            <!--tools:text="@string/app_name" />-->
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_view_user_profile_fragment"
+            android:layout_width="@dimen/user_profile_fragment_image_size"
+            android:layout_height="@dimen/user_profile_fragment_image_size"
+            android:layout_centerInParent="true"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp"
+            app:imageUrl="@{user.picture}"
+            tools:src="@drawable/drawer_tinda_pic"/>
+
+    </RelativeLayout>
+</layout>
