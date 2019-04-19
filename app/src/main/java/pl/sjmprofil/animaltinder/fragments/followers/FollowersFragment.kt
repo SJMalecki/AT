@@ -6,6 +6,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.layout_followers_fragment.*
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
@@ -18,12 +21,15 @@ class FollowersFragment : Fragment() {
         return inflater.inflate(R.layout.layout_followers_fragment, container, false)
     }
 
-    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
+    lateinit var navController: NavController
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecycler()
+
+        navController = Navigation.findNavController(view)
     }
 
+    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private fun setupRecycler() {
         recyclerViewAdapter = RecyclerViewAdapter()
         followers_fragment_recycler_view.adapter = recyclerViewAdapter
@@ -31,7 +37,9 @@ class FollowersFragment : Fragment() {
         val tmp = getList()
         recyclerViewAdapter.updateList(tmp as MutableList<Any>)
         recyclerViewAdapter.itemClickListener = {
-            println("$it ------------------------------------------------------")
+
+//            navController.navigate(R.id.followerDetailsFragment)
+           
         }
     }
 

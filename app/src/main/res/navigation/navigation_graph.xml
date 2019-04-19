@@ -29,5 +29,9 @@
     <fragment
         android:id="@+id/followerDetailsFragment"
         android:name="pl.sjmprofil.animaltinder.fragments.followerdetails.FollowerDetailsFragment"
-        android:label="FollowerDetailsFragment" />
+        android:label="FollowerDetailsFragment" >
+        <argument
+            android:name="user"
+            app:argType="pl.sjmprofil.animaltinder.models.User" />
+    </fragment>
 </navigation>
