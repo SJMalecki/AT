@@ -36,7 +36,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         editor.apply()
     }
 
-    fun wrapToken(token:String) = "Bearer $token"
+    fun wrapToken(token: String) = "Bearer $token"
 
     // create user
     // Required fields [ email , password, name , surname ]
@@ -123,7 +123,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         val response = apiService.getMyAdverts(token).await()
         val responseBody = response.body()
 
-        if (response.isSuccessful && responseBody?.message == "success"){
+        if (response.isSuccessful && responseBody?.message == "success") {
             Log.d("APIREPO", "Getting my adverts ${responseBody.adverts}")
             return responseBody!!.adverts
         }
@@ -135,7 +135,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         val response = apiService.advertCreate(advert, token).await()
         val responseBody = response.body()
 
-        if (response.isSuccessful && responseBody?.message == "success"){
+        if (response.isSuccessful && responseBody?.message == "success") {
             Log.d("APIREPO", "Creating new advert success")
             return true
         }
@@ -156,8 +156,6 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         return listOf()
     }
 }
-
-
 // change user details (photo and/or bio)
 // Required fields [ photo, email ]
 // @token required
