@@ -26,7 +26,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         Log.d("APIREPO", "UPDATING CLASS SHARED PREF VALUES: $token, $email, $password")
     }
 
-    private fun updateSharedPrefPassword(newEmail: String, newPassword: String, newToken: String) {
+    private fun updateSharedPrefs(newEmail: String, newPassword: String, newToken: String) {
         val editor = sharedPreferences.edit()
         editor.putString(context.getString(R.string.shared_pref_token_key), newToken)
         editor.putString(context.getString(R.string.shared_pref_email_key), newEmail)
@@ -52,7 +52,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
             val newToken = responseBody.token
 
             Log.d("APIREPO", "CREATING NEW USER: ${user.email}, ${user.password}, $newToken")
-            updateSharedPrefPassword(newEmail = user.email, newPassword = user.password, newToken = newToken!!)
+            updateSharedPrefs(newEmail = user.email, newPassword = user.password, newToken = newToken!!)
             updateClassSharedPrefValues()
             return true
         }
@@ -71,7 +71,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
             val newToken = responseBody.token
 
             Log.d("APIREPO", "LOGIN USER: ${user.email}, ${user.password}, $newToken")
-            updateSharedPrefPassword(newEmail = user.email, newPassword = user.password, newToken = newToken)
+            updateSharedPrefs(newEmail = user.email, newPassword = user.password, newToken = newToken)
             updateClassSharedPrefValues()
             return true
         }
@@ -98,6 +98,11 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     fun getUserFromSharedPrefs(): User {
         Log.d("APIREPO", "Getting user from shared prefs: $email, $password")
         return User(email = email, password = password)
+    }
+
+    fun saveUserToSharedPrefs(user: User) {
+        Log.d("APIREPO", "Saving user in shared prefs: ${user.email}, ${user.password}")
+        updateSharedPrefs(newEmail = user.email, newPassword = user.password, newToken = "")
     }
 }
 

@@ -13,6 +13,7 @@ import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.dialog.LoadingDialog
+import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.repository.ApiRepository
 import pl.sjmprofil.animaltinder.utilities.Validator
 
@@ -82,7 +83,13 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
 
             val dialog = prepareCustomDialog()
             dialog.show(supportFragmentManager, "TAG")
-            val user = apiRepository.getUserFromSharedPrefs()
+
+            val user = User(
+                email = activity_login_login_input_text.text.toString(),
+                password = activity_login_password_input_text.text.toString()
+            )
+
+            apiRepository.saveUserToSharedPrefs(user)
             val loginStatus = apiRepository.loginUser(user)
 
             if (loginStatus) {
