@@ -3,7 +3,9 @@ package pl.sjmprofil.animaltinder.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -55,6 +57,11 @@ class RegisterActivity : AppCompatActivity(), KodeinAware {
         return LoadingDialog()
     }
 
+    private fun makeSnackbar(string: String) {
+        val snackbar = Snackbar.make(activity_register_root_layout, string, Snackbar.LENGTH_SHORT)
+        snackbar.show()
+    }
+
     private fun manageOnClick() {
 
         val dialog = prepareCustomDialog()
@@ -74,7 +81,10 @@ class RegisterActivity : AppCompatActivity(), KodeinAware {
                 withContext(Dispatchers.Main) { dialog.dismiss() }
                 finish()
             } else {
-                withContext(Dispatchers.Main) { dialog.dismiss() }
+                withContext(Dispatchers.Main) {
+                    dialog.dismiss()
+                    makeSnackbar("Failed Register")
+                }
             }
         }
     }

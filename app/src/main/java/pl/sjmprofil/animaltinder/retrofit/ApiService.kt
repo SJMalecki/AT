@@ -25,7 +25,7 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST("userlogin")
-    fun loginUser(@Body user: User, @Header("Authorization") token: String): Deferred<Response<UserResponse>>
+    fun loginUser(@Body user: User): Deferred<Response<UserResponse>>
 
     @Headers("Content-Type: application/json")
     @POST("myinfo")

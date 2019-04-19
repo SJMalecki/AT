@@ -64,19 +64,18 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     // Required fields [ email, password ]
     suspend fun loginUser(user: User): Boolean {
 
-        if (token != ""){
-            val response = apiService.loginUser(user, wrapToken(token)).await()
-            val responseBody = response.body()
+        val response = apiService.loginUser(user).await()
+        val responseBody = response.body()
 
-            if (response.isSuccessful && responseBody?.message == "success") {
-                val newToken = responseBody.token
+        if (response.isSuccessful && responseBody?.message == "success") {
+            val newToken = responseBody.token
 
-                Log.d("APIREPO", "LOGIN USER: ${user.email}, ${user.password}, $newToken")
-                updateSharedPrefPassword(newEmail = user.email, newPassword = user.password, newToken = newToken)
-                updateClassSharedPrefValues()
-                return true
-            }
+            Log.d("APIREPO", "LOGIN USER: ${user.email}, ${user.password}, $newToken")
+            updateSharedPrefPassword(newEmail = user.email, newPassword = user.password, newToken = newToken)
+            updateClassSharedPrefValues()
+            return true
         }
+
         Log.d("APIREPO", "Login user failed")
         return false
     }

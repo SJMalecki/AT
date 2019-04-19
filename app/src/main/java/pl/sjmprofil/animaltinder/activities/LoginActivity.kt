@@ -1,6 +1,7 @@
 package pl.sjmprofil.animaltinder.activities
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.Dispatchers
@@ -71,8 +72,12 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
         authenticateUserAndMoveToMainActivity()
     }
 
-    private fun authenticateUserAndMoveToMainActivity() {
+    private fun makeSnackbar(string: String) {
+        val snackbar = Snackbar.make(activity_login_root_layout, string, Snackbar.LENGTH_SHORT)
+        snackbar.show()
+    }
 
+    private fun authenticateUserAndMoveToMainActivity() {
         GlobalScope.launch {
 
             val dialog = prepareCustomDialog()
@@ -81,10 +86,15 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
             val loginStatus = apiRepository.loginUser(user)
 
             if (loginStatus) {
-                dialog.dismiss()
-                startMainActivity()
+                withContext(Dispatchers.Main) {
+                    dialog.dismiss()
+                    startMainActivity()
+                }
             } else {
-                dialog.dismiss()
+                withContext(Dispatchers.Main) {
+                    dialog.dismiss()
+                    makeSnackbar("Authentication Failed")
+                }
             }
         }
     }
