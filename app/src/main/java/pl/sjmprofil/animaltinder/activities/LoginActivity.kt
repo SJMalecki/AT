@@ -1,6 +1,7 @@
 package pl.sjmprofil.animaltinder.activities
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.Dispatchers
@@ -12,6 +13,7 @@ import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.dialog.LoadingDialog
+import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.repository.ApiRepository
 import pl.sjmprofil.animaltinder.utilities.Validator
 
@@ -71,20 +73,35 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
         authenticateUserAndMoveToMainActivity()
     }
 
-    private fun authenticateUserAndMoveToMainActivity() {
+    private fun makeSnackbar(string: String) {
+        val snackbar = Snackbar.make(activity_login_root_layout, string, Snackbar.LENGTH_SHORT)
+        snackbar.show()
+    }
 
+    private fun authenticateUserAndMoveToMainActivity() {
         GlobalScope.launch {
 
             val dialog = prepareCustomDialog()
             dialog.show(supportFragmentManager, "TAG")
-            val user = apiRepository.getUserFromSharedPrefs()
+
+            val user = User(
+                email = activity_login_login_input_text.text.toString(),
+                password = activity_login_password_input_text.text.toString()
+            )
+
+            apiRepository.saveUserToSharedPrefs(user)
             val loginStatus = apiRepository.loginUser(user)
 
             if (loginStatus) {
-                dialog.dismiss()
-                startMainActivity()
+                withContext(Dispatchers.Main) {
+                    dialog.dismiss()
+                    startMainActivity()
+                }
             } else {
-                dialog.dismiss()
+                withContext(Dispatchers.Main) {
+                    dialog.dismiss()
+                    makeSnackbar("Authentication Failed")
+                }
             }
         }
     }
