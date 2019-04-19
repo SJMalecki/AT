@@ -43,6 +43,9 @@ class MyApplication : Application(), KodeinAware {
         bind<ApiRepository>() with singleton {
             ApiRepository(applicationContext, instance())
         }
+    }
+}
+
 
 //
 //        bind<Database>() with singleton {
@@ -57,7 +60,6 @@ class MyApplication : Application(), KodeinAware {
 //        bind<DatabaseRepository>() with singleton {
 //            DatabaseRepository(instance())
 //        }
-}
 //
 //        bind<JokesRecyclerAdapter>() with singleton {
 //            JokesRecyclerAdapter()
@@ -82,5 +84,3 @@ class MyApplication : Application(), KodeinAware {
 //            )
 //        }
 //    }
-    }
-}

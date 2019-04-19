@@ -64,8 +64,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun manageOnClick() {
-        val dialog = prepareCustomDialog()
-        dialog.show(supportFragmentManager, "TAG")
+        authenticateUserAndMoveToMainActivity()
     }
 
     private fun authenticateUserAndMoveToMainActivity() {
@@ -73,6 +72,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
         GlobalScope.launch {
 
             val dialog = prepareCustomDialog()
+            dialog.show(supportFragmentManager, "TAG")
             val user = apiRepository.getUserFromSharedPrefs()
             val loginStatus = apiRepository.loginUser(user)
 
