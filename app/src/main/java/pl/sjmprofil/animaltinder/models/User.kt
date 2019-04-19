@@ -1,8 +1,9 @@
 package pl.sjmprofil.animaltinder.models
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class User(
     @SerializedName("user_id")
     var id: Int = 0,
@@ -21,4 +22,4 @@ data class User(
 
     @SerializedName("picture")
     var picture: String = ""
-)
+): Parcelable
