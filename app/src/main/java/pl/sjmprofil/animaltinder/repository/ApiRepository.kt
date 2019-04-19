@@ -77,14 +77,14 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     }
 
     // Get my user info by token identity
-    suspend fun getMyUserInfoFromServer(): User? {
+    suspend fun getMyUserInfoFromServer(): User {
         val response = apiService.getMyInfo(token).await()
 
         if (response.isSuccessful) {
             // Response body is User
 
-            val myUserInstance = response.body()
-            Log.d("APIREPO", "Getting user info details: ${myUserInstance?.email}, ${myUserInstance?.password}")
+            val myUserInstance = response.body()!!
+            Log.d("APIREPO", "Getting user info details: ${myUserInstance.email}, ${myUserInstance.password}")
             return myUserInstance
         }
         Log.d("APIREPO", "Getting user info, empty user")
@@ -119,4 +119,3 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
 // upload advert picture
 // Required fields [ photo, advert_id ]
 // @token required
-}

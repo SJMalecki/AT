@@ -35,21 +35,24 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
 //        }
 
         checkForExistingUser()
-
     }
 
     private fun checkForExistingUser() {
 
         GlobalScope.launch {
-            val mySavedUser = apiRepository.getMyUserInfo()
+            val mySavedUser = apiRepository.getUserFromSharedPrefs()
 
-            mySavedUser?.let {
+            mySavedUser.let {
                 activity_login_login_input_text.setText(it.email)
                 activity_login_password_input_text.setText(it.password)
             }
         }
     }
 
+    private fun startMainActivity() {
+        val intent = MainActivity.getIntent(this)
+        startActivity(intent)
+    }
 
     private fun startRegisterActivity() {
         val intent = RegisterActivity.getIntent(this)
@@ -63,5 +66,22 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
     private fun manageOnClick() {
         val dialog = prepareCustomDialog()
         dialog.show(supportFragmentManager, "TAG")
+    }
+
+    private fun authenticateUserAndMoveToMainActivity() {
+
+        GlobalScope.launch {
+
+            val dialog = prepareCustomDialog()
+            val user = apiRepository.getUserFromSharedPrefs()
+            val loginStatus = apiRepository.loginUser(user)
+
+            if ( loginStatus ) {
+                dialog.dismiss()
+                startMainActivity()
+            } else {
+                dialog.dismiss()
+            }
+        }
     }
 }
