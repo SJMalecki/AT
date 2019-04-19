@@ -11,6 +11,7 @@ import pl.sjmprofil.animaltinder.databinding.CardViewFollowersBinding
 import pl.sjmprofil.animaltinder.databinding.CardViewUsersBinding
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.User
+import java.lang.Error
 
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -35,9 +36,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 UserViewHolder(view)
             }
             else -> {
-                //for test purpose
-                val view = inflater.inflate(R.layout.layout_followers_fragment, viewGroup, false)
-                AdvertViewHolder(view)
+                throw Error("$TAG: wrong viewType")
             }
         }
     }
@@ -53,34 +52,42 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return when (itemsList[position]) {
             is Advert -> ADVERTS_VIEW
             is User -> USERS_VIEW
-            else -> -1
+            else -> throw Error("$TAG: wrong value in itemsList")
         }
     }
 
     override fun getItemCount() = itemsList.size
 
+    var itemClickListener: ((Any) -> Unit)? = null
+
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         val itemType = viewHolder.itemViewType
         when (itemType) {
-            ADVERTS_VIEW -> (viewHolder as AdvertViewHolder).bindItems(itemsList[position] as Advert)
-            USERS_VIEW -> (viewHolder as UserViewHolder).bindItems(itemsList[position] as User)
+            ADVERTS_VIEW -> (viewHolder as AdvertViewHolder).bindItems(itemsList[position] as Advert, itemClickListener)
+            USERS_VIEW -> (viewHolder as UserViewHolder).bindItems(itemsList[position] as User, itemClickListener)
         }
 
     }
 
     class AdvertViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private lateinit var binding: CardViewFollowersBinding
-        fun bindItems(advert: Advert) {
+        fun bindItems(advert: Advert, itemClickListener: ((Advert) -> Unit)?) {
             binding = DataBindingUtil.bind(itemView.rootView)!!
             binding.item = advert
+            itemView.setOnClickListener {
+                itemClickListener?.invoke(advert)
+            }
         }
     }
 
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private lateinit var binding: CardViewUsersBinding
-        fun bindItems(user: User) {
+        fun bindItems(user: User, itemClickListener: ((User) -> Unit)?) {
             binding = DataBindingUtil.bind(itemView.rootView)!!
             binding.item = user
+            itemView.setOnClickListener {
+                itemClickListener?.invoke(user)
+            }
         }
     }
 }
