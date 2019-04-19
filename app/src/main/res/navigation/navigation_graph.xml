@@ -13,19 +13,15 @@
     <fragment
         android:id="@+id/navigation_drawer_followers_item"
         android:name="pl.sjmprofil.animaltinder.fragments.followers.FollowersFragment"
-        android:label="FollowersFragment" />
+        android:label="FollowersFragment" >
+        <action
+            android:id="@+id/actionfollowersTofollowerDetails"
+            app:destination="@id/followerDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/add_fragment_layout"
         android:name="pl.sjmprofil.animaltinder.fragments.add.AddFragment"
         android:label="Add"/>
-    <fragment
-        android:id="@+id/followersFragment"
-        android:name="pl.sjmprofil.animaltinder.fragments.followers.FollowersFragment"
-        android:label="FollowersFragment" >
-        <action
-            android:id="@+id/action_followersFragment_to_followerDetailsFragment"
-            app:destination="@id/followerDetailsFragment" />
-    </fragment>
     <fragment
         android:id="@+id/followerDetailsFragment"
         android:name="pl.sjmprofil.animaltinder.fragments.followerdetails.FollowerDetailsFragment"

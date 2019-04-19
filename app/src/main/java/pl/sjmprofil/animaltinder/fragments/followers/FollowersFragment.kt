@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.layout_followers_fragment.*
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
@@ -36,11 +35,9 @@ class FollowersFragment : Fragment() {
         val tmp = getList()
         recyclerViewAdapter.updateList(tmp as MutableList<Any>)
         recyclerViewAdapter.itemClickListener = {
-//            navController.navigate(R.id.followerDetailsFragment)
-
-            val action = FollowersFragmentDirections.ActionFollowersFragmentToFollowerDetailsFragment(it)
+            val action = FollowersFragmentDirections.actionfollowersTofollowerDetails(it)
             navController.navigate(action)
-//            Navigation.findNavController(view).navigate(action)
+
         }
     }
 
