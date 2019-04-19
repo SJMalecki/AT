@@ -28,7 +28,15 @@ class FollowersFragment : Fragment() {
         recyclerViewAdapter = RecyclerViewAdapter()
         followers_fragment_recycler_view.adapter = recyclerViewAdapter
         followers_fragment_recycler_view.layoutManager = LinearLayoutManager(context)
-        val tmp = listOf(
+        val tmp = getList()
+        recyclerViewAdapter.updateList(tmp as MutableList<Any>)
+        recyclerViewAdapter.itemClickListener = {
+            println("$it ------------------------------------------------------")
+        }
+    }
+
+    private fun getList(): List<Any> {
+        return listOf(
             Advert(
                 0,
                 "bla bla bla ",
@@ -61,10 +69,6 @@ class FollowersFragment : Fragment() {
             )
 
         )
-
-
-
-        recyclerViewAdapter.updateList(tmp as MutableList<Any>)
     }
 
 }

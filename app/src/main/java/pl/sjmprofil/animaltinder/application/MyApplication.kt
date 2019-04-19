@@ -40,10 +40,9 @@ class MyApplication : Application(), KodeinAware {
 
         bind() from singleton { instance<Retrofit>().create(ApiService::class.java) }
 
-        //NOT WORKING YET
-//        bind<ApiRepository>() with singleton {
-//            ApiRepository(applicationContext, instance())
-//        }
+        bind<ApiRepository>() with singleton {
+            ApiRepository(applicationContext, instance())
+        }
 
 //
 //        bind<Database>() with singleton {
@@ -58,10 +57,7 @@ class MyApplication : Application(), KodeinAware {
 //        bind<DatabaseRepository>() with singleton {
 //            DatabaseRepository(instance())
 //        }
-//
-//        bind<ApiRepository>() with singleton {
-//            ApiRepository(instance(), applicationContext)
-//        }
+}
 //
 //        bind<JokesRecyclerAdapter>() with singleton {
 //            JokesRecyclerAdapter()
