@@ -28,7 +28,7 @@ interface ApiService {
     fun loginUser(@Body user: User): Deferred<Response<UserResponse>>
 
     @Headers("Content-Type: application/json")
-    @POST("myinfo")
+    @GET("userlogin")
     fun getMyInfo(@Header("Authorization") token: String): Deferred<Response<User>>
 
     //  Advert Queries
@@ -38,7 +38,7 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST("advertfind")
-    fun advertFind(@Body user: User, @Header("Authorization") token: String): Deferred<Response<AdvertResponse>>
+    fun getMyAdverts(@Header("Authorization") token: String): Deferred<Response<AdvertResponse>>
 
     @Headers("Content-Type: application/json")
     @GET("adverts")
