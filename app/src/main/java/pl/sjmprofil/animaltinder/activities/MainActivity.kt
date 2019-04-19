@@ -1,5 +1,7 @@
 package pl.sjmprofil.animaltinder.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -9,6 +11,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import pl.sjmprofil.animaltinder.R
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+
+        fun getIntent(context: Context): Intent {
+            return Intent(context, MainActivity::class.java)
+        }
+    }
 
     private lateinit var navController: NavController
 
