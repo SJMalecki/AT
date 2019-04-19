@@ -46,6 +46,7 @@ class MyApplication : Application(), KodeinAware {
     }
 }
 
+
 //
 //        bind<Database>() with singleton {
 //            Room.databaseBuilder(

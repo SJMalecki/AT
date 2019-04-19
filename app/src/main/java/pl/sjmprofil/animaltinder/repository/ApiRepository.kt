@@ -61,30 +61,33 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     // login user
     // Required fields [ email, password ]
     suspend fun loginUser(user: User): Boolean {
-        val response = apiService.loginUser(user, token).await()
-        val responseBody = response.body()
 
-        if (response.isSuccessful && responseBody?.message == "success") {
-            val newToken = responseBody.token
+        if (token != ""){
+            val response = apiService.loginUser(user, token).await()
+            val responseBody = response.body()
 
-            Log.d("APIREPO", "LOGIN USER: ${user.email}, ${user.password}, $newToken")
-            updateSharedPrefPassword(newEmail = user.email, newPassword = user.password, newToken = newToken)
-            updateClassSharedPrefValues()
-            return true
+            if (response.isSuccessful && responseBody?.message == "success") {
+                val newToken = responseBody.token
+
+                Log.d("APIREPO", "LOGIN USER: ${user.email}, ${user.password}, $newToken")
+                updateSharedPrefPassword(newEmail = user.email, newPassword = user.password, newToken = newToken)
+                updateClassSharedPrefValues()
+                return true
+            }
         }
         Log.d("APIREPO", "Login user failed")
         return false
     }
 
     // Get my user info by token identity
-    suspend fun getMyUserInfoFromServer(): User? {
+    suspend fun getMyUserInfoFromServer(): User {
         val response = apiService.getMyInfo(token).await()
 
         if (response.isSuccessful) {
             // Response body is User
 
-            val myUserInstance = response.body()
-            Log.d("APIREPO", "Getting user info details: ${myUserInstance?.email}, ${myUserInstance?.password}")
+            val myUserInstance = response.body()!!
+            Log.d("APIREPO", "Getting user info details: ${myUserInstance.email}, ${myUserInstance.password}")
             return myUserInstance
         }
         Log.d("APIREPO", "Getting user info, empty user")
