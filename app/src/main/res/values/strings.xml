@@ -33,4 +33,5 @@
     <string name="first_name">Firstname</string>
     <string name="last_name">Lastname</string>
     <string name="bio">bio</string>
+    <string name="header">header</string>
 </resources>
