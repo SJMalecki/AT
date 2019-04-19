@@ -2,7 +2,6 @@ package pl.sjmprofil.animaltinder.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -54,6 +53,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
         startActivity(intent)
     }
 
+
     private fun startRegisterActivity() {
         val intent = RegisterActivity.getIntent(this)
         startActivity(intent)
@@ -76,7 +76,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
             val user = apiRepository.getUserFromSharedPrefs()
             val loginStatus = apiRepository.loginUser(user)
 
-            if ( loginStatus ) {
+            if (loginStatus) {
                 dialog.dismiss()
                 startMainActivity()
             } else {
