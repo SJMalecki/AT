@@ -1,6 +1,7 @@
 package pl.sjmprofil.animaltinder.models
 import com.google.gson.annotations.SerializedName
 
+
 data class User(
     @SerializedName("user_id")
     var id: Int = 0,
