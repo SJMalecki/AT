@@ -24,9 +24,8 @@ class FollowersFragment : Fragment() {
     lateinit var navController: NavController
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecycler()
-
         navController = Navigation.findNavController(view)
+        setupRecycler()
     }
 
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
@@ -37,9 +36,11 @@ class FollowersFragment : Fragment() {
         val tmp = getList()
         recyclerViewAdapter.updateList(tmp as MutableList<Any>)
         recyclerViewAdapter.itemClickListener = {
-
 //            navController.navigate(R.id.followerDetailsFragment)
-           
+
+            val action = FollowersFragmentDirections.ActionFollowersFragmentToFollowerDetailsFragment(it)
+            navController.navigate(action)
+//            Navigation.findNavController(view).navigate(action)
         }
     }
 

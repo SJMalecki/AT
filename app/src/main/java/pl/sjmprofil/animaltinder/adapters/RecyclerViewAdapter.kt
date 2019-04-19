@@ -58,7 +58,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount() = itemsList.size
 
-    var itemClickListener: ((Any) -> Unit)? = null
+    var itemClickListener: ((User) -> Unit)? = null
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         val itemType = viewHolder.itemViewType

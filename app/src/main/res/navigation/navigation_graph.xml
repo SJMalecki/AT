@@ -23,7 +23,7 @@
         android:name="pl.sjmprofil.animaltinder.fragments.followers.FollowersFragment"
         android:label="FollowersFragment" >
         <action
-            android:id="@+id/followersFragment_to_followerDetailsFragment"
+            android:id="@+id/action_followersFragment_to_followerDetailsFragment"
             app:destination="@id/followerDetailsFragment" />
     </fragment>
     <fragment
