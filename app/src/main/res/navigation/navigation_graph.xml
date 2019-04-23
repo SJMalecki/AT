@@ -10,10 +10,8 @@
               android:name="pl.sjmprofil.animaltinder.fragments.userprofile.UserProfileFragment"
               android:label="@string/user_profile_fragment_layout_label"
               tools:layout="@layout/user_profile_fragment_layout">
-        <action android:id="@+id/action_user_profile_fragment_layout_to_search_fragment_slide"
-                app:destination="@id/search_fragment_slide"/>
-        <action android:id="@+id/action_user_profile_fragment_layout_to_searchFragment22"
-                app:destination="@id/searchFragment2"/>
+        <action android:id="@+id/action_user_profile_fragment_layout_to_searchFragment"
+                app:destination="@id/searchFragment"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_drawer_followers_item"
@@ -43,11 +41,7 @@
             android:id="@+id/actionAdvertsToFollowers"
             app:destination="@id/navigation_drawer_followers_item" />
     </fragment>
-    <fragment android:id="@+id/search_fragment_slide"
-              android:name="pl.sjmprofil.animaltinder.fragments.search.SearchFragment"
-              android:label="Search">
-    </fragment>
-    <fragment android:id="@+id/searchFragment2" android:name="pl.sjmprofil.animaltinder.fragments.search.SearchFragment"
+    <fragment android:id="@+id/searchFragment" android:name="pl.sjmprofil.animaltinder.fragments.search.SearchFragment"
               android:label="SearchFragment"/>
 
 </navigation>

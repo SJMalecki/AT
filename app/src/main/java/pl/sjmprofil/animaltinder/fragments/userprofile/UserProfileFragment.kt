@@ -14,6 +14,8 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.kodein
 import org.kodein.di.generic.instance
 import pl.sjmprofil.animaltinder.R
+import pl.sjmprofil.animaltinder.activities.MainActivity
+import pl.sjmprofil.animaltinder.activities.SearchActivity
 import pl.sjmprofil.animaltinder.databinding.UserProfileFragmentLayoutBinding
 import pl.sjmprofil.animaltinder.fragments.followers.FollowersFragmentDirections
 import pl.sjmprofil.animaltinder.models.User
@@ -49,9 +51,13 @@ class UserProfileFragment : Fragment(), KodeinAware {
         super.onViewCreated(view, savedInstanceState)
 
         button_user_profile_fragment_search.setOnClickListener {
-            val action = UserProfileFragmentDirections.actionUserProfileFragmentLayoutToSearchFragment22()
-            navController.navigate(action)
+            startSearchActivity()
         }
+    }
+
+    private fun startSearchActivity() {
+        val intent = SearchActivity.getIntent(context!!)
+        startActivity(intent)
     }
 
     private fun setupViewModel() {
