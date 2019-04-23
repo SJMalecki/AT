@@ -1,6 +1,7 @@
 package pl.sjmprofil.animaltinder.models.serverresponses
 
 import com.google.gson.annotations.SerializedName
+import pl.sjmprofil.animaltinder.models.User
 
 data class UserResponse(
 
@@ -8,5 +9,8 @@ data class UserResponse(
     val message: String,
 
     @SerializedName("token")
-    val token: String
+    val token: String,
+
+    @SerializedName("user")
+    val user: User
 )

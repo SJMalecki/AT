@@ -18,8 +18,7 @@
             android:layout_width="@dimen/user_profile_fragment_image_size"
             android:layout_height="@dimen/user_profile_fragment_image_size"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/add_bio_dialog_fragment_margin_normal"
-            android:clickable="true"
+            android:layout_marginTop="10dp"
             android:src="@drawable/drawer_tinda_pic"
             app:civ_border_color="@color/colorPrimary"
             app:civ_border_width="5dp" />
@@ -60,9 +59,8 @@
 
         <TextView
             android:id="@+id/text_view_add_bio_header"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_margin="@dimen/add_bio_dialog_fragment_margin_normal"
             android:textSize="@dimen/user_profile_fragment_email_text_size"
             android:text="@string/text_view_add_bio_header_bio"
@@ -72,7 +70,6 @@
             android:id="@+id/text_view_bio_add_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_marginTop="@dimen/add_bio_dialog_fragment_margin_normal"
             android:layout_marginBottom="@dimen/add_bio_dialog_fragment_margin_normal"
             android:layout_margin="@dimen/add_bio_dialog_fragment_margin_normal"

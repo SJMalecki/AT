@@ -4,4 +4,11 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorLoadingDialog">#E1E1E1</color>
+
+    <color name="doggy_red">#f9584c</color>
+    <color name="doggy_gray">#e3e3e3</color>
+    <color name="doggy_violet">#544258</color>
+    <color name="doggy_green">#3eab6c</color>
+    <color name="doggy_orange">#ffb141</color>
+
 </resources>
