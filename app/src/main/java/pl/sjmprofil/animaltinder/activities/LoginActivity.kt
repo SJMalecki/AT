@@ -1,13 +1,13 @@
 package pl.sjmprofil.animaltinder.activities
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -30,7 +30,9 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
         setContentView(R.layout.activity_login)
 
         activity_login_register_button.setOnClickListener { startRegisterActivity() }
-        activity_login_login_button.setOnClickListener { manageOnClick() }
+        activity_login_login_button.setOnClickListener { manageOnClick().also { hideKeyboard(
+            currentFocus!!
+        ) } }
 
 //        with(validator) {
 //            showEmptyError(activity_login_login_input_text)
@@ -92,6 +94,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
             apiRepository.saveUserToSharedPrefs(user)
             val loginStatus = apiRepository.loginUser(user)
 
+            delay(3000)
             if (loginStatus) {
                 withContext(Dispatchers.Main) {
                     dialog.dismiss()
@@ -104,5 +107,11 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
                 }
             }
         }
+    }
+
+
+    private fun hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
