@@ -44,11 +44,15 @@ interface ApiService {
     @GET("adverts")
     fun getAllAdverts(@Header("Authorization") token: String): Deferred<Response<AdvertResponse>>
 
+    @Headers("Content-Type: application/json")
+    @POST("reaction")
+    fun addMyReactionToAdvert(@Header("Authorization") token: String, advert_id: Int, reaction: Int): Deferred<Response<AdvertResponse>>
+
     //  Pictures Queries
     @Multipart
     @POST("photoupload")
     fun uploadUserPhoto(
-        @Part("email") email: String,
+        @Header("Authorization") token: String,
         @Part("photo") photo: MultipartBody.Part
     ): Deferred<Response<PictureResponse>>
 }
