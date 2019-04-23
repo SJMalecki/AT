@@ -7,11 +7,15 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import kotlinx.android.synthetic.main.user_profile_fragment_layout.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.kodein
 import org.kodein.di.generic.instance
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.databinding.UserProfileFragmentLayoutBinding
+import pl.sjmprofil.animaltinder.fragments.followers.FollowersFragmentDirections
 import pl.sjmprofil.animaltinder.models.User
 
 class UserProfileFragment : Fragment(), KodeinAware {
@@ -23,6 +27,8 @@ class UserProfileFragment : Fragment(), KodeinAware {
     private val userProfileFragmentViewModelFactory: UserProfileFragmentViewModelFactory by instance()
     private lateinit var userProfileFragmentViewModel: UserProfileFragmentViewModel
 
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupViewModel()
@@ -31,16 +37,21 @@ class UserProfileFragment : Fragment(), KodeinAware {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         bindUserProfileFragment =
             DataBindingUtil.inflate(inflater, R.layout.user_profile_fragment_layout, container, false)
-
         return bindUserProfileFragment.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         userProfileFragmentViewModel.getMyData { myUser: User -> bindUserProfileFragment.user = myUser }
 
+        navController = Navigation.findNavController(view)
         bindUserProfileFragment.executePendingBindings()
 
         super.onViewCreated(view, savedInstanceState)
+
+        button_user_profile_fragment_search.setOnClickListener {
+            val action = UserProfileFragmentDirections.actionUserProfileFragmentLayoutToSearchFragment22()
+            navController.navigate(action)
+        }
     }
 
     private fun setupViewModel() {

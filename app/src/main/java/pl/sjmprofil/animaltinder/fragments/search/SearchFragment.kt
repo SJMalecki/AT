@@ -45,8 +45,8 @@ class SearchFragment : Fragment() {
         val adverts = arrayListOf(advert1, advert2)
 
         viewPagerAdapter = SwipingViewPagerAdapter(fragmentManager!!, adverts)
-        search_fragment_layout_view_pager.adapter = viewPagerAdapter
-        search_fragment_layout_view_pager.currentItem = viewPagerAdapter.count/2
+        search_fragment_slide.adapter = viewPagerAdapter
+        search_fragment_slide.currentItem = viewPagerAdapter.count/2
 
     }
 

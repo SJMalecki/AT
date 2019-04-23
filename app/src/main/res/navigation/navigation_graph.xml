@@ -9,25 +9,37 @@
     <fragment android:id="@+id/user_profile_fragment_layout"
               android:name="pl.sjmprofil.animaltinder.fragments.userprofile.UserProfileFragment"
               android:label="@string/user_profile_fragment_layout_label"
-              tools:layout="@layout/user_profile_fragment_layout"/>
+              tools:layout="@layout/user_profile_fragment_layout">
+        <action android:id="@+id/action_user_profile_fragment_layout_to_search_fragment_slide"
+                app:destination="@id/search_fragment_slide"/>
+        <action android:id="@+id/action_user_profile_fragment_layout_to_searchFragment22"
+                app:destination="@id/searchFragment2"/>
+    </fragment>
     <fragment
-        android:id="@+id/navigation_drawer_followers_item"
-        android:name="pl.sjmprofil.animaltinder.fragments.followers.FollowersFragment"
-        android:label="FollowersFragment" >
+            android:id="@+id/navigation_drawer_followers_item"
+            android:name="pl.sjmprofil.animaltinder.fragments.followers.FollowersFragment"
+            android:label="FollowersFragment">
         <action
-            android:id="@+id/actionfollowersTofollowerDetails"
-            app:destination="@id/followerDetailsFragment" />
+                android:id="@+id/actionfollowersTofollowerDetails"
+                app:destination="@id/followerDetailsFragment"/>
     </fragment>
     <fragment
-        android:id="@+id/add_fragment_layout"
-        android:name="pl.sjmprofil.animaltinder.fragments.add.AddFragment"
-        android:label="Add"/>
+            android:id="@+id/add_fragment_layout"
+            android:name="pl.sjmprofil.animaltinder.fragments.add.AddFragment"
+            android:label="Add"/>
     <fragment
-        android:id="@+id/followerDetailsFragment"
-        android:name="pl.sjmprofil.animaltinder.fragments.followerdetails.FollowerDetailsFragment"
-        android:label="FollowerDetailsFragment" >
+            android:id="@+id/followerDetailsFragment"
+            android:name="pl.sjmprofil.animaltinder.fragments.followerdetails.FollowerDetailsFragment"
+            android:label="FollowerDetailsFragment">
         <argument
-            android:name="user"
-            app:argType="pl.sjmprofil.animaltinder.models.User" />
+                android:name="user"
+                app:argType="pl.sjmprofil.animaltinder.models.User"/>
     </fragment>
+    <fragment android:id="@+id/search_fragment_slide"
+              android:name="pl.sjmprofil.animaltinder.fragments.search.SearchFragment"
+              android:label="Search">
+    </fragment>
+    <fragment android:id="@+id/searchFragment2" android:name="pl.sjmprofil.animaltinder.fragments.search.SearchFragment"
+              android:label="SearchFragment"/>
+
 </navigation>
