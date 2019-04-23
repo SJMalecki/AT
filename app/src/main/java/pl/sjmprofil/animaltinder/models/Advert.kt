@@ -13,5 +13,8 @@ data class Advert(
     var header: String = "",
 
     @SerializedName("picture")
-    var picture: String = ""
+    var picture: String = "",
+
+    @SerializedName("likedby")
+    var likedby: List<User> = listOf()
 )
