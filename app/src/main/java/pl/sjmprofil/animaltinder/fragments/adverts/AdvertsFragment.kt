@@ -9,10 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.layout_adverts_fragment.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.kodein
 import org.kodein.di.generic.instance
@@ -37,40 +34,45 @@ class AdvertsFragment : Fragment(), KodeinAware {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         setupRecycler()
+        setupSwipeRefresh()
+    }
+
+    private var job: Job? = null
+    private fun setupSwipeRefresh() {
+        swipe_refresh_layout_adverts_fragment.setOnRefreshListener {
+            swipe_refresh_layout_adverts_fragment.isRefreshing = true
+            job = updateRecyclerViewAdapter()
+            updateCallback = {
+                swipe_refresh_layout_adverts_fragment?.isRefreshing = false
+            }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        job?.cancel()
     }
 
     private fun setupRecycler() {
         adverts_fragment_recycler_view.adapter = recyclerViewAdapter
         adverts_fragment_recycler_view.layoutManager = LinearLayoutManager(context)
-        GlobalScope.launch(Dispatchers.IO) {
-            val tmp = apiRepository.getMyAdverts()
-            withContext(Dispatchers.Main) {
-                recyclerViewAdapter.updateList(tmp.toMutableList())
-            }
-        }
+        updateRecyclerViewAdapter()
         recyclerViewAdapter.itemClickListener = {
             //add list of followers for advert
-            val action = AdvertsFragmentDirections.actionAdvertsToFollowers()
+            val action = AdvertsFragmentDirections.actionAdvertsToFollowers(it as Advert)
             navController.navigate(action)
         }
     }
 
-//    private fun getList(): List<Any> {
-//        return listOf(
-//            Advert(
-//                0,
-//                "bla bla bla ",
-//                "bla bla @op.pl",
-//                "header",
-//                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
-//            ),
-//            Advert(
-//                0,
-//                "bla bla bla ",
-//                "bla bla @op.pl",
-//                "header",
-//                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
-//            )
-//        )
-//    }
+    private var updateCallback: ((Unit) -> Unit)? = null
+    private fun updateRecyclerViewAdapter(): Job {
+        return GlobalScope.launch(Dispatchers.IO) {
+            val tmp = apiRepository.getMyAdverts()
+            withContext(Dispatchers.Main) {
+                recyclerViewAdapter.updateList(tmp.toMutableList())
+            }
+            delay(2000)
+            updateCallback?.invoke(Unit)
+        }
+    }
 }

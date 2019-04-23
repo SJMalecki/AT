@@ -30,6 +30,10 @@
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
+
+        android:background="@color/doggy_violet"
+        app:itemTextColor="@color/doggy_orange"
+        app:itemIconTint="@color/doggy_orange"
         android:id="@+id/nav_view_main_activity"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

@@ -1,12 +1,18 @@
 package pl.sjmprofil.animaltinder.repository
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.preference.PreferenceManager
 import android.util.Log
+import okhttp3.MediaType
+import okhttp3.MultipartBody
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.retrofit.ApiService
+import java.io.BufferedOutputStream
+import java.io.File
+import java.io.FileOutputStream
 
 class ApiRepository(private val context: Context, private val apiService: ApiService) {
 
@@ -120,14 +126,14 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     }
 
     suspend fun getMyAdverts(): List<Advert> {
-        val response = apiService.getMyInfo(token).await()
+        val response = apiService.getMyInfo(wrapToken(token)).await()
         val responseBody = response.body()
 
         if (response.isSuccessful && responseBody?.message == "success") {
             Log.d("APIREPO", "Getting my adverts ${responseBody.user.myAdverts}")
             return responseBody.user.myAdverts
         }
-        Log.d("APIREPO", "Getting my adverts, empty list")
+        Log.d("APIREPO", "Getting my adverts, empty list ${response.isSuccessful} && ${responseBody?.message}")
         return listOf()
     }
 
@@ -154,6 +160,20 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         }
         Log.d("APIREPO", "Getting all adverts empty list")
         return listOf()
+    }
+
+    suspend fun changeUserInfo(bitmap: Bitmap) {
+
+        val file = File("path")
+        val outputStream = BufferedOutputStream(FileOutputStream(file))
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+        outputStream.close()
+
+        val requestBody = MultipartBody.create(MediaType.parse("multipart/form-data"), file)
+        val multipartBody = MultipartBody.Part.create(requestBody)
+        val response = apiService.uploadUserPhoto(token, photo=multipartBody).await()
+
+        println(response.body())
     }
 }
 // change user details (photo and/or bio)
