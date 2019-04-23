@@ -21,4 +21,11 @@
             android:title="@string/menu_nav_drawer_my_adverts">
 
     </item>
+
+    <item
+        android:id="@+id/edit_user_profile_fragment"
+        android:icon="@drawable/ic_person_outline_black_24dp"
+        android:title="@string/menu_nav_drawer_edit_profile">
+
+    </item>
 </menu>

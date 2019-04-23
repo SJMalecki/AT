@@ -38,4 +38,8 @@
             android:id="@+id/actionAdvertsToFollowers"
             app:destination="@id/navigation_drawer_followers_item" />
     </fragment>
+    <fragment
+        android:id="@+id/edit_user_profile_fragment"
+        android:name="pl.sjmprofil.animaltinder.fragments.edituserprofile.EditUserProfileFragment"
+        android:label="Edit profile" />
 </navigation>
