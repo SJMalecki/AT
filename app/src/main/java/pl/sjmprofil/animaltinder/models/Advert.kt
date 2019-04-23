@@ -1,7 +1,10 @@
 package pl.sjmprofil.animaltinder.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Advert(
     @SerializedName("advert_id")
     var id: Int = 0,
@@ -17,4 +20,4 @@ data class Advert(
 
     @SerializedName("likedby")
     var likedby: List<User> = listOf()
-)
+): Parcelable
