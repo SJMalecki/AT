@@ -9,6 +9,12 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 import pl.sjmprofil.animaltinder.R
+import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
+import pl.sjmprofil.animaltinder.fragments.add.AddFragmentViewModelFactory
+import pl.sjmprofil.animaltinder.fragments.followerdetails.FollowerDetailsFragmentViewModelFactory
+import pl.sjmprofil.animaltinder.fragments.followers.FollowersFragmentViewModelFactory
+import pl.sjmprofil.animaltinder.fragments.search.SearchFragmentViewModelFactory
+import pl.sjmprofil.animaltinder.fragments.userprofile.UserProfileFragmentViewModelFactory
 import pl.sjmprofil.animaltinder.repository.ApiRepository
 import pl.sjmprofil.animaltinder.retrofit.ApiService
 import pl.sjmprofil.animaltinder.utilities.Validator
@@ -19,6 +25,9 @@ class MyApplication : Application(), KodeinAware {
 
     override val kodein by Kodein.lazy {
 
+        bind<RecyclerViewAdapter>() with singleton {
+            RecyclerViewAdapter()
+        }
 
         bind<Validator>() with singleton {
             Validator()
@@ -40,10 +49,31 @@ class MyApplication : Application(), KodeinAware {
 
         bind() from singleton { instance<Retrofit>().create(ApiService::class.java) }
 
-        //NOT WORKING YET
-//        bind<ApiRepository>() with singleton {
-//            ApiRepository(applicationContext, instance())
-//        }
+        bind<ApiRepository>() with singleton {
+            ApiRepository(applicationContext, instance())
+        }
+
+        bind<AddFragmentViewModelFactory>() with singleton {
+            AddFragmentViewModelFactory(instance())
+        }
+
+        bind<FollowerDetailsFragmentViewModelFactory>() with singleton {
+            FollowerDetailsFragmentViewModelFactory(instance())
+        }
+
+        bind<FollowersFragmentViewModelFactory>() with singleton {
+            FollowersFragmentViewModelFactory(instance())
+        }
+
+        bind<UserProfileFragmentViewModelFactory>() with singleton {
+            UserProfileFragmentViewModelFactory(instance())
+        }
+
+        bind<SearchFragmentViewModelFactory>() with singleton {
+            SearchFragmentViewModelFactory(instance())
+        }
+    }
+}
 
 //
 //        bind<Database>() with singleton {
@@ -57,10 +87,6 @@ class MyApplication : Application(), KodeinAware {
 //
 //        bind<DatabaseRepository>() with singleton {
 //            DatabaseRepository(instance())
-//        }
-//
-//        bind<ApiRepository>() with singleton {
-//            ApiRepository(instance(), applicationContext)
 //        }
 //
 //        bind<JokesRecyclerAdapter>() with singleton {
@@ -86,5 +112,3 @@ class MyApplication : Application(), KodeinAware {
 //            )
 //        }
 //    }
-    }
-}

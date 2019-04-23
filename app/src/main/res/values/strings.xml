@@ -34,4 +34,9 @@
     <string name="last_name">Lastname</string>
     <string name="bio">bio</string>
     <string name="header">header</string>
+    <string name="text_view_bio_add_fragment_hint">My pet is aswsome !</string>
+    <string name="add_bio_dialog_fragment_text_view_add">Add Bio</string>
+    <string name="add_bio_dialog_fragment_cancel_button_text">Cancel</string>
+    <string name="add_bio_dialog_fragment_add_button_text">Add</string>
+    <string name="text_view_add_bio_header_bio">Bio:</string>
 </resources>

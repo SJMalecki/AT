@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
 
 configurations {
     detekt
@@ -29,6 +30,11 @@ android {
     }
 }
 
+//pracelable
+androidExtensions {
+    experimental = true
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -51,9 +57,14 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:3.12.0"
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
 
+    //Lifecycle
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation "android.arch.lifecycle:viewmodel:1.1.1"
+
+
     //Navigation Component
-    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0-rc02'
-    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0-rc02'
+    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0'
+    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0'
 
     //Kodein
     implementation 'org.kodein.di:kodein-di-generic-jvm:6.1.0'
