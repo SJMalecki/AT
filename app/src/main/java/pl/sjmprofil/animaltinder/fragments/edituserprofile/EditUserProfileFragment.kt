@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.app.Fragment
@@ -31,8 +30,6 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
     private lateinit var bindEditUserProfileFragment: EditUserProfileFragmentLayoutBinding
     private lateinit var editUserProfileFragmentViewModel: EditUserProfileFragmentViewModel
 
-    private var flag = true
-
     private val TAKE_PICTURE_BUTTON_REQUEST_ID = 103
     private val OPEN_GALLERY_BUTTON_REQUEST_ID = 104
 
@@ -57,10 +54,10 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            editUserProfileFragmentViewModel.getMyData { myUser: User -> bindEditUserProfileFragment.user = myUser }
+        editUserProfileFragmentViewModel.getMyData { myUser: User ->
+            bindEditUserProfileFragment.user = myUser
             bindEditUserProfileFragment.executePendingBindings()
-
-
+        }
 
         Log.i("OnView", "onViewCreated EditUserProfileFragment called")
 
@@ -72,9 +69,9 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
 
     private fun setupViewModel() {
         editUserProfileFragmentViewModel =
-                ViewModelProviders
-                    .of(this, editUserProfileFragmentViewModelFactory)
-                    .get(EditUserProfileFragmentViewModel::class.java)
+            ViewModelProviders
+                .of(this, editUserProfileFragmentViewModelFactory)
+                .get(EditUserProfileFragmentViewModel::class.java)
     }
 
     private fun setupTakePictureButton() {
@@ -132,8 +129,7 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
         if (requestCode == TAKE_PICTURE_BUTTON_REQUEST_ID) {
             if (resultCode == Activity.RESULT_OK) {
                 val imageHolder = data?.extras?.get("data") as Bitmap
-                Log.i("OnView", "${imageHolder}")
-
+                Log.i("OnView", "$imageHolder")
                 image_view_edit_profile_fragment.setImageBitmap(imageHolder)
             }
         }
@@ -142,11 +138,10 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
             if (resultCode == Activity.RESULT_OK) {
 
                 val contentURI = data?.data
-                Log.i("OnView", "${contentURI.toString()}")
+                Log.i("OnView", contentURI.toString())
                 val file = File(contentURI.toString())
-                val selectedUri  = Uri.fromFile(file)
                 val bitmap = MediaStore.Images.Media.getBitmap(context!!.contentResolver, contentURI)
-                //image_view_edit_profile_fragment.setImageBitmap(bitmap)
+                image_view_edit_profile_fragment.setImageBitmap(bitmap)
                 editUserProfileFragmentViewModel.postMyNewData(bitmap)
             }
         }
