@@ -1,12 +1,16 @@
 package pl.sjmprofil.animaltinder.repository
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.preference.PreferenceManager
 import android.util.Log
+import okhttp3.MediaType
+import okhttp3.MultipartBody
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.retrofit.ApiService
+import java.io.File
 
 class ApiRepository(private val context: Context, private val apiService: ApiService) {
 
@@ -154,6 +158,17 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         }
         Log.d("APIREPO", "Getting all adverts empty list")
         return listOf()
+    }
+
+    suspend fun changeUserInfo(realpath: String) {
+
+        val file = File(realpath)
+        val requestBody = MultipartBody.create(MediaType.parse("multipart/form-data"), file)
+        val multipartBody = MultipartBody.Part.create(requestBody)
+        val response = apiService.uploadUserPhoto(token, photo=multipartBody).await()
+
+        println(response.body())
+
     }
 }
 // change user details (photo and/or bio)
