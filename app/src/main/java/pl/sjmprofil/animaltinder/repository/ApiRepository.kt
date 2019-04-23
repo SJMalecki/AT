@@ -120,7 +120,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     }
 
     suspend fun getMyAdverts(): List<Advert> {
-        val response = apiService.getMyInfo(token).await()
+        val response = apiService.getMyInfo(wrapToken(token)).await()
         val responseBody = response.body()
 
         if (response.isSuccessful && responseBody?.message == "success") {
