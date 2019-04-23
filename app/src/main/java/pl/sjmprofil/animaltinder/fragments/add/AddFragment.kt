@@ -71,6 +71,11 @@ class AddFragment : Fragment() {
             dialogFragmentAddBio.show(fragmentManager, "DialogFragmentAddBio")
             dialogFragmentAddBio.onAddButtonClick = { text -> editBioTextView(text) }
         }
+
+        text_view_bio_add_fragment.setOnClickListener{
+            dialogFragmentAddBio.show(fragmentManager, "DialogFragmentAddBio")
+            dialogFragmentAddBio.onAddButtonClick = { text -> editBioTextView(text) }
+        }
     }
 
     private fun editBioTextView(text: String) {

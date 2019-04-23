@@ -72,6 +72,7 @@
             android:id="@+id/text_view_bio_add_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clickable="true"
             android:layout_marginTop="@dimen/add_bio_dialog_fragment_margin_normal"
             android:layout_marginBottom="@dimen/add_bio_dialog_fragment_margin_normal"
             android:layout_margin="@dimen/add_bio_dialog_fragment_margin_normal"
