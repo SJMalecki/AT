@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.search_fragment_layout.*
 import pl.sjmprofil.animaltinder.R
-import pl.sjmprofil.animaltinder.databinding.SearchFragmentSlideBinding
 import pl.sjmprofil.animaltinder.adapters.SwipingViewPagerAdapter
-import pl.sjmprofil.animaltinder.models.Advert
+import pl.sjmprofil.animaltinder.databinding.SearchFragmentSlideBinding
+import pl.sjmprofil.animaltinder.models.AdvertParcelable
 
 
 class SearchFragment : Fragment() {
@@ -19,7 +19,7 @@ class SearchFragment : Fragment() {
     private lateinit var binding: SearchFragmentSlideBinding
 
 
-    fun getInstance(advert: Advert): SearchFragment {
+    fun getInstance(advert: AdvertParcelable): SearchFragment {
         val fragment = SearchFragment()
         val bundle = Bundle()
         bundle.putParcelable("advert", advert)
@@ -34,21 +34,20 @@ class SearchFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.search_fragment_slide, container, false)
-        val advert = Advert(
-            0,
-            "email@wp.pl",
-            "Imie",
-            "nazwisko",
-            "https://pbs.twimg.com/profile_images/651092879725740032/5Fau7HaM_400x400.jpg"
-        )
-        binding.advert = advert
+        binding.advert = arguments?.getParcelable("advert")
         return binding.root
     }
 
     private fun setupViewPagerAdapter() {
-        val adverts = arrayListOf("aaa", "bbb", "ccc")
+
+        val advert1 = AdvertParcelable(1,"aaa", "djhf@wp.pl", "aaaaa", "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg" )
+        val advert2 = AdvertParcelable(2, "bbb", "bb@onet.pl", "bbbb","https://static.wizaz.pl/resize/var/ezdemo_site/storage/images/fryzury/lob-najmodniejsza-fryzura-sezonu/lob-taylor-swift/120930-1-pol-PL/Lob-Taylor-Swift.jpg?width=256&height=256" )
+        val adverts = arrayListOf(advert1, advert2)
+
         viewPagerAdapter = SwipingViewPagerAdapter(fragmentManager!!, adverts)
         search_fragment_layout_view_pager.adapter = viewPagerAdapter
+        search_fragment_layout_view_pager.currentItem = viewPagerAdapter.count/2
+
     }
 
 
