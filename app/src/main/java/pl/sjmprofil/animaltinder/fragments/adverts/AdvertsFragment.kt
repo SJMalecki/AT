@@ -55,7 +55,7 @@ class AdvertsFragment : Fragment(), KodeinAware {
         }
     }
 
-    private suspend fun getList(): List<Any> {
+//    private fun getList(): List<Any> {
 //        return listOf(
 //            Advert(
 //                0,
@@ -72,5 +72,5 @@ class AdvertsFragment : Fragment(), KodeinAware {
 //                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
 //            )
 //        )
-    }
+//    }
 }
