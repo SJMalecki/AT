@@ -37,6 +37,8 @@ class AdvertsFragment : Fragment(), KodeinAware {
 
         swipe_refresh_layout_adverts_fragment.setOnRefreshListener {
             swipe_refresh_layout_adverts_fragment.isRefreshing = true
+            updateRecyclerViewAdapter()
+            swipe_refresh_layout_adverts_fragment.isRefreshing = false
         }
     }
 
@@ -46,11 +48,12 @@ class AdvertsFragment : Fragment(), KodeinAware {
         updateRecyclerViewAdapter()
         recyclerViewAdapter.itemClickListener = {
             //add list of followers for advert
-            val action = AdvertsFragmentDirections.actionAdvertsToFollowers()
+            val action = AdvertsFragmentDirections.actionAdvertsToFollowers(it as Advert)
             navController.navigate(action)
         }
     }
 
+    private fun updateCallback(): ((Unit) -> Unit)? = null
     private fun updateRecyclerViewAdapter(): Job {
         return GlobalScope.launch(Dispatchers.IO) {
             val tmp = apiRepository.getMyAdverts()
@@ -58,7 +61,7 @@ class AdvertsFragment : Fragment(), KodeinAware {
                 recyclerViewAdapter.updateList(tmp.toMutableList())
             }
             delay(2000)
-            swipe_refresh_layout_adverts_fragment.isRefreshing = false
+//            swipe_refresh_layout_adverts_fragment.isRefreshing = false
         }
     }
 }

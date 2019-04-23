@@ -14,6 +14,8 @@ import org.kodein.di.generic.instance
 import org.kodein.di.android.support.kodein
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
+import pl.sjmprofil.animaltinder.fragments.followerdetails.FollowerDetailsFragmentArgs
+import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.User
 
 class FollowersFragment : Fragment(), KodeinAware {
@@ -29,42 +31,54 @@ class FollowersFragment : Fragment(), KodeinAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+
+        getList()
+
         setupRecycler()
     }
 
-//    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
+    private fun getList(): List<User> {
+        var list  = listOf<User>()
+        arguments?.let {
+            val safeArgsAdvert = FollowersFragmentArgs.fromBundle(it)
+            list =  safeArgsAdvert.advert.likedby
+        }
+        return list
+    }
+
+    //    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private fun setupRecycler() {
 //        recyclerViewAdapter = RecyclerViewAdapter()
         followers_fragment_recycler_view.adapter = recyclerViewAdapter
         followers_fragment_recycler_view.layoutManager = LinearLayoutManager(context)
         val tmp = getList()
-        recyclerViewAdapter.updateList(tmp as MutableList<Any>)
+        recyclerViewAdapter.updateList(tmp.toMutableList())
         recyclerViewAdapter.itemClickListener = {
             val action = FollowersFragmentDirections.actionFollowersToFollowerDetails(it as User)
             navController.navigate(action)
         }
     }
 
-    private fun getList(): List<Any> {
-        return listOf(
-            User(
-                0,
-                "email@op.pl",
-                "Taylor",
-                "Swift",
-                "1234",
-                "https://static.wizaz.pl/resize/var/ezdemo_site/storage/images/fryzury/lob-najmodniejsza-fryzura-sezonu/lob-taylor-swift/120930-1-pol-PL/Lob-Taylor-Swift.jpg?width=256&height=256"
-            ),
-            User(
-                0,
-                "email@op.pl",
-                "Taylor",
-                "Swift",
-                "1234",
-                "http://www.songnotes.cc/images/artists/TaylorSwift.jpg"
-            )
-
-        )
-    }
+//    private fun getList(): List<Any> {
+//        return listOf(
+//            User(
+//                0,
+//                "email@op.pl",
+//                "Taylor",
+//                "Swift",
+//                "1234",
+//                "https://static.wizaz.pl/resize/var/ezdemo_site/storage/images/fryzury/lob-najmodniejsza-fryzura-sezonu/lob-taylor-swift/120930-1-pol-PL/Lob-Taylor-Swift.jpg?width=256&height=256"
+//            ),
+//            User(
+//                0,
+//                "email@op.pl",
+//                "Taylor",
+//                "Swift",
+//                "1234",
+//                "http://www.songnotes.cc/images/artists/TaylorSwift.jpg"
+//            )
+//
+//        )
+//    }
 
 }
