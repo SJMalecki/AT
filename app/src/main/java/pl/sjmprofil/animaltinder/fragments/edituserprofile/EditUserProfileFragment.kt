@@ -31,8 +31,6 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
     private lateinit var bindEditUserProfileFragment: EditUserProfileFragmentLayoutBinding
     private lateinit var editUserProfileFragmentViewModel: EditUserProfileFragmentViewModel
 
-    private var flag = true
-
     private val TAKE_PICTURE_BUTTON_REQUEST_ID = 103
     private val OPEN_GALLERY_BUTTON_REQUEST_ID = 104
 
@@ -57,9 +55,11 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        editUserProfileFragmentViewModel.getMyData { myUser: User -> bindEditUserProfileFragment.user = myUser }
-        bindEditUserProfileFragment.executePendingBindings()
 
+        editUserProfileFragmentViewModel.getMyData { myUser: User ->
+            bindEditUserProfileFragment.user = myUser
+            bindEditUserProfileFragment.executePendingBindings()
+        }
 
         Log.i("OnView", "onViewCreated EditUserProfileFragment called")
 
