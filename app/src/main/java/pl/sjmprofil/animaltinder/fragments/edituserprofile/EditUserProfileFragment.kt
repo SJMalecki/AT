@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.app.Fragment
@@ -130,7 +131,7 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
             if (resultCode == Activity.RESULT_OK) {
                 val imageHolder = data?.extras?.get("data") as Bitmap
                 Log.i("OnView", "$imageHolder")
-                image_view_edit_profile_fragment.setImageBitmap(imageHolder)
+                                image_view_edit_profile_fragment.setImageBitmap(imageHolder)
             }
         }
 
@@ -138,8 +139,11 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
             if (resultCode == Activity.RESULT_OK) {
 
                 val contentURI = data?.data
+
                 Log.i("OnView", contentURI.toString())
                 val file = File(contentURI.toString())
+                Log.i("OnView", contentURI.toString())
+                val selectedUri  = Uri.fromFile(file)
                 val bitmap = MediaStore.Images.Media.getBitmap(context!!.contentResolver, contentURI)
                 image_view_edit_profile_fragment.setImageBitmap(bitmap)
                 editUserProfileFragmentViewModel.postMyNewData(bitmap)
