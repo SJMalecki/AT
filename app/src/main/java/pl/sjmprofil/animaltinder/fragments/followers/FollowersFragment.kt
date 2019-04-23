@@ -48,13 +48,6 @@ class FollowersFragment : Fragment(), KodeinAware {
 
     private fun getList(): List<Any> {
         return listOf(
-            Advert(
-                0,
-                "bla bla bla ",
-                "bla bla @op.pl",
-                "header",
-                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
-            ),
             User(
                 0,
                 "email@op.pl",
@@ -62,13 +55,6 @@ class FollowersFragment : Fragment(), KodeinAware {
                 "Swift",
                 "1234",
                 "https://static.wizaz.pl/resize/var/ezdemo_site/storage/images/fryzury/lob-najmodniejsza-fryzura-sezonu/lob-taylor-swift/120930-1-pol-PL/Lob-Taylor-Swift.jpg?width=256&height=256"
-            ),
-            Advert(
-                0,
-                "bla bla bla ",
-                "bla bla @op.pl",
-                "header",
-                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
             ),
             User(
                 0,

@@ -30,4 +30,8 @@
             android:name="user"
             app:argType="pl.sjmprofil.animaltinder.models.User" />
     </fragment>
+    <fragment
+        android:id="@+id/layout_adverts_fragment"
+        android:name="pl.sjmprofil.animaltinder.fragments.adverts.AdvertsFragment"
+        android:label="AdvertsFragment" />
 </navigation>
