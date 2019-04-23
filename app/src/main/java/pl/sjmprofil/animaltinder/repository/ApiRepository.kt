@@ -10,7 +10,9 @@ import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.retrofit.ApiService
+import java.io.BufferedOutputStream
 import java.io.File
+import java.io.FileOutputStream
 
 class ApiRepository(private val context: Context, private val apiService: ApiService) {
 
@@ -160,15 +162,18 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         return listOf()
     }
 
-    suspend fun changeUserInfo(realpath: String) {
+    suspend fun changeUserInfo(bitmap: Bitmap) {
 
-        val file = File(realpath)
+        val file = File("path")
+        val outputStream = BufferedOutputStream(FileOutputStream(file))
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+        outputStream.close()
+
         val requestBody = MultipartBody.create(MediaType.parse("multipart/form-data"), file)
         val multipartBody = MultipartBody.Part.create(requestBody)
         val response = apiService.uploadUserPhoto(token, photo=multipartBody).await()
 
         println(response.body())
-
     }
 }
 // change user details (photo and/or bio)
