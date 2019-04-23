@@ -13,6 +13,8 @@ import pl.sjmprofil.animaltinder.databinding.EditUserProfileFragmentLayoutBindin
 class EditUserProfileFragment: Fragment() {
 
     private lateinit var bindEditUserProfileFragment: EditUserProfileFragmentLayoutBinding
+    
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         bindEditUserProfileFragment = DataBindingUtil.inflate(inflater, R.layout.edit_user_profile_fragment_layout,

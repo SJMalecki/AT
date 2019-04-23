@@ -12,13 +12,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".fragments.edituserprofile.EditUserProfileFragment">
 
         <TextView
             android:id="@+id/text_view_edit_user_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Edit fragment"
+            android:text="@{user.name}"
             android:textSize="60sp"/>
     </RelativeLayout>
 
