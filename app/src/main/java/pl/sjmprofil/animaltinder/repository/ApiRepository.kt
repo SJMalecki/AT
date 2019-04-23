@@ -127,7 +127,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
             Log.d("APIREPO", "Getting my adverts ${responseBody.user.myAdverts}")
             return responseBody.user.myAdverts
         }
-        Log.d("APIREPO", "Getting my adverts, empty list")
+        Log.d("APIREPO", "Getting my adverts, empty list ${response.isSuccessful} && ${responseBody?.message}")
         return listOf()
     }
 

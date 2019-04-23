@@ -37,17 +37,16 @@ class AdvertsFragment : Fragment(), KodeinAware {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         setupRecycler()
+
+        swipe_refresh_layout_adverts_fragment.setOnRefreshListener {
+            updateRecyclerViewAdapter()
+        }
     }
 
     private fun setupRecycler() {
         adverts_fragment_recycler_view.adapter = recyclerViewAdapter
         adverts_fragment_recycler_view.layoutManager = LinearLayoutManager(context)
-        GlobalScope.launch(Dispatchers.IO) {
-            val tmp = apiRepository.getMyAdverts()
-            withContext(Dispatchers.Main) {
-                recyclerViewAdapter.updateList(tmp.toMutableList())
-            }
-        }
+        updateRecyclerViewAdapter()
         recyclerViewAdapter.itemClickListener = {
             //add list of followers for advert
             val action = AdvertsFragmentDirections.actionAdvertsToFollowers()
@@ -55,22 +54,33 @@ class AdvertsFragment : Fragment(), KodeinAware {
         }
     }
 
-//    private fun getList(): List<Any> {
-//        return listOf(
-//            Advert(
-//                0,
-//                "bla bla bla ",
-//                "bla bla @op.pl",
-//                "header",
-//                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
-//            ),
-//            Advert(
-//                0,
-//                "bla bla bla ",
-//                "bla bla @op.pl",
-//                "header",
-//                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
-//            )
-//        )
-//    }
+
+    private fun updateRecyclerViewAdapter() {
+        GlobalScope.launch(Dispatchers.IO) {
+//            val tmp = apiRepository.getMyAdverts()
+            val tmp = getList()
+            withContext(Dispatchers.Main) {
+                recyclerViewAdapter.updateList(tmp.toMutableList())
+            }
+        }
+    }
+
+    private fun getList(): List<Any> {
+        return listOf(
+            Advert(
+                0,
+                "bla bla bla ",
+                "bla bla @op.pl",
+                "header",
+                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
+            ),
+            Advert(
+                0,
+                "bla bla bla ",
+                "bla bla @op.pl",
+                "header",
+                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
+            )
+        )
+    }
 }
