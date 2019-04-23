@@ -9,10 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.layout_adverts_fragment.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.kodein
 import org.kodein.di.generic.instance
@@ -39,7 +36,7 @@ class AdvertsFragment : Fragment(), KodeinAware {
         setupRecycler()
 
         swipe_refresh_layout_adverts_fragment.setOnRefreshListener {
-            updateRecyclerViewAdapter()
+            swipe_refresh_layout_adverts_fragment.isRefreshing = true
         }
     }
 
@@ -54,14 +51,14 @@ class AdvertsFragment : Fragment(), KodeinAware {
         }
     }
 
-    private fun updateRecyclerViewAdapter() {
-        GlobalScope.launch(Dispatchers.IO) {
+    private fun updateRecyclerViewAdapter(): Job {
+        return GlobalScope.launch(Dispatchers.IO) {
             val tmp = apiRepository.getMyAdverts()
             withContext(Dispatchers.Main) {
                 recyclerViewAdapter.updateList(tmp.toMutableList())
             }
+            delay(2000)
+            swipe_refresh_layout_adverts_fragment.isRefreshing = false
         }
     }
-
-
 }
