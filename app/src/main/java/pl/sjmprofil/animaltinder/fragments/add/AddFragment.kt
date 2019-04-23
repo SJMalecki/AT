@@ -29,6 +29,7 @@ class AddFragment : Fragment() {
 
         setupOpenGalleryButton()
         setupTakePictureButton()
+        setupImageToOpenGalleryButton()
         setupEditBioButton()
     }
 
@@ -45,6 +46,24 @@ class AddFragment : Fragment() {
                 Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(galleryIntent, OPEN_GALLERY_BUTTON_REQUEST_ID)
         }
+    }
+
+    private fun setupImageToOpenGalleryButton() {
+        image_view_add_fragment.setOnClickListener {
+            val galleryIntent =
+                Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(galleryIntent, OPEN_GALLERY_BUTTON_REQUEST_ID)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("BioText", text_view_bio_add_fragment.text.toString())
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        text_view_bio_add_fragment.text = savedInstanceState?.getString("BioText")
     }
 
     private fun setupEditBioButton() {
