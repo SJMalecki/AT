@@ -168,7 +168,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
 
         val file = File(context.filesDir.path.toString()+"temp")
         val outputStream = BufferedOutputStream(FileOutputStream(file))
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream)
         outputStream.close()
 
         val requestBody = RequestBody.create(MediaType.parse("image/jpng"), file)
