@@ -11,6 +11,7 @@ import org.kodein.di.generic.singleton
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
 import pl.sjmprofil.animaltinder.fragments.add.AddFragmentViewModelFactory
+import pl.sjmprofil.animaltinder.fragments.adverts.AdvertsFragmentViewModelFactory
 import pl.sjmprofil.animaltinder.fragments.followerdetails.FollowerDetailsFragmentViewModelFactory
 import pl.sjmprofil.animaltinder.fragments.followers.FollowersFragmentViewModelFactory
 import pl.sjmprofil.animaltinder.fragments.search.SearchFragmentViewModelFactory
@@ -51,6 +52,10 @@ class MyApplication : Application(), KodeinAware {
 
         bind<ApiRepository>() with singleton {
             ApiRepository(applicationContext, instance())
+        }
+
+        bind<AdvertsFragmentViewModelFactory>() with singleton {
+            AdvertsFragmentViewModelFactory(instance())
         }
 
         bind<AddFragmentViewModelFactory>() with singleton {
