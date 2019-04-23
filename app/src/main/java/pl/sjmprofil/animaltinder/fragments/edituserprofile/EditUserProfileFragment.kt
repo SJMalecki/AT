@@ -57,9 +57,8 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            editUserProfileFragmentViewModel.getMyData { myUser: User -> bindEditUserProfileFragment.user = myUser }
-            bindEditUserProfileFragment.executePendingBindings()
-
+        editUserProfileFragmentViewModel.getMyData { myUser: User -> bindEditUserProfileFragment.user = myUser }
+        bindEditUserProfileFragment.executePendingBindings()
 
 
         Log.i("OnView", "onViewCreated EditUserProfileFragment called")
@@ -72,9 +71,9 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
 
     private fun setupViewModel() {
         editUserProfileFragmentViewModel =
-                ViewModelProviders
-                    .of(this, editUserProfileFragmentViewModelFactory)
-                    .get(EditUserProfileFragmentViewModel::class.java)
+            ViewModelProviders
+                .of(this, editUserProfileFragmentViewModelFactory)
+                .get(EditUserProfileFragmentViewModel::class.java)
     }
 
     private fun setupTakePictureButton() {
@@ -132,7 +131,7 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
         if (requestCode == TAKE_PICTURE_BUTTON_REQUEST_ID) {
             if (resultCode == Activity.RESULT_OK) {
                 val imageHolder = data?.extras?.get("data") as Bitmap
-                Log.i("OnView", "${imageHolder}")
+                Log.i("OnView", "$imageHolder")
 
                 image_view_edit_profile_fragment.setImageBitmap(imageHolder)
             }
@@ -142,11 +141,9 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
             if (resultCode == Activity.RESULT_OK) {
 
                 val contentURI = data?.data
-                Log.i("OnView", "${contentURI.toString()}")
-                val file = File(contentURI.toString())
-                val selectedUri  = Uri.fromFile(file)
+                Log.i("OnView", contentURI.toString())
                 val bitmap = MediaStore.Images.Media.getBitmap(context!!.contentResolver, contentURI)
-                //image_view_edit_profile_fragment.setImageBitmap(bitmap)
+                image_view_edit_profile_fragment.setImageBitmap(bitmap)
                 editUserProfileFragmentViewModel.postMyNewData(bitmap)
             }
         }
