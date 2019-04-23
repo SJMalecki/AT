@@ -1,4 +1,7 @@
 package pl.sjmprofil.animaltinder.fragments.followers
 
-class FollowersFragmentViewModel {
+import android.arch.lifecycle.ViewModel
+import pl.sjmprofil.animaltinder.repository.ApiRepository
+
+class FollowersFragmentViewModel(private val apiRepository: ApiRepository) : ViewModel() {
 }
