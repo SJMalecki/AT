@@ -1,6 +1,7 @@
 package pl.sjmprofil.animaltinder.fragments.edituserprofile
 
 import android.arch.lifecycle.ViewModel
+import android.graphics.Bitmap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -18,6 +19,14 @@ class EditUserProfileFragmentViewModel(private val apiRepository: ApiRepository)
             withContext(Dispatchers.Main) {
                 callback.invoke(myData)
             }
+        }
+    }
+
+    fun postMyNewData(bitmap: Bitmap){
+        GlobalScope.launch(Dispatchers.Default) {
+
+            apiRepository.changeUserInfo(bitmap)
+
         }
     }
 }

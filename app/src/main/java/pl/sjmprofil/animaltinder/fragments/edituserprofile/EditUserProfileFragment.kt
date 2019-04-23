@@ -57,10 +57,9 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (savedInstanceState != null){
             editUserProfileFragmentViewModel.getMyData { myUser: User -> bindEditUserProfileFragment.user = myUser }
             bindEditUserProfileFragment.executePendingBindings()
-        }
+
 
 
         Log.i("OnView", "onViewCreated EditUserProfileFragment called")
@@ -134,6 +133,7 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
             if (resultCode == Activity.RESULT_OK) {
                 val imageHolder = data?.extras?.get("data") as Bitmap
                 Log.i("OnView", "${imageHolder}")
+
                 image_view_edit_profile_fragment.setImageBitmap(imageHolder)
             }
         }
@@ -146,7 +146,8 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
                 val file = File(contentURI.toString())
                 val selectedUri  = Uri.fromFile(file)
                 val bitmap = MediaStore.Images.Media.getBitmap(context!!.contentResolver, contentURI)
-                image_view_edit_profile_fragment.setImageBitmap(bitmap)
+                //image_view_edit_profile_fragment.setImageBitmap(bitmap)
+                editUserProfileFragmentViewModel.postMyNewData(bitmap)
             }
         }
     }

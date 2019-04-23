@@ -50,9 +50,9 @@ interface ApiService {
 
     //  Pictures Queries
     @Multipart
-    @POST("photoupload")
+    @POST("userpictures")
     fun uploadUserPhoto(
         @Header("Authorization") token: String,
-        @Part("photo") photo: MultipartBody.Part
+        @Part photo: MultipartBody.Part
     ): Deferred<Response<PictureResponse>>
 }
