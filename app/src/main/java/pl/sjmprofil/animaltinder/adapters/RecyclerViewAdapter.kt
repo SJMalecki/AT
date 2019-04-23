@@ -58,12 +58,12 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount() = itemsList.size
 
-    var itemClickListener: ((User) -> Unit)? = null
+    var itemClickListener: ((Any) -> Unit)? = null
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         val itemType = viewHolder.itemViewType
         when (itemType) {
-            ADVERTS_VIEW -> (viewHolder as AdvertViewHolder).bindItems(itemsList[position] as Advert)
+            ADVERTS_VIEW -> (viewHolder as AdvertViewHolder).bindItems(itemsList[position] as Advert, itemClickListener)
             USERS_VIEW -> (viewHolder as UserViewHolder).bindItems(itemsList[position] as User, itemClickListener)
         }
 
@@ -71,9 +71,12 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class AdvertViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private lateinit var binding: CardViewFollowersBinding
-        fun bindItems(advert: Advert) {
+        fun bindItems(advert: Advert, itemClickListener: ((Advert) -> Unit)?) {
             binding = DataBindingUtil.bind(itemView.rootView)!!
             binding.item = advert
+            itemView.setOnClickListener {
+                itemClickListener?.invoke(advert)
+            }
         }
     }
 

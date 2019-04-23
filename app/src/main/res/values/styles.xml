@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -8,4 +8,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="login_activity_button_style" parent="Base.TextAppearance.AppCompat.Button">
+
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button_shape</item>
+        <item name="android:layout_margin">@dimen/button_margin</item>
+        <item name="android:paddingStart">@dimen/button_padding_end_and_start</item>
+        <item name="android:paddingEnd">@dimen/button_padding_end_and_start</item>
+        <item name="android:textColor">@color/doggy_violet</item>
+
+    </style>
 </resources>

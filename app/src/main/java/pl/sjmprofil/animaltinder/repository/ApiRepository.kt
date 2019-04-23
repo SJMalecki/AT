@@ -53,7 +53,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
             val newToken = responseBody.token
 
             Log.d("APIREPO", "CREATING NEW USER: ${user.email}, ${user.password}, $newToken")
-            updateSharedPrefs(newEmail = user.email, newPassword = user.password, newToken = newToken!!)
+            updateSharedPrefs(newEmail = user.email, newPassword = user.password, newToken = newToken)
             updateClassSharedPrefValues()
             return true
         }
@@ -102,8 +102,8 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
             // Response body is User
 
             val myUserInstance = response.body()!!
-            Log.d("APIREPO", "Getting user info details: ${myUserInstance.email}, ${myUserInstance.password}")
-            return myUserInstance
+            Log.d("APIREPO", "Getting user info details: ${myUserInstance.user}")
+            return myUserInstance.user
         }
         Log.d("APIREPO", "Getting user info, empty user")
         return User()
@@ -120,12 +120,12 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     }
 
     suspend fun getMyAdverts(): List<Advert> {
-        val response = apiService.getMyAdverts(token).await()
+        val response = apiService.getMyInfo(token).await()
         val responseBody = response.body()
 
         if (response.isSuccessful && responseBody?.message == "success") {
-            Log.d("APIREPO", "Getting my adverts ${responseBody.adverts}")
-            return responseBody!!.adverts
+            Log.d("APIREPO", "Getting my adverts ${responseBody.user.myAdverts}")
+            return responseBody.user.myAdverts
         }
         Log.d("APIREPO", "Getting my adverts, empty list")
         return listOf()
