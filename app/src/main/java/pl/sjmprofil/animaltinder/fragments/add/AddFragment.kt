@@ -15,10 +15,6 @@ import pl.sjmprofil.animaltinder.utilities.DialogFragmentAddBio
 
 class AddFragment : Fragment() {
 
-    companion object {
-        private var pictureStorage: Bitmap? = null
-    }
-
     private val TAKE_PICTURE_BUTTON_REQUEST_ID = 101
     private val OPEN_GALLERY_BUTTON_REQUEST_ID = 102
 
@@ -31,39 +27,15 @@ class AddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(pictureStorage != null){
-            image_view_add_fragment.setImageBitmap(pictureStorage)
-        }
-
         setupOpenGalleryButton()
         setupTakePictureButton()
-        setupImageToOpenGalleryButton()
         setupEditBioButton()
-
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putString("BioText", text_view_bio_add_fragment.text.toString())
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        text_view_bio_add_fragment.text = savedInstanceState?.getString("BioText")
     }
 
     private fun setupTakePictureButton() {
         button_take_picture_add_fragment.setOnClickListener {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(cameraIntent, TAKE_PICTURE_BUTTON_REQUEST_ID)
-        }
-    }
-
-    private fun setupImageToOpenGalleryButton(){
-        image_view_add_fragment.setOnClickListener {
-            val galleryIntent =
-                Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(galleryIntent, OPEN_GALLERY_BUTTON_REQUEST_ID)
         }
     }
 
@@ -92,7 +64,6 @@ class AddFragment : Fragment() {
         if (requestCode == TAKE_PICTURE_BUTTON_REQUEST_ID) {
             if (resultCode == Activity.RESULT_OK) {
                 val imageHolder = data?.extras?.get("data") as Bitmap
-                pictureStorage = imageHolder
                 image_view_add_fragment.setImageBitmap(imageHolder)
             }
         }
@@ -102,7 +73,6 @@ class AddFragment : Fragment() {
 
                 val contentURI = data?.data
                 val bitmap = MediaStore.Images.Media.getBitmap(context!!.contentResolver, contentURI)
-                pictureStorage = bitmap
                 image_view_add_fragment.setImageBitmap(bitmap)
             }
         }

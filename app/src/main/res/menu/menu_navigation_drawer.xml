@@ -16,9 +16,9 @@
 
     </item>
     <item
-            android:id="@+id/navigation_drawer_followers_item"
+            android:id="@+id/layout_adverts_fragment"
             android:icon="@drawable/ic_favorite_border_black_24dp"
-            android:title="@string/menu_nav_drawer_followers">
+            android:title="@string/menu_nav_drawer_my_adverts">
 
     </item>
 </menu>
