@@ -14,7 +14,6 @@ import org.kodein.di.generic.instance
 import org.kodein.di.android.support.kodein
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
-import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.User
 
 class FollowersFragment : Fragment(), KodeinAware {
@@ -41,7 +40,7 @@ class FollowersFragment : Fragment(), KodeinAware {
         val tmp = getList()
         recyclerViewAdapter.updateList(tmp as MutableList<Any>)
         recyclerViewAdapter.itemClickListener = {
-            val action = FollowersFragmentDirections.actionfollowersTofollowerDetails(it)
+            val action = FollowersFragmentDirections.actionFollowersToFollowerDetails(it as User)
             navController.navigate(action)
         }
     }

@@ -6,47 +6,71 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.layout_adverts_fragment.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.kodein
 import org.kodein.di.generic.instance
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
 import pl.sjmprofil.animaltinder.models.Advert
+import pl.sjmprofil.animaltinder.repository.ApiRepository
 
-class AdvertsFragment: Fragment(), KodeinAware {
+class AdvertsFragment : Fragment(), KodeinAware {
 
     override val kodein by kodein()
     private val recyclerViewAdapter: RecyclerViewAdapter by instance()
+    private val apiRepository: ApiRepository by instance()
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.layout_adverts_fragment, container, false)
     }
 
+    private lateinit var navController: NavController
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adverts_fragment_recycler_view.adapter = recyclerViewAdapter
-        adverts_fragment_recycler_view.layoutManager = LinearLayoutManager(context)
-        val tmp = getList()
-        recyclerViewAdapter.updateList(tmp as MutableList<Any>)
+        navController = Navigation.findNavController(view)
+        setupRecycler()
     }
 
-    private fun getList(): List<Any> {
-        return listOf(
-            Advert(
-                0,
-                "bla bla bla ",
-                "bla bla @op.pl",
-                "header",
-                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
-            ),
-            Advert(
-                0,
-                "bla bla bla ",
-                "bla bla @op.pl",
-                "header",
-                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
-            )
-        )
+    private fun setupRecycler() {
+        adverts_fragment_recycler_view.adapter = recyclerViewAdapter
+        adverts_fragment_recycler_view.layoutManager = LinearLayoutManager(context)
+        GlobalScope.launch(Dispatchers.IO) {
+            val tmp = apiRepository.getMyAdverts()
+            withContext(Dispatchers.Main) {
+                recyclerViewAdapter.updateList(tmp.toMutableList())
+            }
+        }
+        recyclerViewAdapter.itemClickListener = {
+            //add list of followers for advert
+            val action = AdvertsFragmentDirections.actionAdvertsToFollowers()
+            navController.navigate(action)
+        }
+    }
+
+    private suspend fun getList(): List<Any> {
+//        return listOf(
+//            Advert(
+//                0,
+//                "bla bla bla ",
+//                "bla bla @op.pl",
+//                "header",
+//                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
+//            ),
+//            Advert(
+//                0,
+//                "bla bla bla ",
+//                "bla bla @op.pl",
+//                "header",
+//                "http://d3g9pb5nvr3u7.cloudfront.net/authors/539a28913f3c0fd71ed4e43d/2131300937/256.jpg"
+//            )
+//        )
     }
 }
