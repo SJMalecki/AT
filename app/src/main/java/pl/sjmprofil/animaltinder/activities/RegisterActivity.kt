@@ -3,13 +3,27 @@ package pl.sjmprofil.animaltinder.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.kodein.di.KodeinAware
+import org.kodein.di.generic.instance
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.dialog.LoadingDialog
+import pl.sjmprofil.animaltinder.models.User
+import pl.sjmprofil.animaltinder.repository.ApiRepository
 import pl.sjmprofil.animaltinder.utilities.Validator
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity(), KodeinAware {
+
+    override val kodein by org.kodein.di.android.kodein()
+
+    private val apiRepository: ApiRepository by instance()
 
     companion object {
         fun getIntent(context: Context): Intent {
@@ -43,8 +57,35 @@ class RegisterActivity : AppCompatActivity() {
         return LoadingDialog()
     }
 
+    private fun makeSnackbar(string: String) {
+        val snackbar = Snackbar.make(activity_register_root_layout, string, Snackbar.LENGTH_SHORT)
+        snackbar.show()
+    }
+
     private fun manageOnClick() {
+
         val dialog = prepareCustomDialog()
         dialog.show(supportFragmentManager, "TAG")
+
+        val user = User(
+            name = activity_register_name_input_text.text.toString(),
+            surname = activity_register_surname_input_text.text.toString(),
+            email = activity_register_email_input_text.text.toString(),
+            password = activity_register_password1_input_text.text.toString()
+        )
+
+        GlobalScope.launch {
+            val response = apiRepository.createUser(user)
+
+            if (response) {
+                withContext(Dispatchers.Main) { dialog.dismiss() }
+                finish()
+            } else {
+                withContext(Dispatchers.Main) {
+                    dialog.dismiss()
+                    makeSnackbar("Failed Register")
+                }
+            }
+        }
     }
 }
