@@ -34,12 +34,23 @@ class AdvertsFragment : Fragment(), KodeinAware {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         setupRecycler()
+        setupSwipeRefresh()
+    }
 
+    private var job: Job? = null
+    private fun setupSwipeRefresh() {
         swipe_refresh_layout_adverts_fragment.setOnRefreshListener {
             swipe_refresh_layout_adverts_fragment.isRefreshing = true
-            updateRecyclerViewAdapter()
-            swipe_refresh_layout_adverts_fragment.isRefreshing = false
+            job = updateRecyclerViewAdapter()
+            updateCallback = {
+                swipe_refresh_layout_adverts_fragment?.isRefreshing = false
+            }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        job?.cancel()
     }
 
     private fun setupRecycler() {
@@ -53,7 +64,7 @@ class AdvertsFragment : Fragment(), KodeinAware {
         }
     }
 
-    private fun updateCallback(): ((Unit) -> Unit)? = null
+    private var updateCallback: ((Unit) -> Unit)? = null
     private fun updateRecyclerViewAdapter(): Job {
         return GlobalScope.launch(Dispatchers.IO) {
             val tmp = apiRepository.getMyAdverts()
@@ -61,7 +72,7 @@ class AdvertsFragment : Fragment(), KodeinAware {
                 recyclerViewAdapter.updateList(tmp.toMutableList())
             }
             delay(2000)
-//            swipe_refresh_layout_adverts_fragment.isRefreshing = false
+            updateCallback?.invoke(Unit)
         }
     }
 }

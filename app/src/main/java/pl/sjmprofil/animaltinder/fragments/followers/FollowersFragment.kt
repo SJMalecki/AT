@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.layout_followers_fragment.*
+import kotlinx.coroutines.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
 import org.kodein.di.android.support.kodein
@@ -31,10 +32,19 @@ class FollowersFragment : Fragment(), KodeinAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-
-        getList()
-
         setupRecycler()
+        setupSwipeRefresh()
+    }
+
+    private var job: Job? = null
+    private fun setupSwipeRefresh() {
+        swipe_refresh_layout_followers_fragment.setOnRefreshListener {
+            swipe_refresh_layout_followers_fragment.isRefreshing = true
+            job = updateList()
+            updateCallback = {
+                swipe_refresh_layout_followers_fragment?.isRefreshing = false
+            }
+        }
     }
 
     private fun getList(): List<User> {
@@ -51,34 +61,28 @@ class FollowersFragment : Fragment(), KodeinAware {
 //        recyclerViewAdapter = RecyclerViewAdapter()
         followers_fragment_recycler_view.adapter = recyclerViewAdapter
         followers_fragment_recycler_view.layoutManager = LinearLayoutManager(context)
-        val tmp = getList()
-        recyclerViewAdapter.updateList(tmp.toMutableList())
+        updateList()
         recyclerViewAdapter.itemClickListener = {
             val action = FollowersFragmentDirections.actionFollowersToFollowerDetails(it as User)
             navController.navigate(action)
         }
     }
 
-//    private fun getList(): List<Any> {
-//        return listOf(
-//            User(
-//                0,
-//                "email@op.pl",
-//                "Taylor",
-//                "Swift",
-//                "1234",
-//                "https://static.wizaz.pl/resize/var/ezdemo_site/storage/images/fryzury/lob-najmodniejsza-fryzura-sezonu/lob-taylor-swift/120930-1-pol-PL/Lob-Taylor-Swift.jpg?width=256&height=256"
-//            ),
-//            User(
-//                0,
-//                "email@op.pl",
-//                "Taylor",
-//                "Swift",
-//                "1234",
-//                "http://www.songnotes.cc/images/artists/TaylorSwift.jpg"
-//            )
-//
-//        )
-//    }
+    override fun onPause() {
+        super.onPause()
+        job?.cancel()
+    }
+
+    private var updateCallback: ((Unit) -> Unit)? = null
+    private fun updateList(): Job {
+        return GlobalScope.launch(Dispatchers.IO) {
+            val tmp = getList()
+            withContext(Dispatchers.Main) {
+                recyclerViewAdapter.updateList(tmp.toMutableList())
+            }
+            delay(2000)
+            updateCallback?.invoke(Unit)
+        }
+    }
 
 }
