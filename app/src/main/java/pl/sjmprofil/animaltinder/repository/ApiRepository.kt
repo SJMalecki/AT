@@ -11,6 +11,7 @@ import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.retrofit.ApiService
+import retrofit2.http.Headers
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -44,6 +45,8 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         Log.d("APIREPO", "UPDATING SHARED PREF USER: $newEmail, $newPassword, $newToken")
         editor.apply()
     }
+
+    fun wrapToken(token: String) = "Bearer $token"
 
     // create user
     // Required fields [ email , password, name , surname ]
