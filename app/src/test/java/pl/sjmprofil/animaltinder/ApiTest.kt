@@ -1,69 +1,87 @@
 package pl.sjmprofil.animaltinder
 
-import com.google.gson.annotations.SerializedName
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import okhttp3.OkHttpClient
-import org.junit.Test
-
-import org.junit.Assert.*
-import retrofit2.Response
+import pl.sjmprofil.animaltinder.models.User
+import pl.sjmprofil.animaltinder.retrofit.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
+import kotlin.test.assertEquals
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
+fun setup_sercive(): ApiService {
+    val retrofit = Retrofit.Builder()
+        .client(OkHttpClient.Builder().build())
+        .baseUrl("https://animtind.herokuapp.com/api/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .build()
 
-data class User(
-    @SerializedName("user_id")
-    var id: Int,
-    var email: String,
-    var hash: String,
-    var name: String,
-    var surname: String
-)
-
-class UsersListDTO(
-    var users: List<User>
-)
-
-interface ApiService {
-
-    @GET("users")
-    fun getAllUsers(): Deferred<Response<UsersListDTO>>
-
+    return retrofit.create(ApiService::class.java)
 }
 
 class ApiTest {
-    @Test
-    fun getting_all_users_works_correctly() {
-        val retrofit = Retrofit.Builder()
-            .client(OkHttpClient.Builder().build())
-            .baseUrl("https://animtind.herokuapp.com/api/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .build()
 
-        val service = retrofit.create(ApiService::class.java)
+    lateinit var token: String
 
-        var users : Response<UsersListDTO>
+    fun getting_all_users() {
+        val service = setup_sercive()
 
         runBlocking {
-            users = service.getAllUsers().await()
-            if (users.isSuccessful) {
-                println("List Of users")
-                val listOfUsers = users.body()?.users
-                println(listOfUsers.toString())
-                println("End List Of users")
 
-                assertNotEquals(listOfUsers, arrayOf<User>())
+            val response = service.getAllUsers(token).await()
+            if (response.isSuccessful) {
+                val responseBody = response.body()
+                val listOfUsers = responseBody?.users
+                println(listOfUsers.toString())
             }
         }
 
     }
+
+    fun sending_user_to_api() {
+        val service = setup_sercive()
+
+        val newUser = User(name = "Antoni", surname = "Macierewicz", email = "antoni.macier@wp.pl", password = "antoni")
+
+        runBlocking {
+            val response = service.createNewUser(newUser).await()
+            val responseBody = response.body()
+
+            println(responseBody)
+
+//            assertEquals(responseBody?.message, "failure")
+        }
+
+    }
+
+    fun loginUser() {
+        val service = setup_sercive()
+
+        val newUser = User(name = "Antoni", surname = "Macierewicz", email = "antoni.macier@wp.pl", password = "antoni")
+
+        runBlocking {
+            val response = service.loginUser(newUser).await()
+            val responseBody = response.body()
+
+            token = responseBody!!.token
+            println(responseBody)
+
+//            assertEquals(responseBody?.message, "success")
+        }
+    }
+
+}
+
+fun main() {
+
+    val api = ApiTest()
+
+    println("Sending user to api")
+    api.sending_user_to_api()
+    println("Logging in user")
+    api.loginUser()
+    println("Getting all users")
+    api.getting_all_users()
+
 }
