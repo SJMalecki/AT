@@ -17,7 +17,7 @@
             android:id="@+id/toolbar_main_activity"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/doggy_green" />
 
         <fragment
             android:id="@+id/nav_host_fragment"
@@ -37,7 +37,8 @@
         android:background="@color/doggy_green"
         app:headerLayout="@layout/navigation_drawer_header"
         app:itemIconTint="@color/doggy_orange"
+        app:itemTextAppearance="@style/Base.TextAppearance.AppCompat.Large"
         app:itemTextColor="@color/doggy_orange"
-        app:menu="@menu/menu_navigation_drawer"/>
+        app:menu="@menu/menu_navigation_drawer" />
 
 </android.support.v4.widget.DrawerLayout>
