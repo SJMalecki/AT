@@ -15,6 +15,7 @@
     <dimen name="button_padding_end_and_start">40dp</dimen>
     <dimen name="user_profile_fragment_bio_text_size">18sp</dimen>
     <dimen name="add_bio_dialog_fragment_image_size">48dp</dimen>
+    <dimen name="user_profile_fragment_image_size_landscape">150dp</dimen>
 
 
 </resources>
