@@ -14,6 +14,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.edit_user_profile_fragment_layout.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.kodein
 import org.kodein.di.generic.instance
@@ -30,8 +34,6 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
 
     private lateinit var bindEditUserProfileFragment: EditUserProfileFragmentLayoutBinding
     private lateinit var editUserProfileFragmentViewModel: EditUserProfileFragmentViewModel
-
-    private var flag = true
 
     private val TAKE_PICTURE_BUTTON_REQUEST_ID = 103
     private val OPEN_GALLERY_BUTTON_REQUEST_ID = 104
@@ -57,17 +59,17 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            editUserProfileFragmentViewModel.getMyData { myUser: User -> bindEditUserProfileFragment.user = myUser }
-            bindEditUserProfileFragment.executePendingBindings()
-
-
-
         Log.i("OnView", "onViewCreated EditUserProfileFragment called")
 
         setupOpenGalleryButton()
         setupTakePictureButton()
         setupImageToOpenGalleryButton()
         setupEditBioButton()
+
+        editUserProfileFragmentViewModel.getMyData { myUser: User ->
+            bindEditUserProfileFragment.user = myUser
+            bindEditUserProfileFragment.executePendingBindings()
+        }
     }
 
     private fun setupViewModel() {
@@ -144,9 +146,8 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
                 val contentURI = data?.data
                 Log.i("OnView", "${contentURI.toString()}")
                 val file = File(contentURI.toString())
-                val selectedUri  = Uri.fromFile(file)
+                val selectedUri = Uri.fromFile(file)
                 val bitmap = MediaStore.Images.Media.getBitmap(context!!.contentResolver, contentURI)
-                //image_view_edit_profile_fragment.setImageBitmap(bitmap)
                 editUserProfileFragmentViewModel.postMyNewData(bitmap)
             }
         }
