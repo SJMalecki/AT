@@ -1,14 +1,13 @@
-package pl.sjmprofil.animaltinder.fragments.search
+package pl.sjmprofil.animaltinder.fragments.advertdetail
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import pl.sjmprofil.animaltinder.repository.ApiRepository
 
 @Suppress("UNCHECKED_CAST")
-class SearchFragmentViewModelFactory(private val apiRepository: ApiRepository) :
-    ViewModelProvider.NewInstanceFactory() {
+class AdvertDetailFragmentViewModelFactory(private val apiRepository: ApiRepository): ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return SearchFragmentViewModel(apiRepository) as T
+        return AdvertDetailFragmentViewModel(apiRepository) as T
     }
 }

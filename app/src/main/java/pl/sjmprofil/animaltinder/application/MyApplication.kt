@@ -2,6 +2,7 @@ package pl.sjmprofil.animaltinder.application
 
 import android.app.Application
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import okhttp3.OkHttpClient
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -10,7 +11,9 @@ import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
+import pl.sjmprofil.animaltinder.adapters.SwipeDeckAdapter
 import pl.sjmprofil.animaltinder.fragments.add.AddFragmentViewModelFactory
+import pl.sjmprofil.animaltinder.fragments.advertdetail.AdvertDetailFragmentViewModelFactory
 import pl.sjmprofil.animaltinder.fragments.adverts.AdvertsFragmentViewModelFactory
 import pl.sjmprofil.animaltinder.fragments.edituserprofile.EditUserProfileFragmentViewModelFactory
 import pl.sjmprofil.animaltinder.fragments.followerdetails.FollowerDetailsFragmentViewModelFactory
@@ -81,6 +84,18 @@ class MyApplication : Application(), KodeinAware {
 
         bind<EditUserProfileFragmentViewModelFactory>() with singleton {
             EditUserProfileFragmentViewModelFactory(instance())
+        }
+
+        bind<AdvertDetailFragmentViewModelFactory>() with singleton {
+            AdvertDetailFragmentViewModelFactory(instance())
+        }
+
+        bind<SwipeDeckAdapter>() with singleton{
+            SwipeDeckAdapter()
+        }
+
+        bind<CardStackLayoutManager>() with singleton{
+            CardStackLayoutManager(applicationContext)
         }
     }
 }

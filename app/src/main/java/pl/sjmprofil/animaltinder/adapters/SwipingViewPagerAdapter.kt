@@ -9,14 +9,30 @@ import pl.sjmprofil.animaltinder.models.AdvertParcelable
 
 private const val MAX_VALUE = 200
 
-class SwipingViewPagerAdapter(manager: FragmentManager,private val adverts: MutableList<Advert> ) :
+class SwipingViewPagerAdapter(manager: FragmentManager) :
     FragmentStatePagerAdapter(manager) {
 
+    private val adverts: MutableList<Advert> = mutableListOf()
+
     override fun getItem(position: Int): Fragment {
-        return SearchFragment().getInstance(adverts[position % adverts.size])
+        return SearchFragment()
+// .getInstance(adverts[position % adverts.size])
     }
 
+    private fun makeFragmentName(advert: Advert): String{
+        return "android:switcher:${advert.id}"
+    }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return "${adverts[position % adverts.size]}"
+    }
     override fun getCount(): Int {
         return adverts.size * MAX_VALUE
+    }
+
+    fun swapData(listOfAdverts: List<Advert>){
+        adverts.clear()
+        adverts.addAll(listOfAdverts)
+        notifyDataSetChanged()
     }
 }

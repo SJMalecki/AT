@@ -97,7 +97,6 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
             apiRepository.saveUserToSharedPrefs(user)
             val loginStatus = apiRepository.loginUser(user)
 
-            delay(3000)
             if (loginStatus) {
                 withContext(Dispatchers.Main) {
                     dialog.dismiss()
@@ -113,7 +112,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun hideKeyboard(view: View?) {
-        view?.let {
+        view?.let{
             val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
         }
