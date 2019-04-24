@@ -7,7 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import pl.sjmprofil.animaltinder.R
-import pl.sjmprofil.animaltinder.databinding.CardViewFollowersBinding
+import pl.sjmprofil.animaltinder.databinding.CardViewAdvertsBinding
+
 import pl.sjmprofil.animaltinder.databinding.CardViewUsersBinding
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.User
@@ -28,7 +29,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val inflater = LayoutInflater.from(viewGroup.context)
         return when (viewType) {
             ADVERTS_VIEW -> {
-                val view = inflater.inflate(R.layout.card_view_followers, viewGroup, false)
+                val view = inflater.inflate(R.layout.card_view_adverts, viewGroup, false)
                 AdvertViewHolder(view)
             }
             USERS_VIEW -> {
@@ -69,7 +70,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     class AdvertViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private lateinit var binding: CardViewFollowersBinding
+        private lateinit var binding: CardViewAdvertsBinding
         fun bindItems(advert: Advert, itemClickListener: ((Advert) -> Unit)?) {
             binding = DataBindingUtil.bind(itemView.rootView)!!
             binding.item = advert
