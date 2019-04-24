@@ -6,6 +6,7 @@
 
     <dist:module dist:instant="true"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".application.MyApplication"
@@ -19,7 +20,7 @@
 
         <activity android:name=".activities.MainActivity">
         </activity>
-
+        <activity android:name=".activities.SearchActivity"/>
         <activity android:name=".activities.RegisterActivity"/>
         <activity android:name=".activities.LoginActivity">
 

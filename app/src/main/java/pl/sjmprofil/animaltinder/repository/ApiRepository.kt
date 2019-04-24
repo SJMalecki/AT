@@ -6,6 +6,7 @@ import android.preference.PreferenceManager
 import android.util.Log
 import okhttp3.MediaType
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.User
@@ -13,6 +14,8 @@ import pl.sjmprofil.animaltinder.retrofit.ApiService
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
+
+fun wrapToken(token: String) = "Bearer $token"
 
 class ApiRepository(private val context: Context, private val apiService: ApiService) {
 
@@ -41,8 +44,6 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         Log.d("APIREPO", "UPDATING SHARED PREF USER: $newEmail, $newPassword, $newToken")
         editor.apply()
     }
-
-    fun wrapToken(token: String) = "Bearer $token"
 
     // create user
     // Required fields [ email , password, name , surname ]
@@ -138,7 +139,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     }
 
     suspend fun createNewAdvert(advert: Advert): Boolean {
-        val response = apiService.advertCreate(advert, token).await()
+        val response = apiService.advertCreate(advert, wrapToken(token)).await()
         val responseBody = response.body()
 
         if (response.isSuccessful && responseBody?.message == "success") {
@@ -150,7 +151,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     }
 
     suspend fun getAllAdverts(): List<Advert> {
-        val response = apiService.getAllAdverts(token).await()
+        val response = apiService.getAllAdverts(wrapToken(token)).await()
 
         val responseBody = response.body()
 
@@ -164,14 +165,14 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
 
     suspend fun changeUserInfo(bitmap: Bitmap) {
 
-        val file = File("path")
+        val file = File(context.filesDir.path.toString() + "temp")
         val outputStream = BufferedOutputStream(FileOutputStream(file))
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream)
         outputStream.close()
 
-        val requestBody = MultipartBody.create(MediaType.parse("multipart/form-data"), file)
-        val multipartBody = MultipartBody.Part.create(requestBody)
-        val response = apiService.uploadUserPhoto(token, photo=multipartBody).await()
+        val requestBody = RequestBody.create(MediaType.parse("image/jpng"), file)
+        val multipartBody = MultipartBody.Part.createFormData("photo", "photo", requestBody)
+        val response = apiService.uploadUserPhoto(wrapToken(token), photo = multipartBody).await()
 
         println(response.body())
     }
