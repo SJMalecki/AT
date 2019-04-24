@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
 
         activity_login_register_button.setOnClickListener { startRegisterActivity() }
         activity_login_login_button.setOnClickListener { manageOnClick().also { hideKeyboard(
-            currentFocus!!
+            currentFocus
         ) } }
 
 //        with(validator) {
@@ -110,8 +110,11 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
     }
 
 
-    private fun hideKeyboard(view: View) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    private fun hideKeyboard(view: View?) {
+
+        view?.let {
+            val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 }
