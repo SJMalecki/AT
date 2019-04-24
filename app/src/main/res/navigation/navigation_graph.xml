@@ -43,14 +43,13 @@
             android:id="@+id/actionAdvertsToFollowers"
             app:destination="@id/layout_followers_fragment" />
     </fragment>
-<<<<<<< Temporary merge branch 1
+
     <fragment
         android:id="@+id/edit_user_profile_fragment"
         android:name="pl.sjmprofil.animaltinder.fragments.edituserprofile.EditUserProfileFragment"
         android:label="Edit profile" />
-=======
     <fragment android:id="@+id/searchFragment" android:name="pl.sjmprofil.animaltinder.fragments.search.SearchFragment"
               android:label="SearchFragment"/>
 
->>>>>>> Temporary merge branch 2
+
 </navigation>
