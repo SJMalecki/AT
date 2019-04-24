@@ -9,7 +9,9 @@
     <fragment android:id="@+id/user_profile_fragment_layout"
               android:name="pl.sjmprofil.animaltinder.fragments.userprofile.UserProfileFragment"
               android:label="@string/user_profile_fragment_layout_label"
-              tools:layout="@layout/user_profile_fragment_layout"/>
+              tools:layout="@layout/user_profile_fragment_layout">
+
+    </fragment>
     <fragment
         android:id="@+id/layout_followers_fragment"
         android:name="pl.sjmprofil.animaltinder.fragments.followers.FollowersFragment"
@@ -41,8 +43,14 @@
             android:id="@+id/actionAdvertsToFollowers"
             app:destination="@id/layout_followers_fragment" />
     </fragment>
+<<<<<<< Temporary merge branch 1
     <fragment
         android:id="@+id/edit_user_profile_fragment"
         android:name="pl.sjmprofil.animaltinder.fragments.edituserprofile.EditUserProfileFragment"
         android:label="Edit profile" />
+=======
+    <fragment android:id="@+id/searchFragment" android:name="pl.sjmprofil.animaltinder.fragments.search.SearchFragment"
+              android:label="SearchFragment"/>
+
+>>>>>>> Temporary merge branch 2
 </navigation>
