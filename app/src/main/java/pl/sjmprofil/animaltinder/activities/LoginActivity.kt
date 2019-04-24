@@ -30,15 +30,18 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
         setContentView(R.layout.activity_login)
 
         activity_login_register_button.setOnClickListener { startRegisterActivity() }
-        activity_login_login_button.setOnClickListener { manageOnClick().also { hideKeyboard(
-            currentFocus
-        ) } }
 
+        activity_login_login_button.setOnClickListener {
+            manageOnClick().also {
+                hideKeyboard(
+                    currentFocus
+                )
+            }
+        }
 //        with(validator) {
 //            showEmptyError(activity_login_login_input_text)
 //            showEmptyError(activity_login_password_input_text)
 //        }
-
         checkForExistingUser()
     }
 
@@ -109,9 +112,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
         }
     }
 
-
     private fun hideKeyboard(view: View?) {
-
         view?.let {
             val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)

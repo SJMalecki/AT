@@ -8,16 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.databinding.SearchFragmentSlideBinding
+import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.AdvertParcelable
 
 
 class SearchFragment : Fragment() {
 
-    private lateinit var aAdvert: AdvertParcelable
+    private lateinit var aAdvert: Advert
     private lateinit var binding: SearchFragmentSlideBinding
 
 
-    fun getInstance(advert: AdvertParcelable): SearchFragment {
+    fun getInstance(advert: Advert): SearchFragment {
         val fragment = SearchFragment()
         val bundle = Bundle()
         bundle.putParcelable("advert", advert)
@@ -27,7 +28,7 @@ class SearchFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null) aAdvert = arguments!!.getParcelable("advert")
+        if (arguments != null) aAdvert = arguments!!.getParcelable("advert")!!
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
