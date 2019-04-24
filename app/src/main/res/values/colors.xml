@@ -11,4 +11,6 @@
     <color name="doggy_green">#3eab6c</color>
     <color name="doggy_orange">#ffb141</color>
 
+    <color name="swipe_card_black_box">#40000000</color>
+
 </resources>

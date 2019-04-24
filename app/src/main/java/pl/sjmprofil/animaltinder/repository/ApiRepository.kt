@@ -179,6 +179,13 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
 
         println(response.body())
     }
+
+    suspend fun addReactionToAdvert(advertId: Int, reaction: Int) {
+
+        val response = apiService.addMyReactionToAdvert(wrapToken(token), advertId, reaction).await()
+        val responseBody = response.body()
+        println(responseBody)
+    }
 }
 // change user details (photo and/or bio)
 // Required fields [ photo, email ]
