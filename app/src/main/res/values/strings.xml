@@ -19,7 +19,7 @@
     <string name="user_profile_fragment_layout_label">My Profile</string>
     <string name="button_search_user_profile_fragment">Search</string>
 
-    <string name="loading_dialog_string">Please wait… Logging into AnimalTinder</string>
+    <string name="loading_dialog_string">Please wait… Logging into Animal Tinder</string>
 
     <!-- API ENDPOINT ADRESS -->
     <string name="api_endpoint_address">https://animtind.herokuapp.com/api/</string>

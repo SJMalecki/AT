@@ -19,5 +19,6 @@ class LoadingDialog : DialogFragment() {
                 .setView(view)
                 .setCancelable(false)
                 .create()
+
         }
     }
