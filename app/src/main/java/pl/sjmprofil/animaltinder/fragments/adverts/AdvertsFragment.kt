@@ -20,6 +20,8 @@ import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.repository.ApiRepository
 
+
+
 class AdvertsFragment : Fragment(), KodeinAware {
 
     override val kodein by kodein()
@@ -64,7 +66,11 @@ class AdvertsFragment : Fragment(), KodeinAware {
             val action = AdvertsFragmentDirections.actionAdvertsToFollowers(it as Advert)
             navController.navigate(action)
         }
-        val swipeHandler = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT){
+        swipeHandlerSetup()
+    }
+
+    private fun swipeHandlerSetup() {
+        val swipeHandler = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(p0: RecyclerView, p1: RecyclerView.ViewHolder, p2: RecyclerView.ViewHolder): Boolean {
                 return false
             }
