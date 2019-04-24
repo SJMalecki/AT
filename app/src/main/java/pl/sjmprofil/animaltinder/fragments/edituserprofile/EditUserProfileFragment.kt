@@ -147,7 +147,6 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
                 val file = File(contentURI.toString())
                 val selectedUri  = Uri.fromFile(file)
                 val bitmap = MediaStore.Images.Media.getBitmap(context!!.contentResolver, contentURI)
-                //image_view_edit_profile_fragment.setImageBitmap(bitmap)
                 image_view_edit_profile_fragment.setImageBitmap(bitmap)
                 editUserProfileFragmentViewModel.postMyNewData(bitmap)
             }

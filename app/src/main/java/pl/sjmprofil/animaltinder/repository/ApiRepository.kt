@@ -140,7 +140,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     }
 
     suspend fun createNewAdvert(advert: Advert): Boolean {
-        val response = apiService.advertCreate(advert, token).await()
+        val response = apiService.advertCreate(advert, wrapToken(token)).await()
         val responseBody = response.body()
 
         if (response.isSuccessful && responseBody?.message == "success") {
@@ -152,7 +152,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     }
 
     suspend fun getAllAdverts(): List<Advert> {
-        val response = apiService.getAllAdverts(token).await()
+        val response = apiService.getAllAdverts(wrapToken(token)).await()
 
         val responseBody = response.body()
 
