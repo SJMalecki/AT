@@ -59,27 +59,33 @@ class AddFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("BioText", text_view_bio_add_fragment.text.toString())
+        outState.putString("HeaderText", text_view_add_bio_header.text.toString())
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-        text_view_bio_add_fragment.text = savedInstanceState?.getString("BioText")
+        if (savedInstanceState != null) {
+            text_view_bio_add_fragment.text = savedInstanceState.getString("BioText")
+            text_view_add_bio_header.text = savedInstanceState.getString("HeaderText")
+        }
     }
+
 
     private fun setupEditBioButton() {
         button_edit_bio_add_fragment.setOnClickListener {
             dialogFragmentAddBio.show(fragmentManager, "DialogFragmentAddBio")
-            dialogFragmentAddBio.onAddButtonClick = { text -> editBioTextView(text) }
+            dialogFragmentAddBio.onAddButtonClick = { header, bio -> editBioTextView(header, bio) }
         }
 
-        text_view_bio_add_fragment.setOnClickListener{
+        text_view_bio_add_fragment.setOnClickListener {
             dialogFragmentAddBio.show(fragmentManager, "DialogFragmentAddBio")
-            dialogFragmentAddBio.onAddButtonClick = { text -> editBioTextView(text) }
+            dialogFragmentAddBio.onAddButtonClick = { header, bio -> editBioTextView(header, bio) }
         }
     }
 
-    private fun editBioTextView(text: String) {
-        text_view_bio_add_fragment.text = text
+    private fun editBioTextView(header: String, bio: String) {
+        text_view_add_bio_header.text = header
+        text_view_bio_add_fragment.text = bio
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

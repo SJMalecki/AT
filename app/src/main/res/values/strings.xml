@@ -41,4 +41,6 @@
     <string name="text_view_add_bio_header_bio">Bio:</string>
     <string name="menu_nav_drawer_my_adverts">My Adverts</string>
     <string name="menu_nav_drawer_edit_profile">Edit profile</string>
+    <string name="add_bio_dialog_fragment_name">Name</string>
+    <string name="add_bio_dialog_fragment_description">Description/Bio</string>
 </resources>
