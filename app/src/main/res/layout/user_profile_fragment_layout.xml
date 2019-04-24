@@ -39,6 +39,7 @@
             tools:src="@drawable/drawer_tinda_pic"/>
 
         <Button
+                android:id="@+id/button_user_profile_fragment_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

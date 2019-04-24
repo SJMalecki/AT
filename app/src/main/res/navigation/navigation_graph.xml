@@ -9,7 +9,10 @@
     <fragment android:id="@+id/user_profile_fragment_layout"
               android:name="pl.sjmprofil.animaltinder.fragments.userprofile.UserProfileFragment"
               android:label="@string/user_profile_fragment_layout_label"
-              tools:layout="@layout/user_profile_fragment_layout"/>
+              tools:layout="@layout/user_profile_fragment_layout">
+        <action android:id="@+id/action_user_profile_fragment_layout_to_searchFragment"
+                app:destination="@id/searchFragment"/>
+    </fragment>
     <fragment
         android:id="@+id/layout_followers_fragment"
         android:name="pl.sjmprofil.animaltinder.fragments.followers.FollowersFragment"
