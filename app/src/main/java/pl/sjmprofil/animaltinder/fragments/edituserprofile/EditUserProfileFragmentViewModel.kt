@@ -25,7 +25,7 @@ class EditUserProfileFragmentViewModel(private val apiRepository: ApiRepository)
     fun postMyNewData(bitmap: Bitmap){
         GlobalScope.launch(Dispatchers.Default) {
 
-            apiRepository.changeUserInfo(bitmap)
+            apiRepository.changeUserPhoto(bitmap)
 
         }
     }

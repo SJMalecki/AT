@@ -51,13 +51,8 @@ class UserProfileFragment : Fragment(), KodeinAware {
         super.onViewCreated(view, savedInstanceState)
 
         button_user_profile_fragment_search.setOnClickListener {
-            startSearchActivity()
+            navController.navigate(R.id.search_fragment)
         }
-    }
-
-    private fun startSearchActivity() {
-        val intent = SearchActivity.getIntent(context!!)
-        startActivity(intent)
     }
 
     private fun setupViewModel() {

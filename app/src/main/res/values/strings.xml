@@ -30,6 +30,8 @@
     <string name="shared_pref_email_key">Sh_pr_email</string>
     <string name="shared_pref_token_key">Sh_pr_token</string>
 
+    <string name="advert_detail_fragment_label">Details</string>
+
     <string name="first_name">Firstname</string>
     <string name="last_name">Lastname</string>
     <string name="bio">bio</string>
