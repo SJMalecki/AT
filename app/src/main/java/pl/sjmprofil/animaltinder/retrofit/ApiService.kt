@@ -4,11 +4,9 @@ import android.graphics.Picture
 import kotlinx.coroutines.Deferred
 import okhttp3.MultipartBody
 import pl.sjmprofil.animaltinder.models.Advert
+import pl.sjmprofil.animaltinder.models.Reaction
 import pl.sjmprofil.animaltinder.models.User
-import pl.sjmprofil.animaltinder.models.serverresponses.AdvertResponse
-import pl.sjmprofil.animaltinder.models.serverresponses.PictureResponse
-import pl.sjmprofil.animaltinder.models.serverresponses.UserResponse
-import pl.sjmprofil.animaltinder.models.serverresponses.UsersList
+import pl.sjmprofil.animaltinder.models.serverresponses.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -37,16 +35,12 @@ interface ApiService {
     fun advertCreate(@Body advert: Advert, @Header("Authorization") token: String): Deferred<Response<UserResponse>>
 
     @Headers("Content-Type: application/json")
-    @POST("advertfind")
-    fun getMyAdverts(@Header("Authorization") token: String): Deferred<Response<AdvertResponse>>
-
-    @Headers("Content-Type: application/json")
     @GET("adverts")
     fun getAllAdverts(@Header("Authorization") token: String): Deferred<Response<AdvertResponse>>
 
     @Headers("Content-Type: application/json")
     @POST("reaction")
-    fun addMyReactionToAdvert(@Header("Authorization") token: String, advert_id: Int, reaction: Int): Deferred<Response<AdvertResponse>>
+    fun addMyReactionToAdvert(@Header("Authorization") token: String, @Body reaction: Reaction): Deferred<Response<AdvertResponse>>
 
     //  Pictures Queries
     @Multipart
@@ -55,4 +49,21 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Part photo: MultipartBody.Part
     ): Deferred<Response<PictureResponse>>
+
+    @Multipart
+    @POST("advertpictures")
+    fun uploadAdvertPhoto(
+        @Header("Authorization") token: String,
+        @Part photo: MultipartBody.Part,
+        @Body advert_id: Int
+    ): Deferred<Response<PictureResponse>>
+
+    @Headers("Content-Type: application/json")
+    @DELETE("advertcreate")
+    fun deleteAdvert(@Header("Authorization") token: String, @Body advert: Advert): Deferred<Response<MessageOnlyResponse>>
+
+    @Headers("Content-Type: application/json")
+    @DELETE("usercreate")
+    fun deleteUser(@Header("Authorization") token: String): Deferred<Response<MessageOnlyResponse>>
+
 }

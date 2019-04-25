@@ -6,45 +6,82 @@
         android:id="@+id/navigation_graph"
         app:startDestination="@id/user_profile_fragment_layout">
 
-    <fragment android:id="@+id/user_profile_fragment_layout"
-              android:name="pl.sjmprofil.animaltinder.fragments.userprofile.UserProfileFragment"
-              android:label="@string/user_profile_fragment_layout_label"
-              tools:layout="@layout/user_profile_fragment_layout">
+    <fragment
+            android:id="@+id/user_profile_fragment_layout"
+            android:name="pl.sjmprofil.animaltinder.fragments.userprofile.UserProfileFragment"
+            android:label="@string/user_profile_fragment_layout_label"
+            tools:layout="@layout/user_profile_fragment_layout">
 
     </fragment>
+
     <fragment
-        android:id="@+id/layout_followers_fragment"
-        android:name="pl.sjmprofil.animaltinder.fragments.followers.FollowersFragment"
-        android:label="FollowersFragment" >
-        <action
-            android:id="@+id/actionFollowersToFollowerDetails"
-            app:destination="@id/followerDetailsFragment" />
+            android:id="@+id/advert_detail_fragment"
+            android:name="pl.sjmprofil.animaltinder.fragments.advertdetail.AdvertDetailFragment"
+            android:label="@string/advert_detail_fragment_label"
+            tools:layout="@layout/swipe_layout">
         <argument
-            android:name="advert"
-            app:argType="pl.sjmprofil.animaltinder.models.Advert" />
+                android:name="advert"
+                app:argType="pl.sjmprofil.animaltinder.models.Advert"/>
+
     </fragment>
+
     <fragment
-        android:id="@+id/add_fragment_layout"
-        android:name="pl.sjmprofil.animaltinder.fragments.add.AddFragment"
-        android:label="Add"/>
-    <fragment
-        android:id="@+id/followerDetailsFragment"
-        android:name="pl.sjmprofil.animaltinder.fragments.followerdetails.FollowerDetailsFragment"
-        android:label="FollowerDetailsFragment" >
-        <argument
-            android:name="user"
-            app:argType="pl.sjmprofil.animaltinder.models.User" />
-    </fragment>
-    <fragment
-        android:id="@+id/layout_adverts_fragment"
-        android:name="pl.sjmprofil.animaltinder.fragments.adverts.AdvertsFragment"
-        android:label="AdvertsFragment" >
+            android:id="@+id/layout_followers_fragment"
+            android:name="pl.sjmprofil.animaltinder.fragments.followers.FollowersFragment"
+            android:label="FollowersFragment">
+
         <action
-            android:id="@+id/actionAdvertsToFollowers"
-            app:destination="@id/layout_followers_fragment" />
+                android:id="@+id/actionFollowersToFollowerDetails"
+                app:destination="@id/followerDetailsFragment"/>
+        <argument
+                android:name="advert"
+                app:argType="pl.sjmprofil.animaltinder.models.Advert"/>
     </fragment>
+
+    <fragment
+            android:id="@+id/search_fragment"
+            android:name="pl.sjmprofil.animaltinder.fragments.search.SearchFragment"
+            android:label="search">
+
+        <action
+                android:id="@+id/action_SearchFragment_to_AdvertDetails"
+                app:destination="@id/advert_detail_fragment"
+        />
+        <argument
+                android:name="advert"
+                app:argType="pl.sjmprofil.animaltinder.models.Advert"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/add_fragment_layout"
+            android:name="pl.sjmprofil.animaltinder.fragments.add.AddFragment"
+            android:label="Add"/>
+
+    <fragment
+            android:id="@+id/followerDetailsFragment"
+            android:name="pl.sjmprofil.animaltinder.fragments.followerdetails.FollowerDetailsFragment"
+            android:label="FollowerDetailsFragment">
+        <argument
+                android:name="user"
+                app:argType="pl.sjmprofil.animaltinder.models.User"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/layout_adverts_fragment"
+            android:name="pl.sjmprofil.animaltinder.fragments.adverts.AdvertsFragment"
+            android:label="AdvertsFragment">
+        <action
+                android:id="@+id/actionAdvertsToFollowers"
+                app:destination="@id/layout_followers_fragment"/>
+    </fragment>
+
     <fragment
         android:id="@+id/edit_user_profile_fragment"
         android:name="pl.sjmprofil.animaltinder.fragments.edituserprofile.EditUserProfileFragment"
         android:label="Edit profile" />
+
+    <fragment android:id="@+id/searchFragment" android:name="pl.sjmprofil.animaltinder.fragments.search.SearchFragment"
+              android:label="SearchFragment"/>
+
+
 </navigation>

@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Advert(
-    @SerializedName("advert_id")
+    @SerializedName("id")
     var id: Int = 0,
 
     @SerializedName("bio")
