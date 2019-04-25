@@ -24,5 +24,5 @@ data class Advert(
 
     fun getLikes() = likedby.size.toString()
 
-    fun liked() = likedby.size > 1
+    fun liked() = likedby.isNotEmpty()
 }

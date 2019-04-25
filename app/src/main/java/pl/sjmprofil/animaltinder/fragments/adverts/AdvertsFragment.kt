@@ -21,7 +21,6 @@ import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.repository.ApiRepository
 
 
-
 class AdvertsFragment : Fragment(), KodeinAware {
 
     override val kodein by kodein()
@@ -71,13 +70,25 @@ class AdvertsFragment : Fragment(), KodeinAware {
 
     private fun swipeHandlerSetup() {
         val swipeHandler = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-            override fun onMove(p0: RecyclerView, p1: RecyclerView.ViewHolder, p2: RecyclerView.ViewHolder): Boolean {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder1: RecyclerView.ViewHolder,
+                viewHolder2: RecyclerView.ViewHolder
+            ): Boolean {
                 return false
             }
 
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, p1: Int) {
-                recyclerViewAdapter.removeAt(viewHolder.adapterPosition)
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, position: Int) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    apiRepository.deleteAdvert((recyclerViewAdapter.getItemAt(viewHolder.adapterPosition) as Advert))
+                    withContext(Dispatchers.Main) {
+                        recyclerViewAdapter.removeAt(viewHolder.adapterPosition)
+                    }
+                }
+
             }
+
+
         }
 
         val itemTouchHelper = ItemTouchHelper(swipeHandler)

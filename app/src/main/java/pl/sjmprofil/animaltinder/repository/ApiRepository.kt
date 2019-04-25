@@ -195,8 +195,8 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         println(responseBody)
     }
 
-    suspend fun deleteAdvert(advertId: Int) {
-        apiService.deleteAdvert(wrapToken(token), Advert(id=advertId)).await()
+    suspend fun deleteAdvert(advert: Advert) {
+        apiService.deleteAdvert(wrapToken(token), advert).await()
     }
 
     suspend fun deleteUser() {
