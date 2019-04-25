@@ -62,7 +62,7 @@
                 android:layout_below="@+id/text_view_add_bio_dialog_fragment"
                 android:text="@string/add_bio_dialog_fragment_cancel_button_text"
                 android:layout_toStartOf="@+id/button_add_bio_dialog_fragment_add"
-                android:background="@drawable/add_fragment_button_ripple_effect"
+                android:background="@drawable/add_fagment_add_button_ripple_effect"
         />
 
         <Button
@@ -72,7 +72,7 @@
                 android:layout_below="@+id/text_view_add_bio_dialog_fragment"
                 android:text="@string/add_bio_dialog_fragment_add_button_text"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/add_fragment_button_ripple_effect"
+                android:background="@drawable/add_fagment_add_button_ripple_effect"
         />
     </RelativeLayout>
 </ScrollView>

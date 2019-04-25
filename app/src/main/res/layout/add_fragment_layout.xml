@@ -21,9 +21,7 @@
                 android:clickable="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/drawer_tinda_pic"
-                app:civ_border_color="@color/colorPrimary"
-                app:civ_border_width="5dp"/>
+                android:src="@drawable/adorable_dog_icon" />
 
         <ImageButton
                 android:id="@+id/button_take_picture_add_fragment"
@@ -99,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="@dimen/add_bio_dialog_fragment_margin_normal"
-                android:background="@drawable/add_fragment_button_ripple_effect"
+                android:background="@drawable/add_fagment_add_button_ripple_effect"
                 android:padding="@dimen/add_fragment_image_button_padding"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_playlist_add_black_24dp"/>
