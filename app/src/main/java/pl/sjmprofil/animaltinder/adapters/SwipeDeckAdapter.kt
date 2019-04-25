@@ -3,6 +3,7 @@ package pl.sjmprofil.animaltinder.adapters
 import android.view.ViewGroup
 import pl.sjmprofil.animaltinder.models.Advert
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import kotlinx.android.synthetic.main.swipe_card_layout.view.*
 import pl.sjmprofil.animaltinder.databinding.SwipeCardLayoutBinding
@@ -35,6 +36,7 @@ class SwipeDeckAdapter : RecyclerView.Adapter<SwipeDeckAdapter.ViewHolder>() {
         val index = 0
         if (listOfAdverts.size > 0) {
             val advert = listOfAdverts.removeAt(0)
+            Log.d("SwipeAdapter", "Advert ${advert}")
             notifyItemRemoved(0)
             return advert
         }

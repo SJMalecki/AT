@@ -76,16 +76,10 @@
     </fragment>
 
     <fragment
-<<<<<<< ad2dc32e04b8678e657ef031a8a992f60f52e301
         android:id="@+id/edit_user_profile_fragment"
         android:name="pl.sjmprofil.animaltinder.fragments.edituserprofile.EditUserProfileFragment"
         android:label="Edit profile" />
 
-=======
-            android:id="@+id/edit_user_profile_fragment"
-            android:name="pl.sjmprofil.animaltinder.fragments.edituserprofile.EditUserProfileFragment"
-            android:label="Edit profile"/>
->>>>>>> Work in progress
     <fragment android:id="@+id/searchFragment" android:name="pl.sjmprofil.animaltinder.fragments.search.SearchFragment"
               android:label="SearchFragment"/>
 
