@@ -17,9 +17,7 @@
             android:id="@+id/toolbar_main_activity"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary">
-
-        </android.support.v7.widget.Toolbar>
+            android:background="@color/doggy_green" />
 
         <fragment
             android:id="@+id/nav_host_fragment"
@@ -32,16 +30,15 @@
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
-
-        android:background="@color/doggy_violet"
-        app:itemTextColor="@color/doggy_orange"
-        app:itemIconTint="@color/doggy_orange"
         android:id="@+id/nav_view_main_activity"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/doggy_green"
         app:headerLayout="@layout/navigation_drawer_header"
-        app:menu="@menu/menu_navigation_drawer">
-    </android.support.design.widget.NavigationView>
+        app:itemIconTint="@color/doggy_orange"
+        app:itemTextAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        app:itemTextColor="@color/doggy_orange"
+        app:menu="@menu/menu_navigation_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

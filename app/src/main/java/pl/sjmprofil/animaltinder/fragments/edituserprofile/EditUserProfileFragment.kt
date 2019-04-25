@@ -115,17 +115,17 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
     private fun setupEditBioButton() {
         button_edit_bio_edit_profile_fragment.setOnClickListener {
             dialogFragmentAddBio.show(fragmentManager, "DialogFragmentAddBio")
-            dialogFragmentAddBio.onAddButtonClick = { text -> editBioTextView(text) }
+            dialogFragmentAddBio.onAddButtonClick = { header, bio -> editBioTextView(header, bio) }
         }
 
         text_view_bio_edit_profile_fragment.setOnClickListener {
             dialogFragmentAddBio.show(fragmentManager, "DialogFragmentAddBio")
-            dialogFragmentAddBio.onAddButtonClick = { text -> editBioTextView(text) }
+            dialogFragmentAddBio.onAddButtonClick = { header, bio -> editBioTextView(header, bio) }
         }
     }
 
-    private fun editBioTextView(text: String) {
-        text_view_bio_edit_profile_fragment.text = text
+    private fun editBioTextView(header: String, bio: String) {
+        text_view_bio_edit_profile_fragment.text = bio
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

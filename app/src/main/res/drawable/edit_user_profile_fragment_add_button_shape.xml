@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <shape android:shape="oval">
+        <shape android:shape="rectangle">
+            <corners
+                android:radius="30dp" />
             <gradient
                 android:angle="270"
                 android:endColor="#00000000"
@@ -17,10 +19,12 @@
         android:left="2dp"
         android:right="2dp"
         android:top="2dp">
-        <shape android:shape="oval">
+        <shape android:shape="rectangle">
+            <corners
+                android:radius="30dp" />
             <gradient
                 android:angle="270"
-                android:endColor="@color/doggy_red"
+                android:endColor="@color/doggy_green"
                 android:startColor="#00000000" />
         </shape>
     </item>

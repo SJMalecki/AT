@@ -80,7 +80,6 @@ class FollowersFragment : Fragment(), KodeinAware {
             withContext(Dispatchers.Main) {
                 recyclerViewAdapter.updateList(tmp.toMutableList())
             }
-            delay(2000)
             updateCallback?.invoke(Unit)
         }
     }

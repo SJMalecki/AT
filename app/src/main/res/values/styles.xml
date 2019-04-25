@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/doggy_orange</item>
+        <item name="colorControlActivated">@color/doggy_red</item>
+        <item name="android:editTextColor">@color/doggy_violet</item>
     </style>
 
     <style name="login_activity_button_style" parent="Base.TextAppearance.AppCompat.Button">

@@ -1,54 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dialogLayout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
-    android:layout_margin="@dimen/add_bio_dialog_fragment_margin_normal"
-    tools:context=".utilities.DialogFragmentAddBio">
-
-    <ImageView
-        android:id="@+id/add_bio_dialog_fragment_image_view"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/ic_mode_edit_black_24dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_bio_dialog_fragment_text_view_add"
-        android:textSize="@dimen/user_profile_fragment_email_text_size"
-        android:layout_toEndOf="@+id/add_bio_dialog_fragment_image_view"
-        android:layout_alignBottom="@+id/add_bio_dialog_fragment_image_view"
-        />
-
-    <EditText
-        android:id="@+id/text_view_add_bio_dialog_fragment"
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:imeOptions="actionDone"
-        android:singleLine="true"
-        android:layout_below="@+id/add_bio_dialog_fragment_image_view"
+        android:layout_margin="@dimen/add_bio_dialog_fragment_margin_normal">
+
+    <RelativeLayout
+            android:id="@+id/dialogLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+
+            tools:context=".utilities.DialogFragmentAddBio"
+            android:background="@drawable/add_fragment_background_shape">
+
+        <ImageView
+                android:id="@+id/add_bio_dialog_fragment_image_view"
+                android:layout_width="@dimen/add_bio_dialog_fragment_image_size"
+                android:layout_height="@dimen/add_bio_dialog_fragment_image_size"
+                android:src="@drawable/ic_mode_edit_black_24dp"
         />
 
-    <Button
-        android:id="@+id/button_add_bio_dialog_fragment_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_view_add_bio_dialog_fragment"
-        android:text="@string/add_bio_dialog_fragment_cancel_button_text"
-        android:layout_toStartOf="@+id/button_add_bio_dialog_fragment_add"
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/doggy_violet"
+                android:text="@string/add_bio_dialog_fragment_text_view_add"
+                android:textSize="@dimen/user_profile_fragment_email_text_size"
+                android:layout_toEndOf="@+id/add_bio_dialog_fragment_image_view"
+                android:layout_alignBottom="@+id/add_bio_dialog_fragment_image_view"
         />
 
-    <Button
-        android:id="@+id/button_add_bio_dialog_fragment_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_view_add_bio_dialog_fragment"
-        android:text="@string/add_bio_dialog_fragment_add_button_text"
-        android:layout_alignParentEnd="true"
+        <EditText
+                android:id="@+id/text_view_add_header_dialog_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:hint="@string/add_bio_dialog_fragment_name"
+                android:imeOptions="actionDone"
+                android:textColor="@color/doggy_violet"
+                android:singleLine="false"
+                android:layout_below="@+id/add_bio_dialog_fragment_image_view"
         />
-</RelativeLayout>
+
+        <EditText
+                android:id="@+id/text_view_add_bio_dialog_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/add_bio_dialog_fragment_description"
+                android:imeOptions="actionDone"
+                android:textColor="@color/doggy_violet"
+                android:singleLine="false"
+                android:layout_below="@+id/text_view_add_header_dialog_fragment"
+        />
+
+        <Button
+                android:id="@+id/button_add_bio_dialog_fragment_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_add_bio_dialog_fragment"
+                android:text="@string/add_bio_dialog_fragment_cancel_button_text"
+                android:layout_toStartOf="@+id/button_add_bio_dialog_fragment_add"
+                android:background="@drawable/add_fagment_add_button_ripple_effect"
+        />
+
+        <Button
+                android:id="@+id/button_add_bio_dialog_fragment_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_add_bio_dialog_fragment"
+                android:text="@string/add_bio_dialog_fragment_add_button_text"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/add_fagment_add_button_ripple_effect"
+        />
+    </RelativeLayout>
+</ScrollView>
