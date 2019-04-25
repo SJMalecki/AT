@@ -1,17 +1,19 @@
 package pl.sjmprofil.animaltinder.fragments.userprofile
 
 import android.arch.lifecycle.ViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.repository.ApiRepository
+import kotlin.coroutines.CoroutineContext
 
 class UserProfileFragmentViewModel(private val apiRepository: ApiRepository) : ViewModel() {
 
+    private val job = Job()
+    private val coroutineContext: CoroutineContext get() = job + Dispatchers.Default
+    private val scope = CoroutineScope(coroutineContext)
+
     fun getMyData(callback: (User) -> Unit) {
-        GlobalScope.launch {
+        scope.launch {
 
             val myData = apiRepository.getMyUserInfoFromServer()
 
@@ -20,4 +22,11 @@ class UserProfileFragmentViewModel(private val apiRepository: ApiRepository) : V
             }
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        cancelAllRequests()
+    }
+
+    private fun cancelAllRequests() = job.cancel()
 }

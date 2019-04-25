@@ -1,36 +1,38 @@
 package pl.sjmprofil.animaltinder.fragments.search
 
 import android.arch.lifecycle.ViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.repository.ApiRepository
+import kotlin.coroutines.CoroutineContext
 
 class SearchFragmentViewModel(private val apiRepository: ApiRepository) : ViewModel() {
 
-    fun addReactionToAdvert(advertId: Int, reaction: Int){
+    private val job = Job()
+    private val coroutineContext: CoroutineContext get() = job + Dispatchers.Default
+    private val scope = CoroutineScope(coroutineContext)
 
-        GlobalScope.launch {
-            apiRepository.addReactionToAdvert(advertId, reaction)
-        }
-    }
+    fun getAdvertsForMe(callback: (List<Advert>) -> Unit) {
 
-    fun getAdvertsForMe(callback: (List<Advert>) -> Unit){
-
-        GlobalScope.launch {
+        scope.launch {
             val adverts = apiRepository.getAllAdverts()
 
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 callback.invoke(adverts)
             }
         }
     }
 
     fun addReactionToAdvert(advert: Advert, reaction: Int) {
-        GlobalScope.launch {
+        scope.launch {
             apiRepository.addReactionToAdvert(advertId = advert.id, reaction = reaction)
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        cancelAllRequests()
+    }
+
+    private fun cancelAllRequests() = job.cancel()
 }
