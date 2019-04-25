@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.kodein
 import org.kodein.di.generic.instance
@@ -22,6 +24,8 @@ class AdvertDetailFragment: Fragment(), KodeinAware {
     private val advertDetailFragmentViewModelFactory: AdvertDetailFragmentViewModelFactory by instance()
 
     private lateinit var advertDetailFragmentViewModel: AdvertDetailFragmentViewModel
+
+    private lateinit var navController : NavController
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupViewModel()
@@ -41,6 +45,8 @@ class AdvertDetailFragment: Fragment(), KodeinAware {
         advertDetailsFragmentLayoutBinding =
             DataBindingUtil.inflate(inflater, R.layout.advert_detail_layout, container, false)
 
+        navController = findNavController()
+
         arguments?.let {
 
             Log.d("AdvertDetailFragment", "Arguments is ${arguments}")
@@ -53,9 +59,11 @@ class AdvertDetailFragment: Fragment(), KodeinAware {
 
             advertDetailsFragmentLayoutBinding.searchFragmentSlideLikeFloatingButton.setOnClickListener {
                 addReaction(advert = safeArgAdvert.advert, reaction = 1)
+                navController.navigateUp()
             }
             advertDetailsFragmentLayoutBinding.searchFragmentSlideUnlikeFloatingButton.setOnClickListener {
                 addReaction(advert = safeArgAdvert.advert, reaction = 0)
+                navController.navigateUp()
             }
         }
 
