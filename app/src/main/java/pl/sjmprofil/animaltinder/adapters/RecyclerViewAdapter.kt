@@ -15,6 +15,8 @@ import pl.sjmprofil.animaltinder.models.User
 import java.lang.Error
 
 
+
+
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -40,6 +42,11 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 throw Error("$TAG: wrong viewType")
             }
         }
+    }
+
+    fun removeAt(position: Int){
+        itemsList.removeAt(position)
+        notifyItemRemoved(position)
     }
 
     fun updateList(list: MutableList<Any>) {
