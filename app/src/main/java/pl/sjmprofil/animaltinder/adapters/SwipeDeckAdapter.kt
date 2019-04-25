@@ -7,9 +7,10 @@ import android.view.LayoutInflater
 import kotlinx.android.synthetic.main.swipe_card_layout.view.*
 import pl.sjmprofil.animaltinder.databinding.SwipeCardLayoutBinding
 
-class SwipeDeckAdapter: RecyclerView.Adapter<SwipeDeckAdapter.ViewHolder>() {
+class SwipeDeckAdapter : RecyclerView.Adapter<SwipeDeckAdapter.ViewHolder>() {
 
     var openDetailsCallback: ((Advert) -> Unit)? = null
+
     private val listOfAdverts: MutableList<Advert> = mutableListOf()
 
     fun swapData(list: List<Advert>) {
@@ -30,14 +31,26 @@ class SwipeDeckAdapter: RecyclerView.Adapter<SwipeDeckAdapter.ViewHolder>() {
         return listOfAdverts.size
     }
 
+    fun removeFirst(): Advert? {
+        val index = 0
+        if (listOfAdverts.size > 0) {
+            val advert = listOfAdverts.removeAt(0)
+            notifyItemRemoved(0)
+            return advert
+        }
+        return null
+    }
+
     override fun onBindViewHolder(holder: SwipeDeckAdapter.ViewHolder, position: Int) {
         holder.bind(listOfAdverts[position], openDetailsCallback)
     }
 
-    class ViewHolder(private val binding: SwipeCardLayoutBinding): RecyclerView.ViewHolder(binding.root){
+    class ViewHolder(private val binding: SwipeCardLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(advert: Advert,
-                 openDetailsCallback: ((Advert) -> Unit)?){
+        fun bind(
+            advert: Advert,
+            openDetailsCallback: ((Advert) -> Unit)?
+        ) {
             binding.advert = advert
             binding.executePendingBindings()
 

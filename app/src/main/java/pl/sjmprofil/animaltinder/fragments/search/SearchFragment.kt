@@ -14,6 +14,7 @@ import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.Direction
 import com.yuyakaido.android.cardstackview.StackFrom
 import com.yuyakaido.android.cardstackview.SwipeableMethod
+import kotlinx.android.synthetic.main.advert_detail_layout.*
 import kotlinx.android.synthetic.main.swipe_layout.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.kodein
@@ -29,8 +30,10 @@ class SearchFragment : Fragment(), KodeinAware {
     private val searchFragmentViewModelFactory: SearchFragmentViewModelFactory by instance()
     private lateinit var searchFragmentViewModel: SearchFragmentViewModel
 
-    private val manager: CardStackLayoutManager by instance()
+//    private val manager: CardStackLayoutManager by instance()
     private val swipeDeckAdapter: SwipeDeckAdapter by instance()
+
+    private lateinit var manager: CardStackLayoutManager
 
     private lateinit var navController: NavController
 
@@ -49,29 +52,40 @@ class SearchFragment : Fragment(), KodeinAware {
         navController = Navigation.findNavController(view)
 
         initializeAdapterAndManager()
-
         initializeCardStack()
         setupCallbackOnRecycler()
         loadAdverts()
-
-
-//        val likeButton = search_fragment_slide_like_floating_button
-//        val dislikeButton = search_fragment_slide_unlike_floating_button
-
-//        likeButton.setOnClickListener {
-//            searchFragmentViewModel.addReactionToAdvert(aAdvert.id, 1)
-//            likeButton.isPressed = true
-//            dislikeButton.isPressed = false
-//        }
-//
-//        dislikeButton.setOnClickListener {
-//            searchFragmentViewModel.addReactionToAdvert(aAdvert.id, 0)
-//            likeButton.isPressed = false
-//            dislikeButton.isPressed = true
-//        }
+        setupButtonListeners()
     }
 
-    private fun initializeAdapterAndManager(){
+    private fun setupButtonListeners() {
+
+        like_button.setOnClickListener {
+            val advert = swipeDeckAdapter.removeFirst()
+            advert?.let {
+                addReaction(advert, 1)
+                like_button.isPressed = true
+                skip_button.isPressed = false
+            }
+        }
+
+        skip_button.setOnClickListener {
+            val advert = swipeDeckAdapter.removeFirst()
+            advert?.let {
+                addReaction(advert, 0)
+                like_button.isPressed = false
+                skip_button.isPressed = true
+            }
+        }
+    }
+
+
+    private fun addReaction(advert: Advert, reaction: Int){
+        searchFragmentViewModel.addReactionToAdvert(advert, reaction)
+    }
+
+    private fun initializeAdapterAndManager() {
+        manager = CardStackLayoutManager(context)
         card_stack_view.layoutManager = manager
         card_stack_view.adapter = swipeDeckAdapter
     }
@@ -89,7 +103,7 @@ class SearchFragment : Fragment(), KodeinAware {
             setCanScrollVertical(true)
             setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
             setOverlayInterpolator(LinearInterpolator())
-            card_stack_view.itemAnimator.apply{
+            card_stack_view.itemAnimator.apply {
                 if (this is DefaultItemAnimator) {
                     supportsChangeAnimations = false
                 }
@@ -97,16 +111,17 @@ class SearchFragment : Fragment(), KodeinAware {
         }
     }
 
-    private fun loadAdverts(){
-        searchFragmentViewModel.getAdvertsForMe { adverts -> swipeDeckAdapter.swapData(adverts)}
+    private fun loadAdverts() {
+        searchFragmentViewModel.getAdvertsForMe { adverts -> swipeDeckAdapter.swapData(adverts) }
     }
 
-    private fun setupCallbackOnRecycler(){
-        swipeDeckAdapter.openDetailsCallback = { advert -> navigateToDetailFragment(advert)}
+    private fun setupCallbackOnRecycler() {
+        swipeDeckAdapter.openDetailsCallback = { advert -> navigateToDetailFragment(advert) }
     }
 
     private fun navigateToDetailFragment(advert: Advert) {
-        navController.navigate(R.id.advert_detail_fragment)
+        val action = SearchFragmentDirections.actionSearchFragmentToAdvertDetails(advert)
+        navController.navigate(action)
     }
 
     private fun setupViewModel() {

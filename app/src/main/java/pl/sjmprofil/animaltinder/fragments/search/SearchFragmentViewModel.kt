@@ -27,4 +27,10 @@ class SearchFragmentViewModel(private val apiRepository: ApiRepository) : ViewMo
             }
         }
     }
+
+    fun addReactionToAdvert(advert: Advert, reaction: Int) {
+        GlobalScope.launch {
+            apiRepository.addReactionToAdvert(advertId = advert.id, reaction = reaction)
+        }
+    }
 }
