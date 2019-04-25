@@ -20,4 +20,7 @@ data class Advert(
 
     @SerializedName("likedby")
     var likedby: List<User> = listOf()
-): Parcelable
+) : Parcelable {
+
+    fun getLikes() = likedby.size.toString()
+}
