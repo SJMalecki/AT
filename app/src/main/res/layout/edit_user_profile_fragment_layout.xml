@@ -21,7 +21,8 @@
             android:clickable="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            app:imageUrl="@{user.picture}" />
+            app:imageUrl="@{user.picture}"
+            tools:src="@drawable/drawer_test_picture"/>
 
         <ImageButton
             android:id="@+id/button_take_picture_edit_profile_fragment"
