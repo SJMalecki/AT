@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item android:drawable="@color/doggy_green"/>
-    <item>
-        <bitmap android:src="@drawable/doglandscape" android:gravity="top" android:alpha="0.3"/>
-    </item>
     <item android:top="300dp"
           android:bottom="-300dp"
           android:left="0dp"
           android:right="-300dp">
+
         <rotate
                 android:fromDegrees="-10"
                 android:pivotX="0%"
@@ -19,4 +18,8 @@
             </shape>
         </rotate>
     </item>
+    <item>
+        <bitmap android:src="@drawable/doglandscape" android:gravity="center|fill" android:alpha="0.3"/>
+    </item>
+
 </layer-list>
