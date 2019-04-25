@@ -12,8 +12,7 @@
         android:id="@+id/imageView2"
         android:layout_width="343dp"
         android:layout_height="264dp"
-        app:srcCompat="@drawable/logo_picture"
-        />
+        app:srcCompat="@drawable/logo_picture" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/activity_login_login_input_layout"
@@ -26,6 +25,7 @@
             android:id="@+id/activity_login_login_input_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_person_outline_doggy_orange_24dp"
             android:hint="@string/login"
             android:singleLine="true"
 
@@ -44,6 +44,7 @@
             android:id="@+id/activity_login_password_input_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lock_outline_doggy_orange_24dp"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:singleLine="true" />

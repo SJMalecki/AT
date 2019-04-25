@@ -14,17 +14,18 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
+        android:textColorHint="@color/doggy_orange"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColorHint="@color/doggy_orange">
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/activity_register_name_input_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_person_outline_doggy_orange_24dp"
             android:hint="@string/name"
             android:imeOptions="actionNext"
             android:inputType="text" />
@@ -37,17 +38,18 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
+        android:textColorHint="@color/doggy_orange"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_register_name_input_layout"
-        android:textColorHint="@color/doggy_orange">
+        app:layout_constraintTop_toBottomOf="@+id/activity_register_name_input_layout">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/activity_register_surname_input_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_person_outline_doggy_orange_24dp"
             android:hint="@string/surname"
             android:imeOptions="actionNext"
             android:inputType="text" />
@@ -60,17 +62,18 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
+        android:textColorHint="@color/doggy_orange"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_register_surname_input_layout"
-        android:textColorHint="@color/doggy_orange">
+        app:layout_constraintTop_toBottomOf="@+id/activity_register_surname_input_layout">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/activity_register_email_input_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_mail_outline_doggy_orange_24dp"
             android:hint="@string/email"
             android:imeOptions="actionNext"
             android:inputType="textWebEmailAddress" />
@@ -83,17 +86,18 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
+        android:textColorHint="@color/doggy_orange"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_register_email_input_layout"
-        android:textColorHint="@color/doggy_orange">
+        app:layout_constraintTop_toBottomOf="@+id/activity_register_email_input_layout">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/activity_register_password1_input_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lock_outline_doggy_orange_24dp"
             android:hint="@string/enter_password1"
             android:imeOptions="actionNext"
             android:inputType="textPassword" />
@@ -106,17 +110,18 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
+        android:textColorHint="@color/doggy_orange"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_register_password1_input_layout"
-        android:textColorHint="@color/doggy_orange">
+        app:layout_constraintTop_toBottomOf="@+id/activity_register_password1_input_layout">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/activity_register_password2_input_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lock_outline_doggy_orange_24dp"
             android:hint="@string/enter_password2"
             android:imeOptions="actionDone"
             android:inputType="textPassword" />
