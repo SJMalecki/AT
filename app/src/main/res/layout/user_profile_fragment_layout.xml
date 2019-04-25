@@ -21,6 +21,8 @@
             android:layout_height="@dimen/user_profile_fragment_image_size"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true"
             app:imageUrl="@{user.picture}"
             tools:src="@drawable/drawer_tinda_pic" />
 

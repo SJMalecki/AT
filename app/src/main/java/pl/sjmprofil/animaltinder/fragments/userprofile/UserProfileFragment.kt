@@ -56,6 +56,14 @@ class UserProfileFragment : Fragment(), KodeinAware {
 
         setupAddAdvertButton()
         setupMyAdvertsButton()
+        setupImageEditProfile()
+    }
+
+    private fun setupImageEditProfile(){
+        image_view_user_profile_fragment.setOnClickListener {
+            val action = UserProfileFragmentDirections.actionUserProfileFragmentLayoutToEditUserProfileFragment()
+            navController.navigate(action)
+        }
     }
 
     private fun setupAddAdvertButton(){

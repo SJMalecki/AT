@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_user_profile_fragment_layout_to_add_fragment_layout"
             app:destination="@id/add_fragment_layout" />
+        <action
+            android:id="@+id/action_user_profile_fragment_layout_to_edit_user_profile_fragment"
+            app:destination="@id/edit_user_profile_fragment" />
     </fragment>
     <fragment
         android:id="@+id/layout_followers_fragment"
