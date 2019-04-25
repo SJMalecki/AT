@@ -84,7 +84,8 @@
                 android:layout_marginStart="8dp"
                 app:layout_constraintStart_toEndOf="@+id/adverts_card_view_image_view"
                 app:layout_constraintTop_toTopOf="@+id/users_card_view_likes_text_view"
-                app:srcCompat="@drawable/heart" />
+                android:src="@{item.liked() ? @drawable/heart : @drawable/heart_white}"
+                tools:src="@drawable/heart"/>
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

@@ -23,4 +23,6 @@ data class Advert(
 ) : Parcelable {
 
     fun getLikes() = likedby.size.toString()
+
+    fun liked() = likedby.size > 1
 }
