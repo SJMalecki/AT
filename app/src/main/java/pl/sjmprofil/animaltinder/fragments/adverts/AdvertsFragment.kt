@@ -3,6 +3,8 @@ package pl.sjmprofil.animaltinder.fragments.adverts
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +19,8 @@ import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.repository.ApiRepository
+
+
 
 class AdvertsFragment : Fragment(), KodeinAware {
 
@@ -62,6 +66,22 @@ class AdvertsFragment : Fragment(), KodeinAware {
             val action = AdvertsFragmentDirections.actionAdvertsToFollowers(it as Advert)
             navController.navigate(action)
         }
+        swipeHandlerSetup()
+    }
+
+    private fun swipeHandlerSetup() {
+        val swipeHandler = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(p0: RecyclerView, p1: RecyclerView.ViewHolder, p2: RecyclerView.ViewHolder): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, p1: Int) {
+                recyclerViewAdapter.removeAt(viewHolder.adapterPosition)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeHandler)
+        itemTouchHelper.attachToRecyclerView(adverts_fragment_recycler_view)
     }
 
     private var updateCallback: ((Unit) -> Unit)? = null
