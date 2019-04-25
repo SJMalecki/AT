@@ -2,8 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <corners
-                android:radius="30dp" />
+            <corners android:radius="30dp" />
             <gradient
                 android:angle="270"
                 android:endColor="#00000000"
@@ -20,8 +19,7 @@
         android:right="2dp"
         android:top="2dp">
         <shape android:shape="rectangle">
-            <corners
-                android:radius="30dp" />
+            <corners android:radius="30dp" />
             <gradient
                 android:angle="270"
                 android:endColor="@color/doggy_red"
