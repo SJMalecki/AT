@@ -53,6 +53,31 @@ class UserProfileFragment : Fragment(), KodeinAware {
         button_user_profile_fragment_search.setOnClickListener {
             navController.navigate(R.id.search_fragment)
         }
+
+        setupAddAdvertButton()
+        setupMyAdvertsButton()
+        setupImageEditProfile()
+    }
+
+    private fun setupImageEditProfile(){
+        image_view_user_profile_fragment.setOnClickListener {
+            val action = UserProfileFragmentDirections.actionUserProfileFragmentLayoutToEditUserProfileFragment()
+            navController.navigate(action)
+        }
+    }
+
+    private fun setupAddAdvertButton(){
+        button_add_user_profile_fragment.setOnClickListener {
+            val action = UserProfileFragmentDirections.actionUserProfileFragmentLayoutToAddFragmentLayout()
+            navController.navigate(action)
+        }
+    }
+
+    private fun setupMyAdvertsButton(){
+        button_my_adverts_user_profile_fragment.setOnClickListener {
+            val action = UserProfileFragmentDirections.actionUserProfileFragmentLayoutToLayoutAdvertsFragment()
+            navController.navigate(action)
+        }
     }
 
     private fun setupViewModel() {
