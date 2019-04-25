@@ -1,7 +1,6 @@
 package pl.sjmprofil.animaltinder.fragments.advertdetail
 
 import android.arch.lifecycle.ViewModel
-import android.provider.Settings
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import pl.sjmprofil.animaltinder.models.Advert
