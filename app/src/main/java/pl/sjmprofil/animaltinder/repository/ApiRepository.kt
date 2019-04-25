@@ -139,18 +139,6 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         return listOf()
     }
 
-    suspend fun createNewAdvert(advert: Advert): Boolean {
-        val response = apiService.advertCreate(advert, wrapToken(token)).await()
-        val responseBody = response.body()
-
-        if (response.isSuccessful && responseBody?.message == "success") {
-            Log.d("APIREPO", "Creating new advert success")
-            return true
-        }
-        Log.d("APIREPO", "Creating new Advert failed")
-        return false
-    }
-
     suspend fun getAllAdverts(): List<Advert> {
         val response = apiService.getAllAdverts(wrapToken(token)).await()
 
@@ -178,7 +166,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         println(response.body())
     }
 
-    suspend fun changeAdvertPhoto(bitmap: Bitmap, advertId: Int) {
+    suspend fun createAdvert(bitmap: Bitmap, advert: Advert) {
 
         val file = File(context.filesDir.path.toString() + "temp")
         val outputStream = BufferedOutputStream(FileOutputStream(file))
@@ -187,7 +175,13 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
 
         val requestBody = RequestBody.create(MediaType.parse("image/jpng"), file)
         val multipartBody = MultipartBody.Part.createFormData("photo", "photo", requestBody)
-        val response = apiService.uploadAdvertPhoto(wrapToken(token), photo = multipartBody, advert_id = advertId).await()
+        val multipartBodyAdvertBio = MultipartBody.Part.createFormData("bio", advert.bio)
+        val multipartBodyAdvertHeader = MultipartBody.Part.createFormData("header", advert.header)
+        val response = apiService.advertCreate(wrapToken(token),
+            photo = multipartBody,
+            bio = multipartBodyAdvertBio,
+            header = multipartBodyAdvertHeader
+            ).await()
 
         println(response.body())
     }

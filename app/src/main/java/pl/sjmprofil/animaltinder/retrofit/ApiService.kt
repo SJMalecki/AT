@@ -29,10 +29,6 @@ interface ApiService {
     @GET("userlogin")
     fun getMyInfo(@Header("Authorization") token: String): Deferred<Response<UserResponse>>
 
-    //  Advert Queries
-    @Headers("Content-Type: application/json")
-    @POST("advertcreate")
-    fun advertCreate(@Body advert: Advert, @Header("Authorization") token: String): Deferred<Response<UserResponse>>
 
     @Headers("Content-Type: application/json")
     @GET("adverts")
@@ -52,10 +48,11 @@ interface ApiService {
 
     @Multipart
     @POST("advertpictures")
-    fun uploadAdvertPhoto(
+    fun advertCreate(
         @Header("Authorization") token: String,
         @Part photo: MultipartBody.Part,
-        @Body advert_id: Int
+        @Part bio: MultipartBody.Part,
+        @Part header: MultipartBody.Part
     ): Deferred<Response<PictureResponse>>
 
     @Headers("Content-Type: application/json")
