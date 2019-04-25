@@ -101,6 +101,10 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+
+    // Tinder like swipe layout
+    implementation "com.yuyakaido.android:card-stack-view:2.3.2"
+
 }
 
 task detekt(type: JavaExec) {

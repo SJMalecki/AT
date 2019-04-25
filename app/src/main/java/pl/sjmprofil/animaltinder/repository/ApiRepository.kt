@@ -9,6 +9,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.models.Advert
+import pl.sjmprofil.animaltinder.models.Reaction
 import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.retrofit.ApiService
 import java.io.BufferedOutputStream
@@ -163,7 +164,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         return listOf()
     }
 
-    suspend fun changeUserInfo(bitmap: Bitmap) {
+    suspend fun changeUserPhoto(bitmap: Bitmap) {
 
         val file = File(context.filesDir.path.toString() + "temp")
         val outputStream = BufferedOutputStream(FileOutputStream(file))
@@ -175,6 +176,37 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         val response = apiService.uploadUserPhoto(wrapToken(token), photo = multipartBody).await()
 
         println(response.body())
+    }
+
+    suspend fun changeAdvertPhoto(bitmap: Bitmap, advertId: Int) {
+
+        val file = File(context.filesDir.path.toString() + "temp")
+        val outputStream = BufferedOutputStream(FileOutputStream(file))
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream)
+        outputStream.close()
+
+        val requestBody = RequestBody.create(MediaType.parse("image/jpng"), file)
+        val multipartBody = MultipartBody.Part.createFormData("photo", "photo", requestBody)
+        val response = apiService.uploadAdvertPhoto(wrapToken(token), photo = multipartBody, advert_id = advertId).await()
+
+        println(response.body())
+    }
+
+
+    suspend fun addReactionToAdvert(advertId: Int, reaction: Int) {
+
+        val reactionObj = Reaction(advert_id = advertId, reaction = reaction)
+        val response = apiService.addMyReactionToAdvert(wrapToken(token), reactionObj).await()
+        val responseBody = response.body()
+        println(responseBody)
+    }
+
+    suspend fun deleteAdvert(advertId: Int) {
+        apiService.deleteAdvert(wrapToken(token), Advert(id=advertId)).await()
+    }
+
+    suspend fun deleteUser() {
+        apiService.deleteUser(wrapToken(token)).await()
     }
 }
 // change user details (photo and/or bio)

@@ -19,4 +19,15 @@
     <dimen name="user_profile_fragment_welcome_text_size">36sp</dimen>
 
 
+    <dimen name="card_corner_radius">6dp</dimen>
+    <dimen name="card_elevation">10dp</dimen>
+    <dimen name="swipe_card_margin_top">10dp</dimen>
+    <dimen name="swipe_card_margin_end">5dp</dimen>
+    <dimen name="swipe_card_margin_start">5dp</dimen>
+
+    <dimen name="swipe_card_text_margin_start">20dp</dimen>
+
+    <dimen name="card_header_text_size">30sp</dimen>
+
+
 </resources>

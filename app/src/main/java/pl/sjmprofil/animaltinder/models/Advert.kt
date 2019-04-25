@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Advert(
-    @SerializedName("advert_id")
+    @SerializedName("id")
     var id: Int = 0,
 
     @SerializedName("bio")
@@ -20,4 +20,9 @@ data class Advert(
 
     @SerializedName("likedby")
     var likedby: List<User> = listOf()
-): Parcelable
+) : Parcelable {
+
+    fun getLikes() = likedby.size.toString()
+
+    fun liked() = likedby.size > 1
+}
