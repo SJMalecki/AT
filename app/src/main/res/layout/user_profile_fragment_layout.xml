@@ -8,41 +8,85 @@
         <variable
             name="user"
             type="pl.sjmprofil.animaltinder.models.User" />
-
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.userprofile.UserProfileFragment">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/image_view_user_profile_fragment"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:layout_margin="20dp"
-            android:textSize="@dimen/user_profile_fragment_email_text_size"
-            android:text="@{user.name}"
-            tools:text="@string/app_name"
-            />
+        android:background="@drawable/user_profile_fragment_background">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_view_user_profile_fragment"
             android:layout_width="@dimen/user_profile_fragment_image_size"
             android:layout_height="@dimen/user_profile_fragment_image_size"
-            android:layout_centerInParent="true"
-            app:civ_border_color="#FF000000"
-            app:civ_border_width="2dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
             app:imageUrl="@{user.picture}"
-            tools:src="@drawable/drawer_tinda_pic"/>
+            tools:src="@drawable/drawer_tinda_pic" />
+
+        <ImageButton
+            android:id="@+id/button_add_user_profile_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_view_user_profile_fragment"
+            android:layout_toStartOf="@+id/image_view_user_profile_fragment"
+            android:background="@drawable/add_fragment_button_ripple_effect"
+            android:padding="@dimen/add_fragment_image_button_padding"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_note_add_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/button_my_adverts_user_profile_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_view_user_profile_fragment"
+            android:layout_toEndOf="@+id/image_view_user_profile_fragment"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/add_fragment_button_ripple_effect"
+            android:padding="@dimen/add_fragment_image_button_padding"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_favorite_border_blacky_24dp" />
+
+        <TextView
+            android:id="@+id/text_view_welcome_user_profile_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:text="@string/user_profile_fragment_welcome"
+            android:textColor="@color/doggy_violet"
+            android:textSize="@dimen/user_profile_fragment_welcome_text_size"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/text_view_name_user_profile_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_welcome_user_profile_fragment"
+            android:gravity="center"
+            android:text="@{user.name}"
+            android:textColor="@color/doggy_violet"
+            android:textSize="@dimen/user_profile_fragment_email_text_size"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_view_name_user_profile_fragment"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:text="@{user.email}"
+            android:textColor="@color/doggy_violet"
+            android:textSize="@dimen/user_profile_fragment_email_text_size"
+            tools:text="@string/app_name" />
 
         <Button
-                android:id="@+id/button_user_profile_fragment_search"
+            android:id="@+id/button_user_profile_fragment_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="@string/button_search_user_profile_fragment"/>
+            android:background="@drawable/add_fagment_add_button_ripple_effect"
+            android:text="@string/button_search_user_profile_fragment" />
     </RelativeLayout>
 </layout>
