@@ -1,14 +1,27 @@
 package pl.sjmprofil.animaltinder.retrofit
 
-import android.graphics.Picture
 import kotlinx.coroutines.Deferred
 import okhttp3.MultipartBody
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.Reaction
 import pl.sjmprofil.animaltinder.models.User
-import pl.sjmprofil.animaltinder.models.serverresponses.*
+import pl.sjmprofil.animaltinder.models.serverresponses.AdvertResponse
+import pl.sjmprofil.animaltinder.models.serverresponses.MessageOnlyResponse
+import pl.sjmprofil.animaltinder.models.serverresponses.PictureResponse
+import pl.sjmprofil.animaltinder.models.serverresponses.UserResponse
+import pl.sjmprofil.animaltinder.models.serverresponses.UsersList
 import retrofit2.Response
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Headers
+import retrofit2.http.POST
+import retrofit2.http.Body
+import retrofit2.http.Multipart
+import retrofit2.http.Part
+import retrofit2.http.DELETE
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.HTTP
+import retrofit2.http.Field
 
 interface ApiService {
 
@@ -28,7 +41,6 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @GET("userlogin")
     fun getMyInfo(@Header("Authorization") token: String): Deferred<Response<UserResponse>>
-
 
     @Headers("Content-Type: application/json")
     @GET("adverts")
@@ -57,11 +69,12 @@ interface ApiService {
 
     @FormUrlEncoded
     @HTTP(method = "DELETE", path = "advertcreate", hasBody = true)
-    fun deleteAdvert(@Header("Authorization") token: String,
-                     @Field("id") advert: Advert): Deferred<Response<MessageOnlyResponse>>
+    fun deleteAdvert(
+        @Header("Authorization") token: String,
+        @Field("id") advert: Advert
+    ): Deferred<Response<MessageOnlyResponse>>
 
     @FormUrlEncoded
     @DELETE("usercreate")
     fun deleteUser(@Header("Authorization") token: String): Deferred<Response<MessageOnlyResponse>>
-
 }

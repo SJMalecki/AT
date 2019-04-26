@@ -2,7 +2,11 @@ package pl.sjmprofil.animaltinder.fragments.edituserprofile
 
 import android.arch.lifecycle.ViewModel
 import android.graphics.Bitmap
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.repository.ApiRepository
 import kotlin.coroutines.CoroutineContext
@@ -28,7 +32,6 @@ class EditUserProfileFragmentViewModel(private val apiRepository: ApiRepository)
         scope.launch(Dispatchers.Default) {
 
             apiRepository.changeUserPhoto(bitmap)
-
         }
     }
 

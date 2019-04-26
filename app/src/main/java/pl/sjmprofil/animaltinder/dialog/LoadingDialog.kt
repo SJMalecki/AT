@@ -10,15 +10,14 @@ import kotlinx.android.synthetic.main.loading_dialog.view.*
 
 class LoadingDialog : DialogFragment() {
 
-        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-            val view = activity?.layoutInflater?.inflate(R.layout.loading_dialog, null)!!
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val view = activity?.layoutInflater?.inflate(R.layout.loading_dialog, null)!!
 
-            Glide.with(context!!).load("file:///android_asset/loadingGif.gif").into(view.custom_dialog_loading_image)
+        Glide.with(context!!).load("file:///android_asset/loadingGif.gif").into(view.custom_dialog_loading_image)
 
-            return AlertDialog.Builder(context!!)
-                .setView(view)
-                .setCancelable(false)
-                .create()
-
-        }
+        return AlertDialog.Builder(context!!)
+            .setView(view)
+            .setCancelable(false)
+            .create()
     }
+}

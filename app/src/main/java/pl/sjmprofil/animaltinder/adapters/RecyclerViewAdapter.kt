@@ -8,14 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.databinding.CardViewAdvertsBinding
-
 import pl.sjmprofil.animaltinder.databinding.CardViewUsersBinding
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.User
 import java.lang.Error
-
-
-
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -44,7 +40,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    fun removeAt(position: Int){
+    fun removeAt(position: Int) {
         itemsList.removeAt(position)
         notifyItemRemoved(position)
     }
@@ -77,7 +73,6 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             ADVERTS_VIEW -> (viewHolder as AdvertViewHolder).bindItems(itemsList[position] as Advert, itemClickListener)
             USERS_VIEW -> (viewHolder as UserViewHolder).bindItems(itemsList[position] as User, itemClickListener)
         }
-
     }
 
     class AdvertViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

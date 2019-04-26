@@ -15,9 +15,9 @@ class AddFragmentViewModel(private val apiRepository: ApiRepository) : ViewModel
     private val coroutineContext: CoroutineContext get() = job + Dispatchers.Default
     private val scope = CoroutineScope(coroutineContext)
 
-    fun addNewAdvert(header: String, bio:String, picture: Bitmap) {
+    fun addNewAdvert(header: String, bio: String, picture: Bitmap) {
         scope.launch {
-            val newAdvert = Advert(bio=bio, header=header)
+            val newAdvert = Advert(bio = bio, header = header)
             apiRepository.createAdvert(bitmap = picture, advert = newAdvert)
         }
     }

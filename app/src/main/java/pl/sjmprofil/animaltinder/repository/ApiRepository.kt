@@ -177,15 +177,15 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         val multipartBody = MultipartBody.Part.createFormData("photo", "photo", requestBody)
         val multipartBodyAdvertBio = MultipartBody.Part.createFormData("bio", advert.bio)
         val multipartBodyAdvertHeader = MultipartBody.Part.createFormData("header", advert.header)
-        val response = apiService.advertCreate(wrapToken(token),
+        val response = apiService.advertCreate(
+            wrapToken(token),
             photo = multipartBody,
             bio = multipartBodyAdvertBio,
             header = multipartBodyAdvertHeader
-            ).await()
+        ).await()
 
         println(response.body())
     }
-
 
     suspend fun addReactionToAdvert(advertId: Int, reaction: Int) {
 

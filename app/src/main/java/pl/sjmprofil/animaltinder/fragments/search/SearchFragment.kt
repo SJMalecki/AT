@@ -30,7 +30,6 @@ class SearchFragment : Fragment(), KodeinAware {
     private val searchFragmentViewModelFactory: SearchFragmentViewModelFactory by instance()
     private lateinit var searchFragmentViewModel: SearchFragmentViewModel
 
-//    private val manager: CardStackLayoutManager by instance()
     private val swipeDeckAdapter: SwipeDeckAdapter by instance()
 
     private lateinit var manager: CardStackLayoutManager
@@ -79,8 +78,7 @@ class SearchFragment : Fragment(), KodeinAware {
         }
     }
 
-
-    private fun addReaction(advert: Advert, reaction: Int){
+    private fun addReaction(advert: Advert, reaction: Int) {
         searchFragmentViewModel.addReactionToAdvert(advert, reaction)
     }
 
