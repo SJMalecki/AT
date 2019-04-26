@@ -12,8 +12,13 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.yuyakaido.android.cardstackview.*
-import kotlinx.android.synthetic.main.advert_detail_layout.*
+import com.yuyakaido.android.cardstackview.CardStackLayoutManager
+import com.yuyakaido.android.cardstackview.CardStackListener
+import com.yuyakaido.android.cardstackview.Direction
+import com.yuyakaido.android.cardstackview.SwipeAnimationSetting
+import com.yuyakaido.android.cardstackview.Duration
+import com.yuyakaido.android.cardstackview.StackFrom
+import com.yuyakaido.android.cardstackview.SwipeableMethod
 import kotlinx.android.synthetic.main.swipe_layout.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.kodein
@@ -140,11 +145,11 @@ class SearchFragment : Fragment(), KodeinAware, CardStackListener {
 
     // Card Stack Listener Methods
     override fun onCardDisappeared(view: View?, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") //  To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") //  To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onCardSwiped(direction: Direction?) {
@@ -152,15 +157,15 @@ class SearchFragment : Fragment(), KodeinAware, CardStackListener {
     }
 
     override fun onCardCanceled() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") //  To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onCardAppeared(view: View?, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") //  To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onCardRewound() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") //  To change body of created functions use File | Settings | File Templates.
     }
 
     private fun setupViewModel() {

@@ -2,7 +2,6 @@ package pl.sjmprofil.animaltinder.retrofit
 
 import kotlinx.coroutines.Deferred
 import okhttp3.MultipartBody
-import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.Reaction
 import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.models.serverresponses.AdvertResponse

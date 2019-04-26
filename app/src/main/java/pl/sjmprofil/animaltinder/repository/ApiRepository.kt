@@ -118,7 +118,7 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
 
         Log.d("RESPONSEBODY", "Get My User Info From Server $responseBody")
 
-        if (response.isSuccessful &&  responseBody?.message == "success") {
+        if (response.isSuccessful && responseBody?.message == "success") {
             // Response body is User
 
             val myUserInstance = responseBody

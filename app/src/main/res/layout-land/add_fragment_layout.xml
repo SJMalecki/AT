@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="user"
             type="pl.sjmprofil.animaltinder.models.User" />
@@ -11,89 +11,93 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/edit_user_profile_fragment_landscape_background">
+        android:background="@drawable/add_fragment_landscape_background">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/image_view_edit_profile_fragment"
+            android:id="@+id/image_view_add_fragment"
             android:layout_width="@dimen/user_profile_fragment_image_size_landscape"
             android:layout_height="@dimen/user_profile_fragment_image_size_landscape"
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/landscape_layouts_image_view_margin"
-            android:layout_toEndOf="@+id/button_open_gallery_edit_profile_fragment"
+            android:layout_toEndOf="@+id/button_open_gallery_add_fragment"
             android:clickable="true"
             android:focusable="true"
-            app:imageUrl="@{user.picture}" />
+            android:src="@drawable/adorable_dog_icon" />
 
         <ImageButton
-            android:id="@+id/button_take_picture_edit_profile_fragment"
+            android:id="@+id/button_take_picture_add_fragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/button_open_gallery_edit_profile_fragment"
+            android:layout_above="@+id/button_open_gallery_add_fragment"
             android:layout_margin="@dimen/landscape_layouts_button_margin"
-            android:background="@drawable/edit_user_profile_fragment_button_ripple_effect"
+            android:background="@drawable/add_fragment_button_ripple_effect"
             android:padding="@dimen/add_fragment_image_button_padding"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_photo_camera_black_24dp" />
 
         <ImageButton
-            android:id="@+id/button_open_gallery_edit_profile_fragment"
+            android:id="@+id/button_open_gallery_add_fragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/landscape_layouts_button_margin"
-            android:background="@drawable/edit_user_profile_fragment_button_ripple_effect"
+            android:background="@drawable/add_fragment_button_ripple_effect"
             android:padding="@dimen/add_fragment_image_button_padding"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_image_black_24dp" />
 
         <ImageButton
-            android:id="@+id/button_edit_bio_edit_profile_fragment"
+            android:id="@+id/button_edit_bio_add_fragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/button_open_gallery_edit_profile_fragment"
+            android:layout_below="@+id/button_open_gallery_add_fragment"
             android:layout_margin="@dimen/landscape_layouts_button_margin"
-            android:background="@drawable/edit_user_profile_fragment_button_ripple_effect"
+            android:background="@drawable/add_fragment_button_ripple_effect"
             android:padding="@dimen/add_fragment_image_button_padding"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_mode_edit_black_24dp" />
 
         <TextView
-            android:id="@+id/text_view_add_edit_profile_header"
+            android:id="@+id/text_view_add_bio_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/landscape_layouts_normal_size_margin"
-            android:layout_toEndOf="@+id/image_view_edit_profile_fragment"
+            android:layout_toEndOf="@+id/image_view_add_fragment"
             android:gravity="center"
-            android:text="@{user.name}"
+            android:text="@string/text_view_add_bio_header_bio"
+            android:textColor="@color/doggy_violet"
             android:textSize="@dimen/user_profile_fragment_email_text_size" />
 
         <ScrollView
+            android:id="@+id/scroll_view_bio_add_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/button_add_advert_edit_profile_fragment"
-            android:layout_below="@+id/text_view_add_edit_profile_header"
+            android:layout_above="@+id/button_add_advert_add_fragment"
+            android:layout_below="@+id/text_view_add_bio_header"
             android:layout_margin="@dimen/landscape_layouts_normal_size_margin"
-            android:layout_toEndOf="@id/image_view_edit_profile_fragment">
+            android:layout_toEndOf="@+id/image_view_add_fragment">
 
             <TextView
-                android:id="@+id/text_view_bio_edit_profile_fragment"
+                android:id="@+id/text_view_bio_add_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
                 android:text="@string/text_view_bio_add_fragment_hint"
+                android:textColor="@color/doggy_violet"
                 android:textSize="@dimen/user_profile_fragment_normal_text_size" />
         </ScrollView>
 
+
         <ImageButton
-            android:id="@+id/button_add_advert_edit_profile_fragment"
+            android:id="@+id/button_add_advert_add_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/landscape_layouts_normal_size_margin"
-            android:layout_toEndOf="@id/image_view_edit_profile_fragment"
-            android:background="@drawable/edit_user_profile_fragment_add_button_ripple_effect"
+            android:layout_margin="@dimen/landscape_layouts_button_margin"
+            android:layout_toEndOf="@+id/image_view_add_fragment"
+            android:background="@drawable/add_fagment_add_button_ripple_effect"
             android:padding="@dimen/add_fragment_image_button_padding"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_playlist_add_black_24dp" />
