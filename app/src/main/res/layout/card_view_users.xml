@@ -21,7 +21,7 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary">
+            android:background="@color/doggy_green">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/users_card_view_image_view"
@@ -32,6 +32,7 @@
                 app:imageUrl="@{item.picture}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+
                 tools:src="@drawable/drawer_tinda_pic" />
 
             <TextView
@@ -40,9 +41,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@{item.name}"
+                android:textColor="@color/doggy_orange"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/users_card_view_last_name_text_view"
                 app:layout_constraintTop_toBottomOf="@+id/users_card_view_last_name_text_view"
-                tools:text="@string/first_name"/>
+                tools:text="@string/first_name" />
 
 
             <TextView
@@ -53,9 +56,11 @@
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
                 android:text="@{item.surname}"
+                android:textColor="@color/doggy_orange"
+                android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/users_card_view_image_view"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/last_name"/>
+                tools:text="@string/last_name" />
 
             <TextView
                 android:id="@+id/users_card_view_email_text_view"
@@ -63,9 +68,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@{item.email}"
+                android:textColor="@color/doggy_orange"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/users_card_view_last_name_text_view"
                 app:layout_constraintTop_toBottomOf="@+id/users_card_view_first_name_text_view"
-                tools:text="@string/last_name"/>
+                tools:text="@string/last_name" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

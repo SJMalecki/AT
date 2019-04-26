@@ -112,7 +112,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun hideKeyboard(view: View?) {
-        view?.let{
+        view?.let {
             val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
         }
