@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
-        activity_login_register_button.setOnClickListener { startRegisterActivity() }
+        activity_loginn_register_button.setOnClickListener { startRegisterActivity() }
 
         activity_login_login_button.setOnClickListener {
             manageOnClick().also {
