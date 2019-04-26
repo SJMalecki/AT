@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_activity_landscape_background">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/ic_dog_paw" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/imageView2"
+        android:layout_margin="20dp"
+        android:text="@string/app_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/doggy_gray"
+        android:textSize="35sp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/activity_login_login_input_layout"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/imageView2"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/doggy_gray"
+        app:boxBackgroundColor="@color/doggy_gray">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/activity_login_login_input_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_person_outline_doggy_gray_24dp"
+            android:hint="@string/login"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/activity_login_password_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_login_login_input_layout"
+        android:textColorHint="@color/doggy_gray"
+        app:boxBackgroundColor="@color/doggy_gray">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/activity_login_password_input_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lock_outline_doggy_gray_24dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/activity_login_login_button"
+        style="@style/login_activity_button_style"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/activity_login_password_input_layout"
+        android:background="@drawable/add_fagment_add_button_ripple_effect"
+        android:text="@string/log_in" />
+
+    <Button
+        android:id="@+id/activity_loginn_register_button"
+        style="@style/login_activity_button_style"
+        android:layout_below="@+id/activity_login_login_button"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/add_fagment_add_button_ripple_effect"
+        android:text="@string/register" />
+</RelativeLayout>
