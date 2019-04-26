@@ -44,7 +44,7 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @GET("adverts")
-    fun getAllAdverts(@Header("Authorization") token: String): Deferred<Response<AdvertResponse>>
+    fun getAdvertsWithoutMyReaction(@Header("Authorization") token: String): Deferred<Response<AdvertResponse>>
 
     @Headers("Content-Type: application/json")
     @POST("reaction")
