@@ -32,6 +32,14 @@
     <dimen name="followers_card_view_image_view_margin_top">21dp</dimen>
     <dimen name="navigation_drawer_logo_text_view_text_size">20sp</dimen>
     <dimen name="navigation_drawer_relative_layout_margin_bottom">25dp</dimen>
+    <dimen name="card_view_adverts_margin_normal">10dp</dimen>
+    <dimen name="card_view_adverts_radius">10dp</dimen>
+    <dimen name="card_view_adverts_text_big">20sp</dimen>
+    <dimen name="card_view_adverts_text_normal">15sp</dimen>
+    <dimen name="users_card_view_normal_margin">10dp</dimen>
+    <dimen name="users_card_view_normal_text">15sp</dimen>
+    <dimen name="users_card_view_radius">10dp</dimen>
+    <dimen name="user_profile_fragment_normal_margin">8dp</dimen>
 
 
 </resources>

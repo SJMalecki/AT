@@ -63,7 +63,6 @@ class AdvertsFragment : Fragment(), KodeinAware {
         adverts_fragment_recycler_view.layoutManager = LinearLayoutManager(context)
         updateRecyclerViewAdapter()
         recyclerViewAdapter.itemClickListener = {
-            //  add list of followers for advert
             val action = AdvertsFragmentDirections.actionAdvertsToFollowers(it as Advert)
             navController.navigate(action)
         }
