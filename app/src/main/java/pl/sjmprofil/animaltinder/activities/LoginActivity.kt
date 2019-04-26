@@ -27,9 +27,10 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
 
-        activity_login_register_button.setOnClickListener { startRegisterActivity() }
+// to nie dziala tylko michala G, usunac to
+//        activity_login_register_button.setOnClickListener { startRegisterActivity() }
+        setContentView(R.layout.activity_login)
 
         activity_login_login_button.setOnClickListener {
             manageOnClick().also {

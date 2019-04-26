@@ -49,6 +49,10 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyItemRemoved(position)
     }
 
+    fun getItemAt(position: Int): Any {
+        return itemsList[position]
+    }
+
     fun updateList(list: MutableList<Any>) {
         itemsList.clear()
         itemsList.addAll(list)

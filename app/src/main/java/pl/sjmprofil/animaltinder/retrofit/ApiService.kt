@@ -55,11 +55,12 @@ interface ApiService {
         @Part header: MultipartBody.Part
     ): Deferred<Response<PictureResponse>>
 
-    @Headers("Content-Type: application/json")
-    @DELETE("advertcreate")
-    fun deleteAdvert(@Header("Authorization") token: String, @Body advert: Advert): Deferred<Response<MessageOnlyResponse>>
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = "advertcreate", hasBody = true)
+    fun deleteAdvert(@Header("Authorization") token: String,
+                     @Field("id") advert: Advert): Deferred<Response<MessageOnlyResponse>>
 
-    @Headers("Content-Type: application/json")
+    @FormUrlEncoded
     @DELETE("usercreate")
     fun deleteUser(@Header("Authorization") token: String): Deferred<Response<MessageOnlyResponse>>
 
