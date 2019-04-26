@@ -71,7 +71,7 @@ interface ApiService {
     @HTTP(method = "DELETE", path = "advertcreate", hasBody = true)
     fun deleteAdvert(
         @Header("Authorization") token: String,
-        @Field("id") advert: Advert
+        @Field("id") advert: Int
     ): Deferred<Response<MessageOnlyResponse>>
 
     @FormUrlEncoded
