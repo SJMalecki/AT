@@ -64,7 +64,11 @@
     <fragment
             android:id="@+id/add_fragment_layout"
             android:name="pl.sjmprofil.animaltinder.fragments.add.AddFragment"
-            android:label="Add"/>
+            android:label="Add">
+        <action
+            android:id="@+id/action_add_fragment_layout_to_user_profile_fragment_layout"
+            app:destination="@id/user_profile_fragment_layout" />
+    </fragment>
 
     <fragment
             android:id="@+id/followerDetailsFragment"

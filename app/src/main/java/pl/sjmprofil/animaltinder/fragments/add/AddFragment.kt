@@ -16,6 +16,8 @@ import org.kodein.di.android.support.kodein
 import org.kodein.di.generic.instance
 import pl.sjmprofil.animaltinder.utilities.DialogFragmentAddBio
 import android.graphics.drawable.BitmapDrawable
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import pl.sjmprofil.animaltinder.R
 
 class AddFragment : Fragment(), KodeinAware {
@@ -31,6 +33,8 @@ class AddFragment : Fragment(), KodeinAware {
 
     private val dialogFragmentAddBio = DialogFragmentAddBio()
 
+    private lateinit var navController: NavController
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.add_fragment_layout, container, false)
     }
@@ -38,6 +42,7 @@ class AddFragment : Fragment(), KodeinAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        navController = Navigation.findNavController(view)
         setupViewModel()
         setupOpenGalleryButton()
         setupTakePictureButton()
@@ -97,6 +102,9 @@ class AddFragment : Fragment(), KodeinAware {
                 bio = text_view_bio_add_fragment.text.toString(),
                 picture = (image_view_add_fragment.drawable as BitmapDrawable).bitmap
             )
+            
+            val action = AddFragmentDirections.actionAddFragmentLayoutToUserProfileFragmentLayout()
+            navController.navigate(action)
         }
     }
 
