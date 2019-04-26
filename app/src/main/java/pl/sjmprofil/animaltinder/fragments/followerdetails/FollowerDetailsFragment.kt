@@ -26,7 +26,7 @@ class FollowerDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        email_button_user_profile_fragment.setOnClickListener {
+        button_send_email_follower_detail_fragment.setOnClickListener {
             setupEmailActivity()
         }
     }
