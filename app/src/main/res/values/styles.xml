@@ -5,21 +5,18 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/doggy_orange</item>
         <item name="colorControlNormal">@color/doggy_gray</item>
-        <item name="colorControlActivated">@color/doggy_red</item>
-        <item name="colorControlHighlight">@color/doggy_red</item>
         <item name="android:editTextColor">@color/doggy_gray</item>
     </style>
 
     <style name="login_activity_button_style" parent="Base.TextAppearance.AppCompat.Button">
-
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">@dimen/button_margin</item>
         <item name="android:paddingStart">@dimen/button_padding_end_and_start</item>
         <item name="android:paddingEnd">@dimen/button_padding_end_and_start</item>
         <item name="android:textColor">@color/doggy_violet</item>
-
     </style>
+
 </resources>

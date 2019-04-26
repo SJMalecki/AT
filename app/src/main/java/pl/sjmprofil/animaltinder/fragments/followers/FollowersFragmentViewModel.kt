@@ -18,5 +18,4 @@ class FollowersFragmentViewModel(private val apiRepository: ApiRepository) : Vie
     }
 
     private fun cancelAllRequests() = job.cancel()
-
 }

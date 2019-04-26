@@ -14,10 +14,10 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.kodein
 import org.kodein.di.generic.instance
 import pl.sjmprofil.animaltinder.R
+import pl.sjmprofil.animaltinder.databinding.AdvertDetailLayoutBinding
 import pl.sjmprofil.animaltinder.models.Advert
 
-
-class AdvertDetailFragment: Fragment(), KodeinAware {
+class AdvertDetailFragment : Fragment(), KodeinAware {
 
     override val kodein by kodein()
 
@@ -25,7 +25,7 @@ class AdvertDetailFragment: Fragment(), KodeinAware {
 
     private lateinit var advertDetailFragmentViewModel: AdvertDetailFragmentViewModel
 
-    private lateinit var navController : NavController
+    private lateinit var navController: NavController
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupViewModel()
@@ -39,7 +39,7 @@ class AdvertDetailFragment: Fragment(), KodeinAware {
                 .get(AdvertDetailFragmentViewModel::class.java)
     }
 
-    lateinit var advertDetailsFragmentLayoutBinding : pl.sjmprofil.animaltinder.databinding.AdvertDetailLayoutBinding
+    private lateinit var advertDetailsFragmentLayoutBinding: AdvertDetailLayoutBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         advertDetailsFragmentLayoutBinding =
@@ -49,7 +49,7 @@ class AdvertDetailFragment: Fragment(), KodeinAware {
 
         arguments?.let {
 
-            Log.d("AdvertDetailFragment", "Arguments is ${arguments}")
+            Log.d("AdvertDetailFragment", "Arguments is $arguments")
             val safeArgAdvert = AdvertDetailFragmentArgs.fromBundle(it)
 
             Log.d("AdvertDetailFragment", "Advert is ${safeArgAdvert.advert}")

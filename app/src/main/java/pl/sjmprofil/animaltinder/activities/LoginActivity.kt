@@ -6,9 +6,11 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -28,9 +30,9 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
 
-        activity_loginn_register_button.setOnClickListener { startRegisterActivity() }
+        setContentView(R.layout.activity_login)
+        activity_login_register_button.setOnClickListener { startRegisterActivity() }
 
         activity_login_login_button.setOnClickListener {
             manageOnClick().also {
@@ -64,7 +66,6 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
         val intent = MainActivity.getIntent(this)
         startActivity(intent)
     }
-
 
     private fun startRegisterActivity() {
         val intent = RegisterActivity.getIntent(this)
@@ -113,7 +114,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun hideKeyboard(view: View?) {
-        view?.let{
+        view?.let {
             val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
         }

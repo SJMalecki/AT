@@ -38,7 +38,6 @@ class MyApplication : Application(), KodeinAware {
             Validator()
         }
 
-
         bind<OkHttpClient>() with singleton {
             OkHttpClient.Builder().build()
         }
@@ -90,16 +89,15 @@ class MyApplication : Application(), KodeinAware {
             AdvertDetailFragmentViewModelFactory(instance())
         }
 
-        bind<SwipeDeckAdapter>() with singleton{
+        bind<SwipeDeckAdapter>() with singleton {
             SwipeDeckAdapter()
         }
 
-        bind<CardStackLayoutManager>() with singleton{
+        bind<CardStackLayoutManager>() with singleton {
             CardStackLayoutManager(applicationContext)
         }
     }
 }
-
 //
 //        bind<Database>() with singleton {
 //            Room.databaseBuilder(

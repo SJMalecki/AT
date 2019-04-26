@@ -14,10 +14,7 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.kodein
 import org.kodein.di.generic.instance
 import pl.sjmprofil.animaltinder.R
-import pl.sjmprofil.animaltinder.activities.MainActivity
-import pl.sjmprofil.animaltinder.activities.SearchActivity
 import pl.sjmprofil.animaltinder.databinding.UserProfileFragmentLayoutBinding
-import pl.sjmprofil.animaltinder.fragments.followers.FollowersFragmentDirections
 import pl.sjmprofil.animaltinder.models.User
 
 class UserProfileFragment : Fragment(), KodeinAware {
@@ -59,21 +56,21 @@ class UserProfileFragment : Fragment(), KodeinAware {
         setupImageEditProfile()
     }
 
-    private fun setupImageEditProfile(){
+    private fun setupImageEditProfile() {
         image_view_user_profile_fragment.setOnClickListener {
             val action = UserProfileFragmentDirections.actionUserProfileFragmentLayoutToEditUserProfileFragment()
             navController.navigate(action)
         }
     }
 
-    private fun setupAddAdvertButton(){
+    private fun setupAddAdvertButton() {
         button_add_user_profile_fragment.setOnClickListener {
             val action = UserProfileFragmentDirections.actionUserProfileFragmentLayoutToAddFragmentLayout()
             navController.navigate(action)
         }
     }
 
-    private fun setupMyAdvertsButton(){
+    private fun setupMyAdvertsButton() {
         button_my_adverts_user_profile_fragment.setOnClickListener {
             val action = UserProfileFragmentDirections.actionUserProfileFragmentLayoutToLayoutAdvertsFragment()
             navController.navigate(action)

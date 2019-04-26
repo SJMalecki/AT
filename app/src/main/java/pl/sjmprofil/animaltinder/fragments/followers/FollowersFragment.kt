@@ -9,14 +9,16 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.layout_followers_fragment.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
 import org.kodein.di.android.support.kodein
 import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.adapters.RecyclerViewAdapter
-import pl.sjmprofil.animaltinder.fragments.followerdetails.FollowerDetailsFragmentArgs
-import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.models.User
 
 class FollowersFragment : Fragment(), KodeinAware {
@@ -48,10 +50,10 @@ class FollowersFragment : Fragment(), KodeinAware {
     }
 
     private fun getList(): List<User> {
-        var list  = listOf<User>()
+        var list = listOf<User>()
         arguments?.let {
             val safeArgsAdvert = FollowersFragmentArgs.fromBundle(it)
-            list =  safeArgsAdvert.advert.likedby
+            list = safeArgsAdvert.advert.likedby
         }
         return list
     }
@@ -83,5 +85,4 @@ class FollowersFragment : Fragment(), KodeinAware {
             updateCallback?.invoke(Unit)
         }
     }
-
 }
