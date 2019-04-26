@@ -1,13 +1,12 @@
 package pl.sjmprofil.animaltinder
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import kotlinx.coroutines.*
+import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.retrofit.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import kotlin.test.assertEquals
 
 fun setup_sercive(): ApiService {
     val retrofit = Retrofit.Builder()
@@ -36,7 +35,6 @@ class ApiTest {
                 println(listOfUsers.toString())
             }
         }
-
     }
 
     fun sending_user_to_api() {
@@ -49,10 +47,8 @@ class ApiTest {
             val responseBody = response.body()
 
             println(responseBody)
-
 //            assertEquals(responseBody?.message, "failure")
         }
-
     }
 
     fun loginUser() {
@@ -70,18 +66,15 @@ class ApiTest {
 //            assertEquals(responseBody?.message, "success")
         }
     }
-
 }
 
 fun main() {
 
     val api = ApiTest()
-
     println("Sending user to api")
     api.sending_user_to_api()
     println("Logging in user")
     api.loginUser()
     println("Getting all users")
     api.getting_all_users()
-
 }

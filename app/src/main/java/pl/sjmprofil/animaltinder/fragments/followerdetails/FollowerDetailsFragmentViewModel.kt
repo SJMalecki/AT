@@ -13,7 +13,6 @@ class FollowerDetailsFragmentViewModel(private val apiRepository: ApiRepository)
     private val coroutineContext: CoroutineContext get() = job + Dispatchers.Default
     private val scope = CoroutineScope(coroutineContext)
 
-
     override fun onCleared() {
         super.onCleared()
         cancelAllRequests()

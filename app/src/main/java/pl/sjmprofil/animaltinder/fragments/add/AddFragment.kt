@@ -48,9 +48,9 @@ class AddFragment : Fragment(), KodeinAware {
 
     private fun setupViewModel() {
         addFragmentViewModel =
-                ViewModelProviders
-                    .of(this, addFragmentViewModelFactory)
-                    .get(AddFragmentViewModel::class.java)
+            ViewModelProviders
+                .of(this, addFragmentViewModelFactory)
+                .get(AddFragmentViewModel::class.java)
     }
 
     private fun setupTakePictureButton() {
@@ -90,15 +90,16 @@ class AddFragment : Fragment(), KodeinAware {
         }
     }
 
-    private fun addNewAdvert(){
-        button_add_advert_add_fragment.setOnClickListener{
+    private fun addNewAdvert() {
+        button_add_advert_add_fragment.setOnClickListener {
             addFragmentViewModel.addNewAdvert(
-                header= text_view_add_bio_header.text.toString(),
+                header = text_view_add_bio_header.text.toString(),
                 bio = text_view_bio_add_fragment.text.toString(),
                 picture = (image_view_add_fragment.drawable as BitmapDrawable).bitmap
             )
         }
     }
+
     private fun setupEditBioButton() {
         button_edit_bio_add_fragment.setOnClickListener {
             dialogFragmentAddBio.show(fragmentManager, "DialogFragmentAddBio")

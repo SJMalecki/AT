@@ -7,7 +7,10 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -64,7 +67,6 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
         startActivity(intent)
     }
 
-
     private fun startRegisterActivity() {
         val intent = RegisterActivity.getIntent(this)
         startActivity(intent)
@@ -112,7 +114,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun hideKeyboard(view: View?) {
-        view?.let{
+        view?.let {
             val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
         }

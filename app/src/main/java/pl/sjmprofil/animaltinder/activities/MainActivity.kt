@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import pl.sjmprofil.animaltinder.R
 
 class MainActivity : AppCompatActivity() {
-    
+
     private lateinit var navController: NavController
 
     companion object {
