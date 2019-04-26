@@ -4,9 +4,9 @@ import pl.sjmprofil.animaltinder.models.Advert
 
 object AdvertCacher {
 
-    private var cachedAdvert : MutableList<Advert> = mutableListOf()
+    private var cachedAdvert: MutableList<Advert> = mutableListOf()
 
-    fun setNewCached(advert: Advert){
+    fun setNewCached(advert: Advert) {
         cachedAdvert.add(advert)
     }
 

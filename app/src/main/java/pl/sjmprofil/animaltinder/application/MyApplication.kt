@@ -101,7 +101,6 @@ class MyApplication : Application(), KodeinAware {
         bind<CardStackLayoutManager>() with singleton {
             CardStackLayoutManager(applicationContext)
         }
-
     }
 }
 //

@@ -42,7 +42,7 @@ class SwipeDeckAdapter : RecyclerView.Adapter<SwipeDeckAdapter.ViewHolder>() {
         return null
     }
 
-    fun insertFirst(advert: Advert){
+    fun insertFirst(advert: Advert) {
         listOfAdverts.add(0, advert)
         notifyItemInserted(0)
     }

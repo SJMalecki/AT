@@ -30,15 +30,15 @@ class SearchFragmentViewModel(private val apiRepository: ApiRepository, advertCa
         }
     }
 
-    fun cacheAdvert(advert: Advert){
+    fun cacheAdvert(advert: Advert) {
         cacher.setNewCached(advert)
     }
 
-    fun retrieveCachedAdvert(): Advert?{
+    fun retrieveCachedAdvert(): Advert? {
         return cacher.retrieveCached()
     }
 
-    fun removeReaction(advert: Advert){
+    fun removeReaction(advert: Advert) {
         scope.launch {
             apiRepository.deleteReaction(advert)
         }
