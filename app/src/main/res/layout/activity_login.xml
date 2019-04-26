@@ -67,7 +67,7 @@
         android:text="@string/log_in" />
 
     <Button
-        android:id="@+id/activity_login_register_button"
+        android:id="@+id/activity_loginn_register_button"
         style="@style/login_activity_button_style"
         android:background="@drawable/add_fagment_add_button_ripple_effect"
         android:text="@string/register" />

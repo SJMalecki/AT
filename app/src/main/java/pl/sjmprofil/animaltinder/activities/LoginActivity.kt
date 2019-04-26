@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.*
 import org.kodein.di.KodeinAware
@@ -27,10 +28,9 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-// to nie dziala tylko michala G, usunac to
-//        activity_login_register_button.setOnClickListener { startRegisterActivity() }
         setContentView(R.layout.activity_login)
+
+        activity_loginn_register_button.setOnClickListener { startRegisterActivity() }
 
         activity_login_login_button.setOnClickListener {
             manageOnClick().also {
