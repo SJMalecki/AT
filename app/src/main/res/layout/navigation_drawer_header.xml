@@ -17,7 +17,8 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="@dimen/followers_card_view_image_view_margin_start"
             android:layout_marginTop="@dimen/followers_card_view_image_view_margin_top"
-            android:src="@drawable/dog_paw" />
+            android:layout_marginBottom="@dimen/followers_card_view_image_view_margin_bottom"
+            android:src="@drawable/ic_dog_paw" />
 
         <TextView
             android:id="@+id/navigation_drawer_logo_text_view"
