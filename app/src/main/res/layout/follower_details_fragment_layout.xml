@@ -31,8 +31,10 @@
             android:text="@{user.name}"
             android:textColor="@color/doggy_orange"
             android:textSize="@dimen/user_profile_fragment_email_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/surname_text_view_user_profile_fragment"
+            app:layout_constraintEnd_toEndOf="@+id/surname_text_view_user_profile_fragment"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/surname_text_view_user_profile_fragment"
             app:layout_constraintTop_toBottomOf="@+id/image_view_user_profile_fragment"
             tools:text="user name" />
 
@@ -51,7 +53,9 @@
             android:text="@{user.email}"
             android:textColor="@color/doggy_orange"
             android:textSize="@dimen/user_profile_fragment_email_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/surname_text_view_user_profile_fragment"
             tools:text="bio" />
@@ -71,9 +75,10 @@
             android:text="@{user.surname}"
             android:textColor="@color/doggy_orange"
             android:textSize="@dimen/user_profile_fragment_email_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/email_text_view_user_profile_fragment"
+            app:layout_constraintEnd_toEndOf="@+id/email_text_view_user_profile_fragment"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/email_text_view_user_profile_fragment"
             app:layout_constraintTop_toBottomOf="@+id/name_text_view_user_profile_fragment"
             tools:text="surname" />
 
@@ -88,6 +93,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/drawer_tinda_pic" />
+
+        <Button
+            android:id="@+id/email_button_user_profile_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="184dp"
+            android:text="send email"
+            app:layout_constraintEnd_toEndOf="@+id/email_text_view_user_profile_fragment"
+            app:layout_constraintStart_toStartOf="@+id/email_text_view_user_profile_fragment"
+            app:layout_constraintTop_toBottomOf="@+id/email_text_view_user_profile_fragment" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>
