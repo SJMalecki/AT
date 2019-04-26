@@ -224,6 +224,14 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         Log.d("RESPONSEBODY", "ADVERT DELETE $responseBody")
     }
 
+    suspend fun deleteReaction(advert: Advert) {
+        val response = apiService.deleteReaction(wrapToken(token), advertId = advert.id).await()
+
+        val responseBody = response.body()
+
+        Log.d("RESPONSEBODY", "Reaction DELETE $responseBody")
+    }
+
     suspend fun deleteUser() {
         apiService.deleteUser(wrapToken(token)).await()
     }

@@ -22,6 +22,7 @@ object ImageBindingAdapter {
             .load(url)
             .apply(
                 RequestOptions()
+                    .centerCrop()
                     .skipMemoryCache(true)
                     .placeholder(R.drawable.loading_circle)
                     .error(R.drawable.ic_error)

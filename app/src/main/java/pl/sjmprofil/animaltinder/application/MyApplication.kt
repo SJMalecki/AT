@@ -22,6 +22,7 @@ import pl.sjmprofil.animaltinder.fragments.search.SearchFragmentViewModelFactory
 import pl.sjmprofil.animaltinder.fragments.userprofile.UserProfileFragmentViewModelFactory
 import pl.sjmprofil.animaltinder.repository.ApiRepository
 import pl.sjmprofil.animaltinder.retrofit.ApiService
+import pl.sjmprofil.animaltinder.utilities.AdvertCacher
 import pl.sjmprofil.animaltinder.utilities.Validator
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -77,8 +78,12 @@ class MyApplication : Application(), KodeinAware {
             UserProfileFragmentViewModelFactory(instance())
         }
 
+        bind<AdvertCacher>() with singleton {
+            AdvertCacher
+        }
+
         bind<SearchFragmentViewModelFactory>() with singleton {
-            SearchFragmentViewModelFactory(instance())
+            SearchFragmentViewModelFactory(instance(), instance<AdvertCacher>())
         }
 
         bind<EditUserProfileFragmentViewModelFactory>() with singleton {
@@ -96,6 +101,7 @@ class MyApplication : Application(), KodeinAware {
         bind<CardStackLayoutManager>() with singleton {
             CardStackLayoutManager(applicationContext)
         }
+
     }
 }
 //
