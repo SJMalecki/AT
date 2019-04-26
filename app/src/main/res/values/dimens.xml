@@ -14,7 +14,7 @@
     <dimen name="button_padding_end_and_start">40dp</dimen>
     <dimen name="user_profile_fragment_bio_text_size">18sp</dimen>
     <dimen name="add_bio_dialog_fragment_image_size">48dp</dimen>
-    <dimen name="user_profile_fragment_image_size_landscape">150dp</dimen>
+    <dimen name="user_profile_fragment_image_size_landscape">160dp</dimen>
     <dimen name="login_and_register_activity_text_layout_margin">35dp</dimen>
     <dimen name="user_profile_fragment_welcome_text_size">36sp</dimen>
 
@@ -26,6 +26,10 @@
 
     <dimen name="swipe_card_text_margin_start">20dp</dimen>
     <dimen name="card_header_text_size">30sp</dimen>
+    <dimen name="landscape_layouts_button_margin">18dp</dimen>
+    <dimen name="landscape_layouts_image_view_margin">18dp</dimen>
+    <dimen name="landscape_layouts_normal_size_margin">18dp</dimen>
+    <dimen name="user_profile_fragment_normal_text_size">20sp</dimen>
 
     <dimen name="followers_card_view_image_view_size">100dp</dimen>
     <dimen name="followers_card_view_image_view_margin_start">25dp</dimen>
