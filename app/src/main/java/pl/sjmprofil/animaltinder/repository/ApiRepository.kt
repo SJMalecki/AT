@@ -55,7 +55,10 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         }
 
         val response = apiService.createNewUser(user).await()
+
         val responseBody = response.body()
+
+        Log.d("RESPONSEBODY", "Create new user $responseBody")
 
         if (response.isSuccessful && responseBody?.message == "success") {
             val newToken = responseBody.token
@@ -74,7 +77,10 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     suspend fun loginUser(user: User): Boolean {
 
         val response = apiService.loginUser(user).await()
+
         val responseBody = response.body()
+
+        Log.d("RESPONSEBODY", "Login User $responseBody")
 
         if (response.isSuccessful && responseBody?.message == "success") {
             val newToken = responseBody.token
@@ -94,6 +100,8 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
 
         val responseBody = response.body()
 
+        Log.d("RESPONSEBODY", "Get All Users $responseBody")
+
         if (response.isSuccessful && responseBody?.messasge == "success") {
             Log.d("APIREPO", "Getting all users ${responseBody.users}")
             return responseBody.users
@@ -106,10 +114,14 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
     suspend fun getMyUserInfoFromServer(): User {
         val response = apiService.getMyInfo(wrapToken(token)).await()
 
-        if (response.isSuccessful) {
+        val responseBody = response.body()
+
+        Log.d("RESPONSEBODY", "Get My User Info From Server $responseBody")
+
+        if (response.isSuccessful &&  responseBody?.message == "success") {
             // Response body is User
 
-            val myUserInstance = response.body()!!
+            val myUserInstance = responseBody
             Log.d("APIREPO", "Getting user info details: ${myUserInstance.user}")
             return myUserInstance.user
         }
@@ -131,6 +143,8 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         val response = apiService.getMyInfo(wrapToken(token)).await()
         val responseBody = response.body()
 
+        Log.d("RESPONSEBODY", "Get my adverts $responseBody")
+
         if (response.isSuccessful && responseBody?.message == "success") {
             Log.d("APIREPO", "Getting my adverts ${responseBody.user.myAdverts}")
             return responseBody.user.myAdverts
@@ -143,6 +157,8 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         val response = apiService.getAllAdverts(wrapToken(token)).await()
 
         val responseBody = response.body()
+
+        Log.d("RESPONSEBODY", "Get All Adverts $responseBody")
 
         if (response.isSuccessful && responseBody?.message == "success") {
             Log.d("APIREPO", "Getting all adverts ${responseBody.adverts}")
@@ -163,7 +179,9 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         val multipartBody = MultipartBody.Part.createFormData("photo", "photo", requestBody)
         val response = apiService.uploadUserPhoto(wrapToken(token), photo = multipartBody).await()
 
-        println(response.body())
+        val responseBody = response.body()
+
+        Log.d("RESPONSEBODY", "Change User Photo $responseBody")
     }
 
     suspend fun createAdvert(bitmap: Bitmap, advert: Advert) {
@@ -184,7 +202,9 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
             header = multipartBodyAdvertHeader
         ).await()
 
-        println(response.body())
+        val responseBody = response.body()
+
+        Log.d("RESPONSEBODY", "Create Advert $responseBody")
     }
 
     suspend fun addReactionToAdvert(advertId: Int, reaction: Int) {
@@ -192,11 +212,16 @@ class ApiRepository(private val context: Context, private val apiService: ApiSer
         val reactionObj = Reaction(advert_id = advertId, reaction = reaction)
         val response = apiService.addMyReactionToAdvert(wrapToken(token), reactionObj).await()
         val responseBody = response.body()
-        println(responseBody)
+
+        Log.d("RESPONSEBODY", "Add Reaction To Advert $responseBody")
     }
 
     suspend fun deleteAdvert(advert: Advert) {
-        apiService.deleteAdvert(wrapToken(token), advert).await()
+        val response = apiService.deleteAdvert(wrapToken(token), advert.id).await()
+
+        val responseBody = response.body()
+
+        Log.d("RESPONSEBODY", "ADVERT DELETE $responseBody")
     }
 
     suspend fun deleteUser() {

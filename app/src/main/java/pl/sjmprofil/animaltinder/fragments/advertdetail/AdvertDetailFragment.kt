@@ -14,6 +14,7 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.kodein
 import org.kodein.di.generic.instance
 import pl.sjmprofil.animaltinder.R
+import pl.sjmprofil.animaltinder.databinding.AdvertDetailLayoutBinding
 import pl.sjmprofil.animaltinder.models.Advert
 
 class AdvertDetailFragment : Fragment(), KodeinAware {
@@ -38,7 +39,7 @@ class AdvertDetailFragment : Fragment(), KodeinAware {
                 .get(AdvertDetailFragmentViewModel::class.java)
     }
 
-    lateinit var advertDetailsFragmentLayoutBinding: pl.sjmprofil.animaltinder.databinding.AdvertDetailLayoutBinding
+    private lateinit var advertDetailsFragmentLayoutBinding: AdvertDetailLayoutBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         advertDetailsFragmentLayoutBinding =

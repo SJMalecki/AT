@@ -4,16 +4,15 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.yuyakaido.android.cardstackview.CardStackLayoutManager
-import com.yuyakaido.android.cardstackview.Direction
-import com.yuyakaido.android.cardstackview.StackFrom
-import com.yuyakaido.android.cardstackview.SwipeableMethod
+import com.yuyakaido.android.cardstackview.*
 import kotlinx.android.synthetic.main.advert_detail_layout.*
 import kotlinx.android.synthetic.main.swipe_layout.*
 import org.kodein.di.KodeinAware
@@ -23,7 +22,7 @@ import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.adapters.SwipeDeckAdapter
 import pl.sjmprofil.animaltinder.models.Advert
 
-class SearchFragment : Fragment(), KodeinAware {
+class SearchFragment : Fragment(), KodeinAware, CardStackListener {
 
     override val kodein by kodein()
 
@@ -59,21 +58,38 @@ class SearchFragment : Fragment(), KodeinAware {
 
     private fun setupButtonListeners() {
 
-        like_button.setOnClickListener {
+        val likeButton = like_button
+
+        likeButton.setOnClickListener {
+            val setting = SwipeAnimationSetting.Builder()
+                .setDirection(Direction.Right)
+                .setDuration(Duration.Normal.duration)
+                .setInterpolator(AccelerateInterpolator())
+                .build()
+            manager.setSwipeAnimationSetting(setting)
+            card_stack_view.swipe()
+
             val advert = swipeDeckAdapter.removeFirst()
             advert?.let {
                 addReaction(advert, 1)
-                like_button.isPressed = true
-                skip_button.isPressed = false
             }
         }
 
-        skip_button.setOnClickListener {
+        val dislikeButton = skip_button
+
+        dislikeButton.setOnClickListener {
+
+            val setting = SwipeAnimationSetting.Builder()
+                .setDirection(Direction.Left)
+                .setDuration(Duration.Normal.duration)
+                .setInterpolator(AccelerateInterpolator())
+                .build()
+            manager.setSwipeAnimationSetting(setting)
+            card_stack_view.swipe()
+
             val advert = swipeDeckAdapter.removeFirst()
             advert?.let {
                 addReaction(advert, 0)
-                like_button.isPressed = false
-                skip_button.isPressed = true
             }
         }
     }
@@ -120,6 +136,31 @@ class SearchFragment : Fragment(), KodeinAware {
     private fun navigateToDetailFragment(advert: Advert) {
         val action = SearchFragmentDirections.actionSearchFragmentToAdvertDetails(advert)
         navController.navigate(action)
+    }
+
+    // Card Stack Listener Methods
+    override fun onCardDisappeared(view: View?, position: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onCardDragging(direction: Direction?, ratio: Float) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onCardSwiped(direction: Direction?) {
+        Log.d("SWIPE", "Direction $direction")
+    }
+
+    override fun onCardCanceled() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onCardAppeared(view: View?, position: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onCardRewound() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private fun setupViewModel() {
