@@ -87,7 +87,10 @@
             android:id="@+id/button_user_profile_fragment_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/add_bio_dialog_fragment_margin_normal"
+            android:padding="@dimen/add_fragment_image_button_padding"
             android:layout_alignParentBottom="true"
+            android:scaleType="fitCenter"
             android:background="@drawable/add_fagment_add_button_ripple_effect"
             android:text="@string/button_search_user_profile_fragment" />
     </RelativeLayout>
