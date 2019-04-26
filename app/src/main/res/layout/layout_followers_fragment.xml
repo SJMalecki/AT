@@ -5,7 +5,8 @@
     android:id="@+id/swipe_refresh_layout_followers_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.MainActivity"
+    android:background="@drawable/followers_fragment_background_shape">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/followers_fragment_recycler_view"
@@ -15,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/card_view_followers">
+        tools:listitem="@layout/card_view_users">
 
     </android.support.v7.widget.RecyclerView>
 
