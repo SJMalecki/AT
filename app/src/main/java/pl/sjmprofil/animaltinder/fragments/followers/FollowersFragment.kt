@@ -49,18 +49,16 @@ class FollowersFragment : Fragment(), KodeinAware {
         }
     }
 
-    private fun getList(): List<User> {
-        var list = listOf<User>()
+    private fun getList(): List<User>? {
         arguments?.let {
             val safeArgsAdvert = FollowersFragmentArgs.fromBundle(it)
-            list = safeArgsAdvert.advert.likedby
+            return safeArgsAdvert.advert.likedby
+
         }
-        return list
+        return null
     }
 
-    //    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private fun setupRecycler() {
-//        recyclerViewAdapter = RecyclerViewAdapter()
         followers_fragment_recycler_view.adapter = recyclerViewAdapter
         followers_fragment_recycler_view.layoutManager = LinearLayoutManager(context)
         updateList()
@@ -80,7 +78,7 @@ class FollowersFragment : Fragment(), KodeinAware {
         return GlobalScope.launch(Dispatchers.IO) {
             val tmp = getList()
             withContext(Dispatchers.Main) {
-                recyclerViewAdapter.updateList(tmp.toMutableList())
+                recyclerViewAdapter.updateList(tmp!!.toMutableList())
             }
             updateCallback?.invoke(Unit)
         }
