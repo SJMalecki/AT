@@ -28,7 +28,7 @@
             app:backgroundTint="@android:color/white"
             android:src="@drawable/thumb_down"
             app:fabSize="auto"
-            app:rippleColor="#22ED7563"
+            app:rippleColor="@color/skip_button_red"
             />
 
         <android.support.design.widget.FloatingActionButton
@@ -44,7 +44,7 @@
             android:tint="@android:color/holo_blue_light"
             app:backgroundTint="@android:color/white"
             app:fabSize="mini"
-            app:rippleColor="#225BC9FA"
+            app:rippleColor="@color/rewind_button_blue"
             />
 
         <android.support.design.widget.FloatingActionButton
@@ -58,7 +58,7 @@
             app:backgroundTint="@android:color/white"
             app:maxImageSize="@dimen/swipe_button_image_size"
             app:fabSize="auto"
-            app:rippleColor="#226FE2B3"
+            app:rippleColor="@color/like_button_green"
             />
 
     </RelativeLayout>
