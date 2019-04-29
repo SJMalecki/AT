@@ -1,5 +1,6 @@
 package pl.sjmprofil.animaltinder.fragments.adverts
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -29,6 +30,8 @@ class AdvertsFragment : Fragment(), KodeinAware {
     override val kodein by kodein()
     private val recyclerViewAdapter: RecyclerViewAdapter by instance()
     private val apiRepository: ApiRepository by instance()
+    private val advertsFragmentViewModelFactory: AdvertsFragmentViewModelFactory by instance()
+    private lateinit var advertsFragmentViewModel: AdvertsFragmentViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.layout_adverts_fragment, container, false)
@@ -37,25 +40,25 @@ class AdvertsFragment : Fragment(), KodeinAware {
     private lateinit var navController: NavController
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupViewModel()
         navController = Navigation.findNavController(view)
         setupRecycler()
         setupSwipeRefresh()
     }
 
-    private var job: Job? = null
+    private fun setupViewModel() {
+        advertsFragmentViewModel =
+            ViewModelProviders.of(this, advertsFragmentViewModelFactory).get(AdvertsFragmentViewModel::class.java)
+    }
+
     private fun setupSwipeRefresh() {
         swipe_refresh_layout_adverts_fragment.setOnRefreshListener {
             swipe_refresh_layout_adverts_fragment.isRefreshing = true
-            job = updateRecyclerViewAdapter()
-            updateCallback = {
+            updateRecyclerViewAdapter()
+            swipeRefreshUpdateCallback = {
                 swipe_refresh_layout_adverts_fragment?.isRefreshing = false
             }
         }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        job?.cancel()
     }
 
     private fun setupRecycler() {
@@ -93,14 +96,11 @@ class AdvertsFragment : Fragment(), KodeinAware {
         itemTouchHelper.attachToRecyclerView(adverts_fragment_recycler_view)
     }
 
-    private var updateCallback: ((Unit) -> Unit)? = null
-    private fun updateRecyclerViewAdapter(): Job {
-        return GlobalScope.launch(Dispatchers.IO) {
-            val tmp = apiRepository.getMyAdverts()
-            withContext(Dispatchers.Main) {
-                recyclerViewAdapter.updateList(tmp.toMutableList())
-            }
-            updateCallback?.invoke(Unit)
+    private var swipeRefreshUpdateCallback: ((Unit) -> Unit)? = null
+    private fun updateRecyclerViewAdapter() {
+        advertsFragmentViewModel.getAdverts {
+            recyclerViewAdapter.updateList(it.toMutableList())
+            swipeRefreshUpdateCallback?.invoke(Unit)
         }
     }
 }

@@ -20,21 +20,20 @@
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="500dp"
-            android:background="@android:color/transparent"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <android.support.design.widget.CollapsingToolbarLayout
                 android:id="@+id/collapsingToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/transparent"
+                app:contentScrim="@color/doggy_green"
+                app:expandedTitleMarginBottom="@dimen/button_margin"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <ImageView
                     android:id="@+id/search_fragment_slide_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:adjustViewBounds="true"
                     android:background="@android:color/transparent"
                     android:scaleType="centerCrop"
                     app:imageUrl="@{advert.picture}"
@@ -43,76 +42,72 @@
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="0dp"
                     app:layout_collapseMode="pin"
-                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed" />
-
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/search_fragment_slide_like_floating_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:src="@drawable/ic_clear_black_24dp"
-                    android:tint="@android:color/holo_red_light"
-                    app:backgroundTint="@android:color/white"
-                    app:fabSize="auto"
-                    app:maxImageSize="@dimen/swipe_button_image_size"
-                    app:rippleColor="#22ED7563" />
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/search_fragment_slide_unlike_floating_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_marginEnd="60dp"
-                    android:src="@drawable/ic_favorite_border_black_24dp"
-                    android:tint="@android:color/holo_green_light"
-                    app:backgroundTint="@android:color/white"
-                    app:fabSize="auto"
-                    app:maxImageSize="@dimen/swipe_button_image_size"
-                    app:rippleColor="#226FE2B3" />
+                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                    app:titleMarginBottom="@dimen/button_margin" />
 
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/search_fragment_slide_like_floating_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="220dp"
+            android:src="@drawable/thumb_down"
+            android:tint="@android:color/holo_red_light"
+            app:backgroundTint="@android:color/white"
+            app:fabSize="auto"
+            app:layout_anchor="@id/appbar"
+            app:layout_anchorGravity="bottom|center"
+            app:maxImageSize="@dimen/swipe_button_image_size"
+            app:rippleColor="@color/skip_button_red" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/search_fragment_slide_unlike_floating_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="220dp"
+            android:src="@drawable/thumb_up"
+            android:tint="@android:color/holo_green_light"
+            app:backgroundTint="@android:color/white"
+            app:fabSize="auto"
+            app:layout_anchor="@id/appbar"
+            app:layout_anchorGravity="bottom|center"
+            app:maxImageSize="@dimen/swipe_button_image_size"
+            app:rippleColor="@color/like_button_green" />
+
         <android.support.v4.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="25dp"
+            android:layout_height="wrap_content"
+            android:background="@color/doggy_gray"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/doggy_gray">
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/doggy_gray"
+                android:orientation="vertical"
+                android:paddingBottom="80dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingBottom="80dp">
+                <TextView
+                    android:id="@+id/search_fragment_header_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="32dp"
+                    android:text="@{advert.header}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="35sp" />
 
-                    <TextView
-                        android:id="@+id/search_fragment_header_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="32dp"
-                        android:text="@{advert.header}"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                        android:textSize="35sp" />
-
-                    <TextView
-                        android:id="@+id/search_fragment_bio_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="32dp"
-                        android:text="@{advert.bio}" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                <TextView
+                    android:id="@+id/search_fragment_bio_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="32dp"
+                    android:text="@{advert.bio}" />
+            </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
-
-
     </android.support.design.widget.CoordinatorLayout>
 </layout>
