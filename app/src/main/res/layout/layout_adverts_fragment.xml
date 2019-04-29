@@ -5,13 +5,14 @@
     android:id="@+id/swipe_refresh_layout_adverts_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/adverts_fragment_background_shape"
     >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/adverts_fragment_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/adverts_fragment_background_shape"
+
         tools:listitem="@layout/card_view_adverts">
 
     </android.support.v7.widget.RecyclerView>

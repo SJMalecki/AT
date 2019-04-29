@@ -36,14 +36,16 @@
 
             <TextView
                 android:id="@+id/adverts_card_view_last_name_text_view"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/card_view_adverts_margin_normal"
                 android:layout_marginTop="@dimen/card_view_adverts_margin_normal"
+                android:layout_marginEnd="@dimen/card_view_adverts_margin_normal"
                 android:text="@{item.header}"
                 android:textColor="@color/doggy_orange"
                 android:textSize="@dimen/card_view_adverts_text_big"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/adverts_card_view_image_view"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/header" />
