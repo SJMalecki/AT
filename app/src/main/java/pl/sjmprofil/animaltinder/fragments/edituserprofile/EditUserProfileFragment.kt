@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.app.Fragment
@@ -13,6 +12,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.edit_user_profile_fragment_layout.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.kodein
@@ -21,7 +24,6 @@ import pl.sjmprofil.animaltinder.R
 import pl.sjmprofil.animaltinder.databinding.EditUserProfileFragmentLayoutBinding
 import pl.sjmprofil.animaltinder.models.User
 import pl.sjmprofil.animaltinder.utilities.DialogFragmentAddBio
-import java.io.File
 
 class EditUserProfileFragment : Fragment(), KodeinAware {
 
@@ -36,11 +38,11 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
 
     private val dialogFragmentAddBio = DialogFragmentAddBio()
 
+    private var profilePictureBitmap: Bitmap? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupViewModel()
-
-        Log.i("OnView", "onCreate EditUserProfileFragment called")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -48,31 +50,54 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
             inflater, R.layout.edit_user_profile_fragment_layout,
             container, false
         )
-        Log.i("OnView", "onCreateView EditUserProfileFragment called")
         return bindEditUserProfileFragment.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.i("OnView", "onViewCreated EditUserProfileFragment called")
-
         setupOpenGalleryButton()
         setupTakePictureButton()
         setupImageToOpenGalleryButton()
         setupEditBioButton()
+        setupProfilePicture()
+        setupApproveChangesButton()
+    }
 
+    private fun setupProfilePicture() {
         editUserProfileFragmentViewModel.getMyData { myUser: User ->
             bindEditUserProfileFragment.user = myUser
             bindEditUserProfileFragment.executePendingBindings()
+            if (profilePictureBitmap != null) {
+                Glide.with(context!!)
+                    .load(profilePictureBitmap)
+                    .apply(
+                        RequestOptions()
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
+                            .error(R.drawable.loading_circle)
+                    )
+                    .into(image_view_edit_profile_fragment)
+            }
+        }
+    }
+
+    private fun setupApproveChangesButton() {
+        button_add_advert_edit_profile_fragment.setOnClickListener {
+            if (profilePictureBitmap != null) {
+                editUserProfileFragmentViewModel.postMyNewData(profilePictureBitmap!!)
+                Toast.makeText(context!!, getString(R.string.profile_picture_changed), Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(context!!, getString(R.string.no_changes), Toast.LENGTH_LONG).show()
+            }
         }
     }
 
     private fun setupViewModel() {
         editUserProfileFragmentViewModel =
-            ViewModelProviders
-                .of(this, editUserProfileFragmentViewModelFactory)
-                .get(EditUserProfileFragmentViewModel::class.java)
+                ViewModelProviders
+                    .of(this, editUserProfileFragmentViewModelFactory)
+                    .get(EditUserProfileFragmentViewModel::class.java)
     }
 
     private fun setupTakePictureButton() {
@@ -129,22 +154,14 @@ class EditUserProfileFragment : Fragment(), KodeinAware {
 
         if (requestCode == TAKE_PICTURE_BUTTON_REQUEST_ID) {
             if (resultCode == Activity.RESULT_OK) {
-                val imageHolder = data?.extras?.get("data") as Bitmap
-                Log.i("OnView", "$imageHolder")
-
-                image_view_edit_profile_fragment.setImageBitmap(imageHolder)
+                profilePictureBitmap = data?.extras?.get("data") as Bitmap
             }
         }
 
         if (requestCode == OPEN_GALLERY_BUTTON_REQUEST_ID) {
             if (resultCode == Activity.RESULT_OK) {
-
                 val contentURI = data?.data
-                Log.i("OnView", contentURI.toString())
-                val file = File(contentURI.toString())
-                val selectedUri = Uri.fromFile(file)
-                val bitmap = MediaStore.Images.Media.getBitmap(context!!.contentResolver, contentURI)
-                editUserProfileFragmentViewModel.postMyNewData(bitmap)
+                profilePictureBitmap = MediaStore.Images.Media.getBitmap(context!!.contentResolver, contentURI)
             }
         }
     }
