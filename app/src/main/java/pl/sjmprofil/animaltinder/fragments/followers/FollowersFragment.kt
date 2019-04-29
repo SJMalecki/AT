@@ -38,11 +38,10 @@ class FollowersFragment : Fragment(), KodeinAware {
         setupSwipeRefresh()
     }
 
-    private var job: Job? = null
     private fun setupSwipeRefresh() {
         swipe_refresh_layout_followers_fragment.setOnRefreshListener {
             swipe_refresh_layout_followers_fragment.isRefreshing = true
-            job = updateList()
+            updateList()
             updateCallback = {
                 swipe_refresh_layout_followers_fragment?.isRefreshing = false
             }
@@ -68,19 +67,11 @@ class FollowersFragment : Fragment(), KodeinAware {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-        job?.cancel()
-    }
 
     private var updateCallback: ((Unit) -> Unit)? = null
-    private fun updateList(): Job {
-        return GlobalScope.launch(Dispatchers.IO) {
-            val tmp = getList()
-            withContext(Dispatchers.Main) {
-                recyclerViewAdapter.updateList(tmp!!.toMutableList())
-            }
-            updateCallback?.invoke(Unit)
-        }
+    private fun updateList() {
+        recyclerViewAdapter.updateList(getList()!!.toMutableList())
+        updateCallback?.invoke(Unit)
     }
+
 }
