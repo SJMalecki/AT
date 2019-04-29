@@ -83,8 +83,8 @@ class AddFragment : Fragment(), KodeinAware {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString("BioText", text_view_bio_add_fragment.text.toString())
-        outState.putString("HeaderText", text_view_add_bio_header.text.toString())
+        outState.putString("BioText", text_view_bio_add_fragment?.text.toString())
+        outState.putString("HeaderText", text_view_add_bio_header?.text.toString())
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
