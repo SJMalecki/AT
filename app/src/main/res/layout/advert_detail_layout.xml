@@ -46,6 +46,33 @@
                     android:layout_height="250dp"
                     app:layout_collapseMode="pin"
                     app:layout_scrollFlags="scroll|enterAlwaysCollapsed" />
+
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/search_fragment_slide_like_floating_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:src="@drawable/ic_clear_black_24dp"
+                    android:tint="@android:color/holo_red_light"
+                    app:backgroundTint="@android:color/white"
+                    app:fabSize="auto"
+                    app:maxImageSize="@dimen/swipe_button_image_size"
+                    app:rippleColor="#22ED7563" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/search_fragment_slide_unlike_floating_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="60dp"
+                    android:src="@drawable/ic_favorite_border_black_24dp"
+                    android:tint="@android:color/holo_green_light"
+                    app:backgroundTint="@android:color/white"
+                    app:fabSize="auto"
+                    app:maxImageSize="@dimen/swipe_button_image_size"
+                    app:rippleColor="#226FE2B3" />
+
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
@@ -86,58 +113,6 @@
             </android.support.v7.widget.CardView>
         </android.support.v4.widget.NestedScrollView>
 
-        <RelativeLayout
-            android:id="@+id/button_container"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="8dp"
-            android:clipChildren="false"
-            android:orientation="horizontal">
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/search_fragment_slide_like_floating_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/rewind_button2"
-                android:src="@drawable/ic_clear_black_24dp"
-                android:tint="@android:color/holo_red_light"
-                app:backgroundTint="@android:color/white"
-                app:fabSize="auto"
-                app:maxImageSize="@dimen/swipe_button_image_size"
-                app:rippleColor="#22ED7563" />
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/rewind_button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:clickable="false"
-                android:src="@drawable/ic_autorenew_black_24dp"
-                android:visibility="invisible"
-                app:backgroundTint="@android:color/white"
-                app:fabSize="mini"
-                app:rippleColor="#225BC9FA" />
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/search_fragment_slide_unlike_floating_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/rewind_button2"
-                android:src="@drawable/ic_favorite_border_black_24dp"
-                android:tint="@android:color/holo_green_light"
-                app:backgroundTint="@android:color/white"
-                app:fabSize="auto"
-                app:maxImageSize="@dimen/swipe_button_image_size"
-                app:rippleColor="#226FE2B3" />
-
-        </RelativeLayout>
     </android.support.design.widget.CoordinatorLayout>
 </layout>

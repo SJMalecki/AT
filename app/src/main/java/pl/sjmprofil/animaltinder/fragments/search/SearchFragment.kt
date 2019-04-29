@@ -12,8 +12,8 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
+import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.Direction
 import com.yuyakaido.android.cardstackview.SwipeAnimationSetting
 import com.yuyakaido.android.cardstackview.Duration
@@ -76,7 +76,8 @@ class SearchFragment : Fragment(), KodeinAware, CardStackListener {
 
             val advert = swipeDeckAdapter.removeFirst()
             advert?.let {
-                addReaction(advert, 1)
+                searchFragmentViewModel.cacheAdvert(it)
+                addReaction(it, 1)
             }
         }
 
@@ -94,8 +95,15 @@ class SearchFragment : Fragment(), KodeinAware, CardStackListener {
 
             val advert = swipeDeckAdapter.removeFirst()
             advert?.let {
-                addReaction(advert, 0)
+                searchFragmentViewModel.cacheAdvert(it)
+                addReaction(it, 0)
             }
+        }
+
+        val rewindButton = rewind_button
+
+        rewindButton.setOnClickListener {
+            onCardRewound()
         }
     }
 
@@ -104,7 +112,7 @@ class SearchFragment : Fragment(), KodeinAware, CardStackListener {
     }
 
     private fun initializeAdapterAndManager() {
-        manager = CardStackLayoutManager(context)
+        manager = CardStackLayoutManager(context, this)
         card_stack_view.layoutManager = manager
         card_stack_view.adapter = swipeDeckAdapter
     }
@@ -143,29 +151,43 @@ class SearchFragment : Fragment(), KodeinAware, CardStackListener {
         navController.navigate(action)
     }
 
-    // Card Stack Listener Methods
     override fun onCardDisappeared(view: View?, position: Int) {
-        TODO("not implemented") //  To change body of created functions use File | Settings | File Templates.
+        Log.d("SWIPE", "onCardDisappeared ")
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {
-        TODO("not implemented") //  To change body of created functions use File | Settings | File Templates.
+        Log.d("SWIPE", "onCardDragging")
     }
 
     override fun onCardSwiped(direction: Direction?) {
-        Log.d("SWIPE", "Direction $direction")
+        Log.d("SWIPE", "onCardSwiped $direction ")
+
+        val advertToReactTo = swipeDeckAdapter.removeFirst()!!
+
+        searchFragmentViewModel.cacheAdvert(advertToReactTo)
+
+        when (direction) {
+            Direction.Right -> searchFragmentViewModel.addReactionToAdvert(advertToReactTo, 1)
+            Direction.Left -> searchFragmentViewModel.addReactionToAdvert(advertToReactTo, 0)
+            else -> Log.d("SWIPE", "onCardSwiped $direction ")
+        }
     }
 
     override fun onCardCanceled() {
-        TODO("not implemented") //  To change body of created functions use File | Settings | File Templates.
+        Log.d("SWIPE", "onCardCanceled ")
     }
 
     override fun onCardAppeared(view: View?, position: Int) {
-        TODO("not implemented") //  To change body of created functions use File | Settings | File Templates.
+        Log.d("SWIPE", "onCardAppeared ")
     }
 
     override fun onCardRewound() {
-        TODO("not implemented") //  To change body of created functions use File | Settings | File Templates.
+        Log.d("SWIPE", "onCardRewound ")
+        val cachedAdvert = searchFragmentViewModel.retrieveCachedAdvert()
+        cachedAdvert?.let {
+            searchFragmentViewModel.removeReaction(it)
+            swipeDeckAdapter.insertFirst(it)
+        }
     }
 
     private fun setupViewModel() {

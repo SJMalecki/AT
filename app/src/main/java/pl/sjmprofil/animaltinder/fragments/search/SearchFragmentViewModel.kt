@@ -8,13 +8,16 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.repository.ApiRepository
+import pl.sjmprofil.animaltinder.utilities.AdvertCacher
 import kotlin.coroutines.CoroutineContext
 
-class SearchFragmentViewModel(private val apiRepository: ApiRepository) : ViewModel() {
+class SearchFragmentViewModel(private val apiRepository: ApiRepository, advertCacher: AdvertCacher) : ViewModel() {
 
     private val job = Job()
     private val coroutineContext: CoroutineContext get() = job + Dispatchers.Default
     private val scope = CoroutineScope(coroutineContext)
+
+    private val cacher = advertCacher
 
     fun getAdvertsForMe(callback: (List<Advert>) -> Unit) {
 
@@ -24,6 +27,20 @@ class SearchFragmentViewModel(private val apiRepository: ApiRepository) : ViewMo
             withContext(Dispatchers.Main) {
                 callback.invoke(adverts)
             }
+        }
+    }
+
+    fun cacheAdvert(advert: Advert) {
+        cacher.setNewCached(advert)
+    }
+
+    fun retrieveCachedAdvert(): Advert? {
+        return cacher.retrieveCached()
+    }
+
+    fun removeReaction(advert: Advert) {
+        scope.launch {
+            apiRepository.deleteReaction(advert)
         }
     }
 

@@ -74,6 +74,13 @@ interface ApiService {
     ): Deferred<Response<MessageOnlyResponse>>
 
     @FormUrlEncoded
+    @HTTP(method = "DELETE", path = "reaction", hasBody = true)
+    fun deleteReaction(
+        @Header("Authorization") token: String,
+        @Field("advert_id") advertId: Int
+    ): Deferred<Response<MessageOnlyResponse>>
+
+    @FormUrlEncoded
     @DELETE("usercreate")
     fun deleteUser(@Header("Authorization") token: String): Deferred<Response<MessageOnlyResponse>>
 }

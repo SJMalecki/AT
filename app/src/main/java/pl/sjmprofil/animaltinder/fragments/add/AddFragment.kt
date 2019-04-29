@@ -102,7 +102,6 @@ class AddFragment : Fragment(), KodeinAware {
                 bio = text_view_bio_add_fragment.text.toString(),
                 picture = (image_view_add_fragment.drawable as BitmapDrawable).bitmap
             )
-            
             val action = AddFragmentDirections.actionAddFragmentLayoutToUserProfileFragmentLayout()
             navController.navigate(action)
         }
