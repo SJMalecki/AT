@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/doggy_green"/>
     <item>
-        <bitmap android:src="@drawable/adverts_fragment_dog" android:gravity="top" android:alpha="0.4"/>
+        <bitmap android:src="@drawable/adverts_fragment_dog" android:gravity="center|fill" android:alpha="0.4"/>
     </item>
 
 </layer-list>
