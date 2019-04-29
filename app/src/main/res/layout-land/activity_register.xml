@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/register_activity_background">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/activity_register_root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/activity_register_name_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/login_and_register_activity_text_layout_margin"
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="@dimen/login_and_register_activity_text_layout_margin"
+            android:textColorHint="@color/doggy_gray"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/activity_register_name_input_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_person_outline_doggy_gray_24dp"
+                android:hint="@string/name"
+                android:imeOptions="actionNext"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/activity_register_surname_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/login_and_register_activity_text_layout_margin"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/login_and_register_activity_text_layout_margin"
+
+            android:textColorHint="@color/doggy_gray"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_register_name_input_layout">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/activity_register_surname_input_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_person_outline_doggy_gray_24dp"
+                android:hint="@string/surname"
+                android:imeOptions="actionNext"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/activity_register_email_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/login_and_register_activity_text_layout_margin"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/login_and_register_activity_text_layout_margin"
+            android:textColorHint="@color/doggy_gray"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_register_surname_input_layout">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/activity_register_email_input_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_mail_outline_doggy_gray_24dp"
+                android:hint="@string/email"
+                android:imeOptions="actionNext"
+                android:inputType="textWebEmailAddress" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/activity_register_password1_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/login_and_register_activity_text_layout_margin"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/login_and_register_activity_text_layout_margin"
+            android:textColorHint="@color/doggy_gray"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_register_email_input_layout">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/activity_register_password1_input_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_lock_outline_doggy_gray_24dp"
+                android:hint="@string/enter_password1"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/activity_register_password2_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/login_and_register_activity_text_layout_margin"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/login_and_register_activity_text_layout_margin"
+            android:textColorHint="@color/doggy_gray"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_register_password1_input_layout">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/activity_register_password2_input_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_lock_outline_doggy_gray_24dp"
+                android:hint="@string/enter_password2"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/activity_register_register_button2"
+            style="@style/login_activity_button_style"
+            android:layout_width="332dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/add_fagment_add_button_ripple_effect"
+            android:text="@string/register"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_register_password2_input_layout"
+            app:layout_constraintVertical_bias="0.808" />
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>
+
