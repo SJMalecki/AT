@@ -13,4 +13,8 @@
 
     <color name="swipe_card_black_box">#40000000</color>
 
+    <color name="skip_button_red">#22ED7563</color>
+    <color name="like_button_green">#226FE2B3</color>
+    <color name="rewind_button_blue">#225BC9FA</color>
+
 </resources>
