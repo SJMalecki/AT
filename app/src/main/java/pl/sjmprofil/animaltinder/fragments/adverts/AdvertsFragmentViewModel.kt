@@ -1,7 +1,11 @@
 package pl.sjmprofil.animaltinder.fragments.adverts
 
 import android.arch.lifecycle.ViewModel
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.launch
 import pl.sjmprofil.animaltinder.models.Advert
 import pl.sjmprofil.animaltinder.repository.ApiRepository
 import kotlin.coroutines.CoroutineContext
@@ -20,7 +24,7 @@ class AdvertsFragmentViewModel(private val apiRepository: ApiRepository) : ViewM
     fun getAdverts(callback: (List<Advert>) -> Unit) {
         scope.launch {
             val adverts = apiRepository.getMyAdverts()
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 callback.invoke(adverts)
             }
         }

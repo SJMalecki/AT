@@ -14,7 +14,6 @@ import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.layout_adverts_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
