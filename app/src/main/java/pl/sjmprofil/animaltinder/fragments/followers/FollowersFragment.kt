@@ -9,11 +9,6 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.layout_followers_fragment.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
 import org.kodein.di.android.support.kodein
@@ -52,7 +47,6 @@ class FollowersFragment : Fragment(), KodeinAware {
         arguments?.let {
             val safeArgsAdvert = FollowersFragmentArgs.fromBundle(it)
             return safeArgsAdvert.advert.likedby
-
         }
         return null
     }
@@ -67,11 +61,9 @@ class FollowersFragment : Fragment(), KodeinAware {
         }
     }
 
-
     private var updateCallback: ((Unit) -> Unit)? = null
     private fun updateList() {
         recyclerViewAdapter.updateList(getList()!!.toMutableList())
         updateCallback?.invoke(Unit)
     }
-
 }
