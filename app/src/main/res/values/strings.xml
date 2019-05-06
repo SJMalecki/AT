@@ -46,4 +46,6 @@
     <string name="add_bio_dialog_fragment_name">Name</string>
     <string name="add_bio_dialog_fragment_description">Description/Bio</string>
     <string name="user_profile_fragment_welcome">Welcome !</string>
+    <string name="profile_picture_changed">Profile picture changed!</string>
+    <string name="no_changes">No changes added</string>
 </resources>
